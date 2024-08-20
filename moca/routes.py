@@ -56,3 +56,42 @@ def delete_category(category_id):
     db.session.delete(category)
     db.session.commit()
     return redirect(url_for("categories"))
+
+#add recipe
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
+    categories = Category.query.order_by(Category.category_name).all()
+
+    if request.method == "POST":
+        if request.method == "POST":
+            recipe_name = request.form.get("recipe_name")
+            image_url = request.form.get("image_url")
+            description = request.form.get("description")
+            ingredients = request.form.get("ingredients")
+            instructions = request.form.get("instructions")
+            category_id = request.form.get("category_id")
+            
+
+        # Validation
+        if not recipe_name or not category_id or not ingredients or not instructions:
+            flash("Please fill in all required fields.", "error")
+            return redirect(url_for("add_recipe"))
+
+        # Create a new Recipe instance
+        recipe = Recipe(
+            recipe_name=recipe_name,
+            image_url=image_url,
+            description=description,
+            ingredients=ingredients,
+            instructions=instructions,
+            category_id=category_id
+        )
+        
+        # Add the new category to the database
+        db.session.add(recipe)
+        db.session.commit()
+        
+        flash("Recipe added successfully!", "success")
+        return redirect(url_for("home"))
+
+    return render_template("add_recipe.html", categories=categories)

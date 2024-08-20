@@ -48,7 +48,7 @@ def edit_category(category_id):
     if request.method == "POST":
         category.category_name = request.form.get("category_name")
         db.session.commit()
-        return redirect(url_for("categories") )
+        return redirect(url_for("categories"))
     return render_template("edit_category.html", category=category)
 
 @app.route("/delete_category/<int:category_id>")
@@ -98,7 +98,7 @@ def add_recipe():
 @app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
-    categories = Category.query.order_by(Category.category_name).all()
+    categories = list(Category.query.order_by(Category.category_name).all())
 
     if request.method == "POST":
         recipe.recipe_name = request.form.get("recipe_name")
@@ -110,16 +110,13 @@ def edit_recipe(recipe_id):
 
         db.session.commit()
         flash("Recipe updated successfully!", "success")
-        return redirect(url_for("home"))
+        return redirect(url_for("home"))  # Redirects to home page after update
 
-    return render_template("recipes.html", recipe=recipe, categories=categories)
+    return render_template("edit_recipe.html", recipe=recipe, categories=categories)  # Corrected to render edit_recipe.html
 
-# Delete a recipe
 @app.route("/delete_recipe/<int:recipe_id>")
 def delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
     db.session.delete(recipe)
     db.session.commit()
-    flash("Recipe deleted successfully!", "success")
     return redirect(url_for("home"))
-

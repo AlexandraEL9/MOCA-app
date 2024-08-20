@@ -4,6 +4,7 @@
 <h3 class="center-align">Recipes</h3>
 
 <div class="row">
+    {% for recipe in recipes %}
     <div class="col s12 m6 l3">
         <div class="card center-align">
             <div class="card-image">
@@ -18,8 +19,8 @@
                 <a href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" class="btn">Delete</a>
             </div>
         </div>
-
     </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

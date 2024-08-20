@@ -5,21 +5,21 @@
 
 <div class="row">
     {% for recipe in recipes %}
-    <div class="col s12 m6 l3">
-        <div class="card center-align">
-            <div class="card-image">
-                <img src="{{ recipe.image_url }}">
-            </div>
-            <span class="card-title">{{ recipe.recipe_name }}</span>
-            <div class="card-content">
-                <p>{{ recipe.description }}</p>
-            </div>
-            <div class="card-action">
-                <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn">Edit</a>
-                <a href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" class="btn">Delete</a>
+        <div class="col s12 m6 l3">
+            <div class="card center-align">
+                <div class="card-image">
+                    <img src="{{ recipe.image_url }}">
+                </div>
+                <span class="card-title">{{ recipe.recipe_name }}</span>
+                <div class="card-content">
+                    <p>{{ recipe.description }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn">Edit</a>
+                    <a href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" class="btn">Delete</a>
+                </div>
             </div>
         </div>
-    </div>
     {% endfor %}
 </div>
 

@@ -91,11 +91,10 @@ def add_recipe():
         db.session.commit()
 
         flash("Recipe added successfully!", "success")
-        return redirect(url_for("recipes"))
+        return redirect(url_for("home"))
 
     return render_template("add_recipe.html", categories=categories)
 
-# Edit an existing recipe
 @app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
@@ -111,9 +110,9 @@ def edit_recipe(recipe_id):
 
         db.session.commit()
         flash("Recipe updated successfully!", "success")
-        return redirect(url_for("recipes"))
+        return redirect(url_for("home"))
 
-    return render_template("edit_recipe.html", recipe=recipe, categories=categories)
+    return render_template("recipes.html", recipe=recipe, categories=categories)
 
 # Delete a recipe
 @app.route("/delete_recipe/<int:recipe_id>")
@@ -122,5 +121,5 @@ def delete_recipe(recipe_id):
     db.session.delete(recipe)
     db.session.commit()
     flash("Recipe deleted successfully!", "success")
-    return redirect(url_for("recipes"))
+    return redirect(url_for("home"))
 

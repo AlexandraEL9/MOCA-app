@@ -95,3 +95,9 @@ def add_recipe():
         return redirect(url_for("home"))
 
     return render_template("add_recipe.html", categories=categories)
+
+# View all recipes
+@app.route("/recipes")
+def recipes():
+    recipes = Recipe.query.order_by(Recipe.date_added.desc()).all()
+    return render_template("recipes.html", recipes=recipes)

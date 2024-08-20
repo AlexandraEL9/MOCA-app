@@ -5,7 +5,8 @@ from moca.models import Category, Recipe
 
 @app.route("/")
 def home():
-    return render_template("recipes.html")
+    recipes = list(Recipe.query.order_by(Recipe.id).all())
+    return render_template("recipes.html", recipes=recipes)
 
 @app.route("/categories")
 def categories():
@@ -57,20 +58,18 @@ def delete_category(category_id):
     db.session.commit()
     return redirect(url_for("categories"))
 
-#add recipe
+# Add a new recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     categories = Category.query.order_by(Category.category_name).all()
-
+    
     if request.method == "POST":
-        if request.method == "POST":
-            recipe_name = request.form.get("recipe_name")
-            image_url = request.form.get("image_url")
-            description = request.form.get("description")
-            ingredients = request.form.get("ingredients")
-            instructions = request.form.get("instructions")
-            category_id = request.form.get("category_id")
-            
+        recipe_name = request.form.get("recipe_name")
+        image_url = request.form.get("image_url")
+        description = request.form.get("description")
+        ingredients = request.form.get("ingredients")
+        instructions = request.form.get("instructions")
+        category_id = request.form.get("category_id")
 
         # Validation
         if not recipe_name or not category_id or not ingredients or not instructions:
@@ -86,18 +85,33 @@ def add_recipe():
             instructions=instructions,
             category_id=category_id
         )
-        
-        # Add the new category to the database
+
+        # Add the new recipe to the database
         db.session.add(recipe)
         db.session.commit()
-        
+
         flash("Recipe added successfully!", "success")
-        return redirect(url_for("home"))
+        return redirect(url_for("recipes"))
 
     return render_template("add_recipe.html", categories=categories)
 
-# View all recipes
-@app.route("/recipes")
-def recipes():
-    recipes = Recipe.query.order_by(Recipe.date_added.desc()).all()
-    return render_template("recipes.html", recipes=recipes)
+# Edit an existing recipe
+@app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    recipe = Recipe.query.get_or_404(recipe_id)
+    categories = Category.query.order_by(Category.category_name).all()
+
+    if request.method == "POST":
+        recipe.recipe_name = request.form.get("recipe_name")
+        recipe.image_url = request.form.get("image_url")
+        recipe.description = request.form.get("description")
+        recipe.ingredients = request.form.get("ingredients")
+        recipe.instructions = request.form.get("instructions")
+        recipe.category_id = request.form.get("category_id")
+
+        db.session.commit()
+        flash("Recipe updated successfully!", "success")
+        return redirect(url_for("recipes"))
+
+    return render_template("edit_recipe.html", recipe=recipe, categories=categories)
+

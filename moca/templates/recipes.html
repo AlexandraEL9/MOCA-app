@@ -3,6 +3,16 @@
 
 <h3 class="center-align">Recipes</h3>
 
+<!--search bar-->
+<div class="row">
+    <form method="GET" action="{{ url_for('search_recipes') }}">
+        <div class="input-field">
+            <input type="text" id="search" name="query" placeholder="Search for recipes...">
+            <button type="submit" class="btn">Search</button>
+        </div>
+    </form>
+</div>
+
 <div class="row">
     {% for recipe in recipes %}
     <div class="col s12 m6 l3">

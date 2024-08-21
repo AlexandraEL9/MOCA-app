@@ -8,6 +8,20 @@ def home():
     recipes = list(Recipe.query.order_by(Recipe.id).all())
     return render_template("recipes.html", recipes=recipes)
 
+#search bar 
+@app.route('/search')
+def search_recipes():
+    query = request.args.get('query')
+    if query:
+        #search recipes by name or description
+        recipes = Recipe.query.filter(
+            Recipe.recipe_name.ilike(f'%{query}%') |
+            Recipe.description.ilike(f'%{query}%')
+        ).all()
+    else:
+        recipes = []
+    return render_template('search_results.html', recipes=recipes, query=query)
+
 @app.route("/categories")
 def categories():
     categories = list(Category.query.order_by(Category.category_name).all())

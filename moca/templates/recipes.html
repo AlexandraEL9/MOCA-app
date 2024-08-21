@@ -30,6 +30,8 @@
                 <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn">Edit</a>
                 <a href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" class="btn">Delete</a>
             </div>
+            <!-- New Button to View the Entire Recipe -->
+            <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}" class="btn">View Recipe</a>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">
                     Ingredients

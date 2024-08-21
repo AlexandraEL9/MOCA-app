@@ -8,25 +8,10 @@ main {
   flex: 1 0 auto;
 }
 
-/*card elements*/
-.card-image img {
-    width: 100%;
-    height: 200px; /* Adjust to your desired image height */
-    object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
-}
-.card-recipe {
-  height: 400px; /* Set a consistent card height */
-}
-.card-category {
-  height: 350px; /* Set a consistent card height */
-}
-.card-content, .card-reveal {
-  overflow-y: auto; /* Ensures content doesn't overflow outside the card */
-}
-.card-title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; /* Truncate long titles with ellipsis */
+/* card  element styles */
+.card .card-image img {
+  object-fit: cover;
+  height: 40vh;
 }
 
 /* Quick Look Reveal on Hover */

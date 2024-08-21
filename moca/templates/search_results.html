@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">Search Results for "{{ query }}"</h3>
+<h3 class="center-align">
+    {% if query %}
+        Search Results for "{{ query }}"
+    {% elif category %}
+        Recipes in "{{ category.category_name }}" Category
+    {% else %}
+        Search Results
+    {% endif %}
+
+</h3>
 
 <div class="row">
     {% if recipes %}

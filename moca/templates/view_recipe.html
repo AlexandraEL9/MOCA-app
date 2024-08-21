@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <h3 class="center-align">{{ recipe.recipe_name }}</h3>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <img src="{{ recipe.image_url }}" class="responsive-img">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <h5>Description</h5>
+        <p>{{ recipe.description }}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <h5>Ingredients</h5>
+        <p>{{ recipe.ingredients | replace('\n', '<br>') }}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <h5>Instructions</h5>
+        <p>{{ recipe.description | replace('\n', '<br>') }}</p>
+    </div>
+</div>
+
+
+{% endblock %}

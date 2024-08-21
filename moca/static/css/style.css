@@ -1,9 +1,34 @@
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
-  main {
-    flex: 1 0 auto;
-  }
+main {
+  flex: 1 0 auto;
+}
+
+/* Quick Look Reveal on Hover */
+.card:hover .card-reveal {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+  z-index: 1;
+}
+
+.card .card-reveal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+

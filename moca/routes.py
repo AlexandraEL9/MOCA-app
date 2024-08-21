@@ -142,3 +142,10 @@ def delete_recipe(recipe_id):
     db.session.delete(recipe)
     db.session.commit()
     return redirect(url_for("home"))
+
+@app.route('/recipe/<int:recipe_id>')
+def view_recipe(recipe_id):
+    #fetch recipe from database using recipe_id
+    recipe = Recipe.query.get_or_404(recipe_id)
+    #render template to display full recipe
+    return render_template('view_recipe.html', recipe=recipe)

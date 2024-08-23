@@ -20,11 +20,11 @@
           <img src="{{ category.image_url }}">
         </div>
         <span class="card-title">{{ category.category_name }}</span>
-        <div class="card-action">
+        <div class="card-action center-align">
           <a href="{{ url_for('edit_category', category_id=category.id) }}" class="btn">Edit</a>
           <a href="{{ url_for('delete_category', category_id=category.id) }}" class="btn">Delete</a>
         </div> 
-        <div class="card-action">
+        <div class="card-action center-align">
           <!--view all button to view all recipes belonging to this category-->
           <a href="{{ url_for('search_recipes') }}?category={{ category.id }}" class="btn">View All "{{ category.category_name }}" Recipes</a>
         </div>  

@@ -12,36 +12,36 @@
         </div>
     </form>
 </div>
-
 <div class="row">
     {% for recipe in recipes %}
     <div class="col s12 m6 l3">
-        <div class="card card-recipe sticky-action">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="{{ recipe.image_url }}">
-            </div>
-            <div class="card-content">
-                <span class="card-title grey-text text-darken-4">
+      <div class="card card-recipe sticky-action">
+        <div class="card-image">
+          <img src="{{ recipe.image_url }}">
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">loop</i></a>
+        </div>
+        <div class="card-content">
+            <div class="title-container">
+                <span class="card-title">
                     {{ recipe.recipe_name }}
                 </span>
-                <p>{{ recipe.description }}</p>
-            </div>
-            <div class="card-action">
-                <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn">Edit</a>
-                <a href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" class="btn">Delete</a>
-            </div>
-            <!-- New Button to View the Entire Recipe -->
-            <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}" class="btn">View Recipe</a>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">
-                    Ingredients
-                </span>
-                <p>{{ recipe.ingredients | replace('\n', '<br>') }}</p>
             </div>
         </div>
+        <div class="card-action center-align">
+            <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn">Edit</a>
+            <a href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" class="btn">Delete</a>
+        </div>
+        <div class="card-action center-align">
+            <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}" class="btn">View Recipe</a>
+        </div>
+        <div class="card-reveal center-align">
+            <span class="card-title grey-text text-darken-4">
+                ingredients
+            </span>
+            <p>{{ recipe.ingredients | replace('\n', '<br>') }}</p>
+        </div>
+      </div>
     </div>
     {% endfor %}
 </div>
-
-{% endblock %}
-
+  {% endblock %}

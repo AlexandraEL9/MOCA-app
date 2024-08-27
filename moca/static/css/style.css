@@ -1,12 +1,75 @@
 body {
+  font-family: 'Roboto', sans-serif;
+  background: url('/static/images/wood-pattern.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
+  min-height: 100vh;
+  padding-top: 64px;
 }
 
 main {
   flex: 1 0 auto;
 }
+
+/* Navbar styling */
+.nav-wrapper {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  padding: 0 20px; /* Adds padding on the left and right */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Adds a slight shadow */
+}
+
+.brand-logo {
+  font-size: 1.5rem; /* Adjust the size of the brand logo text */
+  margin-left: 20px; /* Adds space between the logo and the left edge */
+}
+
+.nav-wrapper ul {
+  margin-right: 20px; /* Adds space between the navigation links and the right edge */
+}
+
+.nav-wrapper ul li a {
+  color: #fff; /* White text for nav links */
+  padding: 0 15px; /* Adds space between the links */
+}
+
+.nav-wrapper ul li a:hover {
+
+  border-radius: 4px; /* Adds a slight rounding to the corners */
+}
+
+.sidenav-trigger {
+  color: #fff; /* White color for the mobile menu icon */
+}
+
+/* Make the navbar fixed */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Mobile sidenav styling */
+.sidenav {
+  background-color: #000; /* Black background */
+}
+
+.sidenav a {
+  color: #fff; /* White text for sidenav links */
+}
+.sidenav li>a {
+  color: #fff; /* White text for sidenav links */
+}
+
+.sidenav a:hover {
+  background-color: #333; /* Darker shade on hover */
+
+}
+
 
 .container {
   margin-top: 30px;

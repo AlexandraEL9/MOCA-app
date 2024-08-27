@@ -13,24 +13,23 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="black">
             <div class="nav-wrapper">
-              <a href="#!" class="brand-logo">MOCA</a>
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-              <ul class="right hide-on-med-and-down">
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
-                <li><a href="{{ url_for('categories') }}">Categories</a></li>
-
-              </ul>
+                <a href="#!" class="brand-logo">MOCA</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
+                    <li><a href="{{ url_for('categories') }}">Categories</a></li>
+                </ul>
             </div>
-          </nav>
-        
-          <ul class="sidenav" id="mobile-demo">
+        </nav>
+    
+        <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
             <li><a href="{{ url_for('categories') }}">Categories</a></li>
-          </ul>
+        </ul>
     </header>
 
     <main class="container">
@@ -39,16 +38,21 @@
 
     </main>
 
-    <footer class="page-footer">
+    <footer class="page-footer black">
+        <div class="container">
+
         <div class="footer-copyright">
             <div class="container">
-                For educational purposes only
-                <a class="white-text right" href="https://codeinstitute.net" target="_blank">&copy; Code Institute</a>
+                © 2024 M.O.C.A, All rights reserved.
             </div>
         </div>
+
+        
+
     </footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 </html>

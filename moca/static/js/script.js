@@ -4,10 +4,19 @@ document.addEventListener("DOMContentLoaded", function() {
     let sidenav = document.querySelectorAll(".sidenav");
     M.Sidenav.init(sidenav);
 
-// select initialization
+    // Get the height of the navbar
+    let navbarHeight = document.querySelector('.nav-wrapper').offsetHeight;
+    
+    // Apply the height as top margin to sidenav
+    sidenav.forEach(function(nav) {
+        nav.style.marginTop = navbarHeight + 'px';
+    });
+    
+    // select initialization
     let selects = document.querySelectorAll("select");
     M.FormSelect.init(selects);
 });
+
 
 //card actions
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,18 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">Categories</h3>
+<!-- header section -->
+<div class="container-fluid container-header">
+  <div class="row">
+    <!-- title and description section -->
+    <div class="col-lg-6 col-md-6">
+      <section class="content-section content-section-title-description">
+        <h2>Categories</h2> 
+      </section>
+    </div>
+  </div>
+</div>
 
-<div class="row">
+<section class="section-page-heading">
+  <div class="row">
     <div class="col s12 center-align">
         <a href="{{ url_for('add_category') }}" class="btn-large">
         Add Category <i class="fas fa-plus-square right"></i>
         </a>
     </div>
-</div>
+  </div>
+</section>
 
 <!--categories cards-->
-<div class="row">
+<div class="row main-container">
     {% for category in categories %}
     <div class="col s12 m6 l3">
       <div class="card card-category center-align">

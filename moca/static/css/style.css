@@ -58,6 +58,7 @@ main {
   color: #fff; /* White text */
   padding: 0 20px; /* Adds padding on the left and right */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Adds a slight shadow */
+  font-family: var(--heading-font-family);
 }
 
 .brand-logo {

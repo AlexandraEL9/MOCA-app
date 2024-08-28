@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
     M.FormSelect.init(selects);
 });
 
-
 //card actions
 document.addEventListener('DOMContentLoaded', function() {
     // Add event listeners for the reveal icons
@@ -35,6 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
         icon.addEventListener('click', function() {
             const card = icon.closest('.card');
             card.classList.toggle('active');
+        });
+    });
+
+    // Close button functionality for flash messages
+    document.querySelectorAll('.flash-message .close-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const flashMessage = button.closest('.flash-message');
+            flashMessage.style.display = 'none';
         });
     });
 });

@@ -50,6 +50,12 @@ main {
 
 .section-page-heading {
   background-color: #F44336;
+  padding: 5px;
+  margin-top: 0;
+}
+
+.main-container {
+  width: 80%;
 }
 
 /* Navbar styling */
@@ -57,6 +63,7 @@ main {
   background-color: #000; /* Black background */
   color: #fff; /* White text */
   padding: 0 20px; /* Adds padding on the left and right */
+  border-bottom: 1px solid #F44336;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Adds a slight shadow */
   font-family: var(--heading-font-family);
 }
@@ -192,4 +199,18 @@ nav {
 
 .flash-message.error {
   background-color: #f44336;
+}
+
+/*recipes.html*/
+/*searchbar*/
+
+.search-bar {
+  width: 80%;
+  border-bottom: 1px solid #F44336;
+  padding: 20px;
+}
+/* Style for the search bar placeholder text */
+.search-bar input::placeholder {
+  color: #333; /* Darker color for better contrast */
+  opacity: 1;  /* Ensures the placeholder text is not faded out */
 }

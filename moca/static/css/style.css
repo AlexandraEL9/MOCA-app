@@ -1,16 +1,55 @@
+:root {
+  --main-color: #0A605F;
+  --secondary-color: #F44336;
+  --heading-font-family: "Playfair Display", serif;
+  --default-font-family: "Poppins", sans-serif;
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
-  background: url('/static/images/wood-pattern.jpg') no-repeat center center fixed;
+  font-family: var(--default-font-family);
   background-size: cover;
-  color: #333;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 64px;
+  padding: 0;
+  margin: 0;
+  
+}
+h1, h2, h3 {
+  font-family: var(--heading-font-family);
+  font-weight: bold;
 }
 
 main {
   flex: 1 0 auto;
+
+}
+.container-main {
+  width: 100%;
+}
+
+.container-header {
+  background-color: var(--main-color);
+  border-bottom: 1px solid #F44336;
+  color: white;
+  padding-top: 35px;
+  padding-bottom: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.container-header h1 {
+  text-align: left;
+  font-size: 50px;
+}
+.container-header p {
+  font-family: var(--heading-font-family);
+  text-align: right;
+  font-size: 20px;
+}
+
+.section-page-heading {
+  background-color: #F44336;
 }
 
 /* Navbar styling */
@@ -70,69 +109,6 @@ nav {
 
 }
 
-/* Hero Image Styling */
-.hero-image {
-  background: url('/static/images/hero-image.jpg') no-repeat center center;
-  background-size: cover;
-  height: 300px; /* Adjust the height as needed */
-  width: 100%; /* Ensure it stretches the full width */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 0; /* Ensure it has no top margin */
-  margin-bottom: 20px; /* Adjust as needed */
-}
-
-.hero-text h1 {
-  font-size: 2.5rem; /* Adjust as needed */
-  margin: 0;
-}
-
-.hero-text p {
-  font-size: 1.2rem; /* Adjust as needed */
-}
-
-@media (max-width: 600px) {
-  .hero-image {
-      height: 200px; /* Adjust for smaller screens */
-  }
-
-  .hero-text h1 {
-      font-size: 1.5rem; /* Adjust for smaller screens */
-  }
-
-  .hero-text p {
-      font-size: 1rem; /* Adjust for smaller screens */
-  }
-}
-
-
-
-
-.container {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-h3.center-align {
-  margin-bottom: 15px;
-  font-weight: bold;
-  color: #2c3e50; /* Darker color for the title */
-}
-
-h5 {
-  font-weight: 600;
-  color: #34495e; /* Slightly darker color for subheadings */
-}
-
-p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #555; /* Greyish color for text */
-}
 
 /* card  element styles */
 .card {
@@ -180,49 +156,6 @@ p {
   top: 10px;
   right: 10px;
   z-index: 10;
-}
-
-/*recipe page */
-/* Section padding */
-.section {
-  padding: 20px;
-}
-
-/* Responsive design adjustments */
-@media only screen and (max-width: 992px) {
-  .section {
-      padding: 15px;
-  }
-
-  h3 {
-      font-size: 28px;
-  }
-
-  h5 {
-      font-size: 20px;
-  }
-
-  p {
-      font-size: 14px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .section {
-      padding: 10px;
-  }
-
-  h3 {
-      font-size: 24px;
-  }
-
-  h5 {
-      font-size: 18px;
-  }
-
-  p {
-      font-size: 14px;
-  }
 }
 
 

@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Hero Image Section -->
-<div class="hero-image">
-    <div class="hero-text">
-        <h1>My Own Recipe App!</h1>
-        <p>All of your favourite recipes. All in one place!</p>
+<!-- header section -->
+    <div class="container-fluid container-header">
+      <div class="row">
+        <!-- title and description section -->
+        <div class="col-lg-6 col-md-6">
+          <section class="content-section content-section-title-description">
+            <h1>Bar Website!</h1>
+            <p>All of YOUR favourite recipes, all in ONE place!</p>
+          </section>
+        </div>
+      </div>
     </div>
-</div>
-<h3 class="center-align">Recipes</h3>
+
+    <section class="section-page-heading">
+        <h2 class="center-align">Recipes</h2>
+      </section>
 
 <!--search bar-->
 <div class="row">
@@ -18,6 +26,7 @@
         </div>
     </form>
 </div>
+
 <div class="row">
     {% for recipe in recipes %}
     <div class="col s12 m6 l3">
@@ -42,7 +51,7 @@
         </div>
         <div class="card-reveal center-align">
             <span class="card-title grey-text text-darken-4">
-                ingredients
+                Ingredients
             </span>
             <p>{{ recipe.ingredients | replace('\n', '<br>') }}</p>
         </div>
@@ -50,4 +59,4 @@
     </div>
     {% endfor %}
 </div>
-  {% endblock %}
+{% endblock %}

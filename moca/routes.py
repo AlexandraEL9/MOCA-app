@@ -70,15 +70,19 @@ def edit_category(category_id):
     if request.method == "POST":
         category.category_name = request.form.get("category_name")
         db.session.commit()
+        flash("Category updated successfully!", "success")  # Add flash message
         return redirect(url_for("categories"))
     return render_template("edit_category.html", category=category)
 
-@app.route("/delete_category/<int:category_id>")
+
+@app.route("/delete_category/<int:category_id>", methods=["POST"])
 def delete_category(category_id):
     category = Category.query.get_or_404(category_id)
     db.session.delete(category)
     db.session.commit()
+    flash("Category deleted successfully!", "success")  # Add flash message
     return redirect(url_for("categories"))
+
 
 # Add a new recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
@@ -136,12 +140,18 @@ def edit_recipe(recipe_id):
 
     return render_template("edit_recipe.html", recipe=recipe, categories=categories)  # Corrected to render edit_recipe.html
 
-@app.route("/delete_recipe/<int:recipe_id>")
+@app.route("/delete_recipe/<int:recipe_id>", methods=["POST"])
 def delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
-    db.session.delete(recipe)
-    db.session.commit()
+    try:
+        db.session.delete(recipe)
+        db.session.commit()
+        flash('Recipe deleted successfully', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Error deleting recipe: {str(e)}', 'error')
     return redirect(url_for("home"))
+
 
 @app.route('/recipe/<int:recipe_id>')
 def view_recipe(recipe_id):

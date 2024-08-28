@@ -18,7 +18,7 @@
       </section>
 
 <!--search bar-->
-<div class="row">
+<div class="row search-bar">
     <form method="GET" action="{{ url_for('search_recipes') }}">
         <div class="input-field">
             <input type="text" id="search" name="query" placeholder="Search for recipes...">
@@ -27,7 +27,7 @@
     </form>
 </div>
 
-<div class="row">
+<div class="row main-container">
     {% for recipe in recipes %}
     <div class="col s12 m6 l3">
       <div class="card card-recipe sticky-action">

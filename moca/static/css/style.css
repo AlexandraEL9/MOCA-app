@@ -3,6 +3,8 @@
   --secondary-color: #F44336;
   --heading-font-family: "Playfair Display", serif;
   --default-font-family: "Poppins", sans-serif;
+  --white-color: #fff;
+  --black-color: #000;
 }
 
 body {
@@ -11,37 +13,40 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 0;
   margin: 0;
-  
 }
+
 h1, h2, h3 {
   font-family: var(--heading-font-family);
   font-weight: bold;
 }
 
+
 main {
   flex: 1 0 auto;
-
 }
-.container-main {
+
+.container-main, .main-container {
   width: 100%;
+  margin: 0 auto;
+}
+
+.cards-container {
+  width: 80%
 }
 
 .container-header {
   background-color: var(--main-color);
-  border-bottom: 1px solid #F44336;
-  color: white;
-  padding-top: 35px;
-  padding-bottom: 5px;
-  padding-left: 30px;
-  padding-right: 30px;
+  border-bottom: 1px solid var(--secondary-color);
+  color: var(--white-color);
+  padding: 35px 30px 5px 30px;
 }
 
 .container-header h1 {
   text-align: left;
   font-size: 50px;
 }
+
 .container-header p {
   font-family: var(--heading-font-family);
   text-align: right;
@@ -49,50 +54,38 @@ main {
 }
 
 .section-page-heading {
-  background-color: #F44336;
+  background-color: var(--secondary-color);
   padding: 5px;
   margin-top: 0;
 }
 
-.main-container {
-  width: 90%
-
-}
-
-/* Navbar styling */
 .nav-wrapper {
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
-  padding: 0 20px; /* Adds padding on the left and right */
-  border-bottom: 1px solid #F44336;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Adds a slight shadow */
+  background-color: var(--black-color);
+  color: var(--white-color);
+  padding: 0 30px;
+  border-bottom: 1px solid var(--secondary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   font-family: var(--heading-font-family);
 }
 
 .brand-logo {
-  font-size: 1.5rem; /* Adjust the size of the brand logo text */
-  margin-left: 20px; /* Adds space between the logo and the left edge */
+  font-size: 1.5rem;
+  margin-left: 20px;
 }
 
 .nav-wrapper ul {
-  margin-right: 20px; /* Adds space between the navigation links and the right edge */
+  margin-right: 20px;
 }
 
 .nav-wrapper ul li a {
-  color: #fff; /* White text for nav links */
-  padding: 0 15px; /* Adds space between the links */
+  color: var(--white-color);
+  padding: 0 15px;
 }
 
 .nav-wrapper ul li a:hover {
-
-  border-radius: 4px; /* Adds a slight rounding to the corners */
+  border-radius: 4px;
 }
 
-.sidenav-trigger {
-  color: #fff; /* White color for the mobile menu icon */
-}
-
-/* Make the navbar fixed */
 nav {
   position: fixed;
   top: 0;
@@ -101,52 +94,47 @@ nav {
   z-index: 1000;
 }
 
-/* Mobile sidenav styling */
 .sidenav {
-  background-color: #000; /* Black background */
+  background-color: var(--black-color);
 }
 
-.sidenav a {
-  color: #fff; /* White text for sidenav links */
-}
-.sidenav li>a {
-  color: #fff; /* White text for sidenav links */
+.sidenav a, .sidenav li > a {
+  color: var(--white-color);
 }
 
 .sidenav a:hover {
-  background-color: #333; /* Darker shade on hover */
-
+  background-color: #333;
 }
 
-
-/* card  element styles */
 .card {
-  border-radius: 20x;
+  border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .card-image img {
   width: 100%;
-  height: 200px; /* Adjust to your desired image height */
-  object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+  height: 200px;
+  object-fit: cover;
 }
 
 .card .card-title .material-icons,
 .card .card-reveal .fas.fa-times-circle {
-  cursor: pointer; /* Ensure the icon indicates clickability */
+  cursor: pointer;
 }
+
 .card-title {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Truncate long titles with ellipsis */
+  text-overflow: ellipsis;
 }
 
-.card .card-reveal {
+.card-reveal {
   display: none;
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: var(--white-color);
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto;
@@ -167,7 +155,6 @@ nav {
   z-index: 10;
 }
 
-/* flash messages*/
 .flash-messages {
   position: relative;
   z-index: 1000;
@@ -177,9 +164,9 @@ nav {
 .flash-message {
   padding: 15px;
   border-radius: 5px;
-  color: #fff;
+  color: var(--white-color);
   margin-bottom: 10px;
-  position: relative; /* Required for absolute positioning of close button */
+  position: relative;
 }
 
 .flash-message .close-btn {
@@ -188,7 +175,7 @@ nav {
   right: 10px;
   cursor: pointer;
   font-size: 18px;
-  color: #fff;
+  color: var(--white-color);
   background: none;
   border: none;
   outline: none;
@@ -199,19 +186,32 @@ nav {
 }
 
 .flash-message.error {
-  background-color: #f44336;
+  background-color: var(--secondary-color);
 }
-
-/*recipes.html*/
-/*searchbar*/
 
 .search-bar {
-  width: 80%;
-  border-bottom: 1px solid #F44336;
-  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 0;
 }
-/* Style for the search bar placeholder text */
+
+.search-bar input {
+  width: calc(100% - 60px); /* Adjust width based on the button's width */
+  padding: 10px;
+}
+
 .search-bar input::placeholder {
-  color: #333; /* Darker color for better contrast */
-  opacity: 1;  /* Ensures the placeholder text is not faded out */
+  color: #333;
+  opacity: 1;
 }
+
+
+
+.page-footer {
+  background-color: var(--main-color); /* Same as navbar */
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+

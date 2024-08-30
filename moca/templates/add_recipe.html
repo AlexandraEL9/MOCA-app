@@ -12,16 +12,6 @@
       </div>
     </div>
   </div>
-  
-  <section class="section-page-heading">
-    <div class="row">
-        <div class="input-field col s12 center-align">
-            <button class="btn-large" type="submit">Add Recipe
-                <i class="fas fa-plus-square right"></i>
-            </button>
-        </div>
-    </div>
-  </section>
 
     <div class="row card-panel">
         <form class="col s12" action="{{ url_for('add_recipe') }}" method="POST">
@@ -69,6 +59,13 @@
                         {% endfor %}
                     </select>
                     <label>Category</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 center-align">
+                    <button class="btn-large" type="submit">Add Recipe
+                        <i class="fas fa-plus-square right"></i>
+                    </button>
                 </div>
             </div>
         </form>

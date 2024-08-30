@@ -1,16 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">
-    {% if query %}
+<!-- header section -->
+<div class="container-fluid container-header">
+    <div class="row">
+      <!-- title and description section -->
+      <div class="col-lg-6 col-md-6">
+        <section class="content-section content-section-title-description">
+          <h2>Search Results</h2>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-page-heading">
+      <h3 class="center-align">
+        {% if query %}
         Search Results for "{{ query }}"
     {% elif category %}
         Recipes in "{{ category.category_name }}" Category
     {% else %}
         Search Results
     {% endif %}
-
-</h3>
+      </h3>
+    </section>
 
 <div class="row cards-container">
     {% if recipes %}

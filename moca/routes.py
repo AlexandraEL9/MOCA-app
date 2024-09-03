@@ -79,6 +79,20 @@ def edit_category(category_id):
     category = Category.query.get_or_404(category_id)
     if request.method == "POST":
         category.category_name = request.form.get("category_name")
+        image_url = request.form.get("image_url")
+        image_file = request.files.get("image_file")
+
+        if category_name:
+            category.category_name = category_name
+
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            image_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image_file.save(image_file_path)
+            category.image_url = url_for('uploaded_file', filename=filename)
+        elif image_url:
+            category.image_url = image_url
+            
         db.session.commit()
         flash("Category updated successfully!", "success")
         return redirect(url_for("categories"))

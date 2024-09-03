@@ -49,6 +49,7 @@ def add_category():
     if request.method == "POST":
         category_name = request.form.get("category_name")
         image_url = request.form.get("image_url")
+        image_file = request.files.get("image_file")
 
         if not category_name:
             flash("Category name is required.", "error")
@@ -57,6 +58,12 @@ def add_category():
         if Category.query.filter_by(category_name=category_name).first():
             flash("Category already exists!", "error")
             return redirect(url_for("add_category"))
+
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            image_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image_file.save(image_file_path)
+            image_url = url_for('uploaded_file', filename=filename)
         
         category = Category(category_name=category_name, image_url=image_url)
         db.session.add(category)

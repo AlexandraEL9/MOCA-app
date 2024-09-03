@@ -12,4 +12,11 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False # Add this line
 
 db = SQLAlchemy(app)
 
+# Ensure this is added
+from flask_migrate import Migrate
+migrate = Migrate(app, db)
+
 from moca import routes  # noqa
+
+import moca.routes
+import moca.models

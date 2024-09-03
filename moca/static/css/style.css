@@ -39,7 +39,7 @@ main {
   background-color: var(--main-color);
   border-bottom: 1px solid var(--secondary-color);
   color: var(--white-color);
-  padding: 35px 30px 5px 30px;
+  padding: 50px 30px 5px 30px;
 }
 
 .container-header h1 {
@@ -55,8 +55,12 @@ main {
 
 .section-page-heading {
   background-color: var(--secondary-color);
-  padding: 5px;
-  margin-top: 0;
+  padding: 20px;
+  margin-top: 0px;
+}
+
+.cards-container {
+  margin-top: 20px;
 }
 
 .nav-wrapper {

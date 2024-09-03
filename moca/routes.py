@@ -78,7 +78,7 @@ def add_category():
 def edit_category(category_id):
     category = Category.query.get_or_404(category_id)
     if request.method == "POST":
-        category.category_name = request.form.get("category_name")
+        category_name = request.form.get("category_name")
         image_url = request.form.get("image_url")
         image_file = request.files.get("image_file")
 
@@ -92,11 +92,13 @@ def edit_category(category_id):
             category.image_url = url_for('uploaded_file', filename=filename)
         elif image_url:
             category.image_url = image_url
-            
+
         db.session.commit()
         flash("Category updated successfully!", "success")
         return redirect(url_for("categories"))
+
     return render_template("edit_category.html", category=category)
+
 
 @app.route("/delete_category/<int:category_id>", methods=["POST"])
 def delete_category(category_id):

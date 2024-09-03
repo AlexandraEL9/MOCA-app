@@ -33,7 +33,11 @@
                 <!-- Image on the right (2/3 of the screen on large screens) -->
                 <div class="col s12 m6 l8" style="display: flex; justify-content: center; align-items: center;">
                     <div class="section" style="text-align: center;">
-                        <img src="{{ recipe.image_url }}" class="responsive-img recipe-image">
+                        {% if recipe.image_url %}
+                            <img src="{{ url_for('static', filename=recipe.image_url) }}" class="responsive-img">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>

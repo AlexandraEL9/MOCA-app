@@ -16,18 +16,18 @@ Welcome to **MOCA**! All the recipes you and your family love, all in one place!
         - [**Typography**](#typography)
     - [**Wireframes**](#wireframes)
 
-2. [**Features**](#features)
-    - [**Existing Features**](#existing-features)
-    - [**Features Left to Implement**](#features-left-to-implement)
-
-3. [**Technologies Used**](#technologies-used)
-    - [**Front-End Technologies**](#front-end-technologies)
-    - [**Back-End Technologies**](#back-end-technologies)
-
-4. [**Testing**](#testing)
+2. [**Testing**](#testing)
     - [**Validators**](#validators)
     - [**Compatibility**](#compatibility)
     - [**Known Issues**](#known-issues)
+
+3. [**Features**](#features)
+    - [**Existing Features**](#existing-features)
+    - [**Features Left to Implement**](#features-left-to-implement)
+
+4. [**Technologies Used**](#technologies-used)
+    - [**Front-End Technologies**](#front-end-technologies)
+    - [**Back-End Technologies**](#back-end-technologies)
 
 5. [**Deployment**](#deployment)
     - [**Local Deployment**](#local-deployment)
@@ -63,3 +63,137 @@ This project is a personal endeavor to create a platform for managing recipes. T
 - ✅ *view* recipes with a **clean layout** and **responsive design**.
 - ✅ *ensure* at least one step is added when creating a recipe.
 
+### Design
+
+**Framework**: Utilizes **Bootstrap** and **Materialize** for responsive design and UI components.
+
+**Color Scheme**: Employs a warm and inviting color palette suitable for food-related content. 
+
+![Color Scheme](/docs/color-pallet.png)
+
+### Color Usage
+
+- **Main Color (`#0A605F`)**: This rich teal color is used for the background of the header and footer, as well as key elements like the navigation bar. It helps to establish a cohesive and visually appealing theme across the application.
+- **Secondary Color (`#F44336`)**: This vibrant red is used for borders, highlights, and buttons. It adds a striking contrast to the main color and draws user attention to interactive elements.
+- **White (`#fff`)**: White is used for text on dark backgrounds and as the background color for certain sections. It ensures that text is easily readable against darker colors and provides a clean look.
+- **Black (`#000`)**: Black is used for text and navigation backgrounds to enhance readability and provide a strong contrast with lighter elements.
+
+This color scheme is designed to be both visually appealing and functional, ensuring that the application's interface is user-friendly and aesthetically consistent.
+
+**Icons**: Uses icons from **FontAwesome** for visual enhancements.
+
+**Typography**: 
+
+- The typography for the Recipe App is designed to prioritize readability, clarity, and a modern aesthetic, enhancing the overall user experience.
+
+1. **Font Family**: The primary font used is "Poppins", a sans-serif font, which provides a clean, contemporary look. For headings, the "Playfair Display" serif font is used, adding a touch of elegance and sophistication to the design. These choices ensure that the text is legible across all devices and browsers, while also giving the app a distinctive style.
+
+2. **Font Weight**: A variety of font weights are used throughout the app to create visual hierarchy and emphasis. Bold weights are employed for headings (h1, h2, h3) to draw attention and make key sections stand out. Lighter weights are used for body text, maintaining a comfortable reading experience without overwhelming the user.
+
+3. **Consistency**: Consistency in typography is maintained across the entire app to ensure a cohesive and unified design. The same font families, weights, and sizes are used throughout various sections, contributing to a harmonious and professional visual aesthetic. This consistency also reinforces the app's branding and enhances user navigation by providing a familiar visual structure.
+
+By carefully selecting and applying these typography principles, the Recipe App not only looks visually appealing but also ensures that users can easily read and interact with the content.
+
+### Wireframes
+
+You can view the initial wireframes [here](app/wireframes/mockups.png).
+
+---
+
+## Testing
+
+### Validators
+
+- **HTML**: Validated using [W3C HTML Validator](https://validator.w3.org/).
+- **CSS**: Validated using [W3C CSS Validator](https://jigsaw.w3.org/css-validator/).
+- **JavaScript**: Checked for errors and compatibility.
+
+### Compatibility
+
+- **Browsers**: Tested across major browsers including Chrome, Firefox, Safari, and Edge.
+- **Devices**: Ensured responsiveness on mobile devices, tablets, and desktops.
+
+### Known Issues
+
+- **Image Upload**: Occasionally, large images may cause delays in upload.
+
+---
+
+## Features
+
+### Existing Features
+
+- **Recipe Management**: Users can add, edit, and delete recipes.
+- **Recipe Management- Searching**: Users search for recipes through a searchbar or through a category search..
+- **Recipe Details**: Displays ingredients and instructions in a well-organized format.
+- **Image Upload**: Users can upload images for recipes.
+- **Responsive Design**: Accessible from all devices.
+- **User Authentication**: Basic functionality for managing recipes.
+
+### Features for scaling up of app
+
+- **User Ratings and Reviews**: Allow users to rate and review recipes.
+- **Advanced Filtering**: Implement more detailed filters for dietary needs and preparation time.
+- **Recipe Recommendations**: Suggest recipes based on user activity and preferences.
+- **Meal Planning**: Add functionality for meal planning and grocery list generation.
+- **User Profiles**: Enhance profiles with user-specific recipes and saved favorites.
+- **Printing and Sharing**: Options to print recipes and share them via social media.
+- **User Authentication**: Basic functionality for managing recipes.
+
+---
+
+## Technologies Used
+
+### Front-End Technologies
+
+- **HTML5**: Markup language for structuring the web content.
+- **CSS3**: Styling the visual presentation.
+- **JavaScript**: Adding interactivity and dynamic content.
+- **Bootstrap**: Framework for responsive design.
+- **Materialize**: UI components and design enhancements.
+- **FontAwesome**: Icons for visual representation.
+
+### Back-End Technologies
+
+- **Python**: Programming language used for server-side logic.
+- **Flask**: Web framework for building the application.
+- **SQLAlchemy**: ORM for database management.
+- **SQLite**: Database system used for data storage.
+
+---
+
+## Deployment
+
+### Local Deployment
+
+1. Clone the repository: `git clone https://your-repository-link.git`
+2. Navigate to the project directory: `cd your-project-directory`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Run the application: `python app.py`
+5. Open your browser and visit `http://127.0.0.1:5000`
+
+### Remote Deployment
+
+- **Hosting**: The project is hosted on [Heroku](https://heroku.com) or [Another Hosting Service].
+- **Deployment Steps**: Follow the platform-specific guide for deployment.
+
+---
+
+## Credits
+
+### Content
+
+- **Recipe Data**: All recipe content is created by the project team.
+
+### Media
+
+- **Images**: Images used in wireframes and mockups are sourced from [Placeholder Image Service](https://placeholder.com).
+
+### Code
+
+- **Contributions**: Special thanks to contributors for code improvements and bug fixes.
+
+### Acknowledgements
+
+- **Resources**: Thanks to [Materialize](https://materializecss.com) and [Bootstrap](https://getbootstrap.com) for their design frameworks.
+- **Learning**: Acknowledgment to [Code Institute](https://codeinstitute.net/) for providing the foundational knowledge.

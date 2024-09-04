@@ -118,10 +118,11 @@ def add_recipe():
         image_url = request.form.get("image_url")  # Capture the image URL from the form
         description = request.form.get("description")
         ingredients = request.form.get("ingredients")
-        instructions = request.form.get("instructions")
+        instructions = request.form.getlist("instructions[]")  # Get all instruction steps
         category_id = request.form.get("category_id")
 
-        if not recipe_name or not category_id or not ingredients or not instructions:
+        # Check for required fields
+        if not recipe_name or not category_id or not ingredients or not instructions or len(instructions) == 0:
             flash("Please fill in all required fields.", "error")
             return redirect(url_for("add_recipe"))
 
@@ -142,7 +143,7 @@ def add_recipe():
             image_url=final_image_url,  # Set the final image URL here
             description=description,
             ingredients=ingredients,
-            instructions=instructions,
+            instructions="\n".join(instructions),  # Join instructions into a single string
             category_id=category_id
         )
 
@@ -153,6 +154,7 @@ def add_recipe():
         return redirect(url_for("home"))
 
     return render_template("add_recipe.html", categories=categories)
+
 
 
 @app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])

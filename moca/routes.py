@@ -111,10 +111,11 @@ def delete_category(category_id):
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     categories = Category.query.order_by(Category.category_name).all()
-    
+
     if request.method == "POST":
         recipe_name = request.form.get("recipe_name")
         image_file = request.files.get("image_file")
+        image_url = request.form.get("image_url")  # Capture the image URL from the form
         description = request.form.get("description")
         ingredients = request.form.get("ingredients")
         instructions = request.form.get("instructions")
@@ -124,16 +125,21 @@ def add_recipe():
             flash("Please fill in all required fields.", "error")
             return redirect(url_for("add_recipe"))
 
-        image_url = None
+        # Initialize image_url to None, will update below
+        final_image_url = None
+
+        # Handle image file upload if present
         if image_file and allowed_file(image_file.filename):
             filename = secure_filename(image_file.filename)
             image_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image_file.save(image_file_path)
-            image_url = url_for('uploaded_file', filename=filename)
+            final_image_url = url_for('uploaded_file', filename=filename)
+        elif image_url:  # Use the image URL if provided and no file uploaded
+            final_image_url = image_url
 
         recipe = Recipe(
             recipe_name=recipe_name,
-            image_url=image_url,
+            image_url=final_image_url,  # Set the final image URL here
             description=description,
             ingredients=ingredients,
             instructions=instructions,
@@ -147,6 +153,7 @@ def add_recipe():
         return redirect(url_for("home"))
 
     return render_template("add_recipe.html", categories=categories)
+
 
 @app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):

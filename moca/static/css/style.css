@@ -1,6 +1,7 @@
 :root {
   --main-color: #0A605F;
-  --secondary-color: #F44336;
+  --secondary-color: #411B4E;
+  --highlights-color: #BE2A77;
   --heading-font-family: "Playfair Display", serif;
   --default-font-family: "Poppins", sans-serif;
   --white-color: #fff;
@@ -37,7 +38,7 @@ main {
 
 .container-header {
   background-color: var(--main-color);
-  border-bottom: 1px solid var(--secondary-color);
+  border-bottom: 1px solid var(--highlights-color);
   color: var(--white-color);
   padding: 50px 30px 5px 30px;
 }
@@ -55,6 +56,8 @@ main {
 
 .section-page-heading {
   background-color: var(--secondary-color);
+  border-bottom: 1px solid var(--highlights-color);
+  color: var(--white-color);
   padding: 20px;
   margin-top: 0px;
 }
@@ -67,7 +70,7 @@ main {
   background-color: var(--black-color);
   color: var(--white-color);
   padding: 0 30px;
-  border-bottom: 1px solid var(--secondary-color);
+  border-bottom: 1px solid var(--highlights-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   font-family: var(--heading-font-family);
 }
@@ -109,6 +112,61 @@ nav {
 .sidenav a:hover {
   background-color: #333;
 }
+
+/* General button styles */
+.btn {
+  background-color: #0A605F; /* Main color */
+  color: #fff; /* White text for contrast */
+  /*padding: 12px 20px; /* Increase padding for larger clickable area */
+  font-size: 16px; /* Larger text size for readability */
+  border-radius: 85x; /* Rounded corners for better aesthetics */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Show clickable cursor */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.btn:hover, .btn:focus {
+  background-color: #044944; /* Darker color for hover/focus state */
+  transform: scale(1.05); /* Slightly larger button on hover for emphasis */
+  outline: none; /* Remove default outline */
+}
+
+.btn-large {
+  font-size: 18px; /* Increase font size for large buttons */
+  background-color: var(--highlights-color); /* Darker color for hover/focus state */
+  /*padding: 14px 24px; /* Larger padding for better accessibility */
+}
+
+.btn.delete {
+  background-color: var(--secondary-color); /* Red button */
+  color: #fff;
+}
+
+.btn.delete:hover, .btn.delete:focus {
+  background-color: var(--secondary-color); /* Darker red on hover/focus */
+}
+
+/* Floating action button styles (icon buttons) */
+.btn-floating {
+  background-color: var(--highlights-color); /* Red floating button */
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.btn-floating:hover, .btn-floating:focus {
+  background-color: #C62828; /* Darker red on hover/focus */
+}
+
+.btn-floating .material-icons {
+  font-size: 24px; /* Icon size */
+}
+
 
 /* card  element styles */
 .card {
@@ -231,16 +289,6 @@ nav {
   position: relative;
   max-width: 800px;
   margin: 50px auto 0 auto; /* Center the card within the container */
-}
-
-/* Colored band on the right */
-.recipe-card-band {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 10px;
-  height: 100%;
-  background-color: #3498db; /* Customize the color as needed */
 }
 
 /* Image styling */

@@ -1,8 +1,11 @@
-//mobile side nav initialisation
 document.addEventListener("DOMContentLoaded", function() {
-    // sidenav initialization
+    // Initialize sidenav
     let sidenav = document.querySelectorAll(".sidenav");
     M.Sidenav.init(sidenav);
+
+    // Initialize select elements
+    let selects = document.querySelectorAll("select");
+    M.FormSelect.init(selects);
 
     // Get the height of the navbar
     let navbarHeight = document.querySelector('.nav-wrapper').offsetHeight;
@@ -11,15 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
     sidenav.forEach(function(nav) {
         nav.style.marginTop = navbarHeight + 'px';
     });
-    
-    // select initialization
-    let selects = document.querySelectorAll("select");
-    M.FormSelect.init(selects);
-});
 
-//card actions
-document.addEventListener('DOMContentLoaded', function() {
-    // Add event listeners for the reveal icons
+    // Card actions
     const revealIcons = document.querySelectorAll('.card-image .btn-floating');
     const closeIcons = document.querySelectorAll('.card-reveal .fa-times-circle');
     
@@ -44,10 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
             flashMessage.style.display = 'none';
         });
     });
-});
 
-// add recipe steps
-document.addEventListener("DOMContentLoaded", function() {
+    // Add recipe steps
     let stepCount = 1;
     const instructionsContainer = document.getElementById("instructions-container");
     const addStepButton = document.getElementById("add-step");
@@ -58,8 +52,8 @@ document.addEventListener("DOMContentLoaded", function() {
         newStep.className = "row";
         newStep.innerHTML = `
             <div class="input-field col s12">
-                <input type="text" name="instructions[]" class="validate">
-                <label>Step ${stepCount}</label>
+                <input type="text" name="instructions[]" id="instruction_step_${stepCount}" class="validate">
+                <label for="instruction_step_${stepCount}">Step ${stepCount}</label>
             </div>
         `;
         instructionsContainer.appendChild(newStep);

@@ -247,6 +247,20 @@ nav {
   right: 10px;
   z-index: 10;
 }
+.card-panel {
+  background-color: var(--white-color); /* Light background */
+  color: #000; /* Dark text for better contrast */
+}
+
+/* Override Materialize input field labels */
+.input-field label {
+  color: #333333 !important; /* Important to override Materialize's default label color */
+}
+
+/* Input field text color */
+input, textarea, select {
+  color: #000; /* Ensure dark text for readability */
+}
 
 .flash-messages {
   position: relative;

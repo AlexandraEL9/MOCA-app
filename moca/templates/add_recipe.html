@@ -4,84 +4,101 @@
 <!-- header section -->
 <div class="container-fluid container-header">
     <div class="row">
-      <!-- title and description section -->
-      <div class="col-lg-6 col-md-6">
-        <section class="content-section content-section-title-description">
-          <h2>Add Recipe</h2> 
-        </section>
-      </div>
+        <!-- title and description section -->
+        <div class="col-lg-6 col-md-6">
+            <section class="content-section content-section-title-description">
+                <h2>Add Recipe</h2> 
+            </section>
+        </div>
     </div>
-  </div>
+</div>
 
-    <div class="row card-panel">
-        <form class="col s12" action="{{ url_for('add_recipe') }}" method="POST" enctype="multipart/form-data">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-utensils prefix"></i>
-                    <input id="recipe_name" name="recipe_name" minlength="3" maxlength="25" type="text" class="validate" required>
-                    <label for="recipe_name">Recipe Name</label>
-                </div>
+<div class="row card-panel">
+    <form class="col s12" action="{{ url_for('add_recipe') }}" method="POST" enctype="multipart/form-data">
+        <!-- Recipe Name -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-utensils prefix"></i>
+                <label for="recipe_name">Recipe Name</label>
+                <input id="recipe_name" name="recipe_name" minlength="3" maxlength="25" type="text" class="validate" required>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix"></i>
-                    <textarea id="description" name="description" class="materialize-textarea"></textarea>
-                    <label for="description">Description</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-list-ul prefix"></i>
-                    <textarea id="ingredients" name="ingredients" class="materialize-textarea" required></textarea>
-                    <label for="ingredients">Ingredients</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-clipboard-list prefix"></i>
-                    <label for="instructions">Instructions</label>
-                </div>
-            </div>
-            <div id="instructions-container">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input type="text" name="instructions[]" class="validate">
-                        <label>Step 1</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <button type="button" id="add-step" class="btn">Add Step</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-upload prefix"></i>
-                    <input type="file" id="image_file" name="image_file" class="validate">
-                    <label for="image_file">Upload Image (optional)</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <select name="category_id" required>
-                        <option value="" disabled selected>Choose a Category</option>
-                        {% for category in categories %}
-                            <option value="{{ category.id }}">{{ category.category_name }}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Category</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 center-align">
-                    <button class="btn-large" type="submit">Add Recipe
-                        <i class="fas fa-plus-square right"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
+        </div>
 
+        <!-- Description -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix"></i>
+                <label for="description">Description</label>
+                <textarea id="description" name="description" class="materialize-textarea"></textarea>
+            </div>
+        </div>
+
+        <!-- Ingredients -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-list-ul prefix"></i>
+                <label for="ingredients">Ingredients</label>
+                <textarea id="ingredients" name="ingredients" class="materialize-textarea" required></textarea>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-clipboard-list prefix"></i>
+                <textarea id="instructions" name="instructions" class="materialize-textarea" required></textarea>
+                <label for="instructions">Instructions</label>
+            </div>
+        </div>
+        <div id="instructions-container">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="text" name="instructions[]" id="instruction_step_1" class="validate">
+                    <label for="instruction_step_1">Step 1</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <button type="button" id="add-step" class="btn">Add Step</button>
+            </div>
+        </div>
+
+        <!-- Upload Image -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-upload prefix"></i>
+                <label for="image_file">Upload Image (optional)</label>
+                <input type="file" id="image_file" name="image_file" class="validate">
+            </div>
+        </div>
+
+        <!-- Category -->
+        <div class="row">
+            <div class="input-field col s12">
+                <select id="category_id" name="category_id" required>
+                    <option value="" disabled selected>Choose a Category</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.category_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="category_id">Category</label>
+            </div>
+        </div>
+        
+
+
+        <!-- Submit Button -->
+        <div class="row">
+            <div class="input-field col s12 center-align">
+                <button class="btn-large" type="submit">Add Recipe
+                    <i class="fas fa-plus-square right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 
 {% endblock %}
+
+

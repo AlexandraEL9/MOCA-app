@@ -73,6 +73,10 @@ main {
   border-bottom: 1px solid var(--highlights-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   font-family: var(--heading-font-family);
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Ensure vertical alignment */
+  height: 64px; /* Define a consistent height */
 }
 
 .sr-only {
@@ -86,10 +90,14 @@ main {
   border: 0;
 }
 
-
 .brand-logo {
-  font-size: 1.5rem;
-  margin-left: 20px;
+  font-size: 1.75rem; /* Slightly increase font size */
+  margin-left: 10px;
+  padding: 12px;
+  min-width: 48px;
+  min-height: 48px;
+  display: flex; /* Flex for better alignment */
+  align-items: center; /* Vertical centering */
 }
 
 .nav-wrapper ul {
@@ -117,6 +125,17 @@ nav {
   background-color: var(--black-color);
 }
 
+/* Ensure minimum touch target size for sidenav-trigger */
+.sidenav-trigger {
+  padding: 12px;
+  min-width: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center; /* Vertically center icon */
+  justify-content: center; /* Horizontally center icon */
+  margin-right: 10px; /* Space between icon and the edge */
+}
+
 .sidenav a, .sidenav li > a {
   color: var(--white-color);
 }
@@ -124,6 +143,7 @@ nav {
 .sidenav a:hover {
   background-color: #333;
 }
+
 
 /* General button styles */
 .btn {

@@ -96,19 +96,88 @@ This color scheme is designed to be both visually appealing and functional, ensu
 
 By carefully selecting and applying these typography principles, the Recipe App not only looks visually appealing but also ensures that users can easily read and interact with the content.
 
-### Wireframes
+## Wireframes
+I used [Balsamiq Wireframes](https://balsamiq.com/wireframes/) to create wireframes before starting the project to help me plan the layout and flow of the project.<br>
+When I was creating my website, the design plan was changed but only small placement changes.
 
-You can view the initial wireframes [here](app/wireframes/mockups.png).
+ ### Homepage Wireframes
+
+- [**Desktop**](./docs/wireframes/wf-homepage-desktop.png)
+- [**Tablet**](./docs/wireframes/wf-homepage-tablet.png)
+- [**Mobile**](./docs/wireframes/wf-homepage-mobile.png)
+
+ ### Categories page Wireframes
+
+- [**Desktop**](./docs/wireframes/wf-categories-desktop.png)
+- [**Tablet**](./docs/wireframes/wf-categories-tablet.png)
+- [**Mobile**](./docs/wireframes/wf-categories-mobile.png)
+
+### Search Results page Wireframes
+
+- [**Desktop**](./docs/wireframes/wf-search-results-desktop.png)
+- [**Tablet**](./docs/wireframes/wf-search-results-tablet.png)
+- [**Mobile**](./docs/wireframes/wf-search-results-mobile.png)
+
+### View Recipe page Wireframes
+
+- [**Desktop**](./docs/wireframes/wf-view-recipe-desktop.png)
+- [**Tablet**](./docs/wireframes/wf-view-recipe-tablet.png)
+- [**Mobile**](./docs/wireframes/wf-view-recipe-mobile.png)
+
+### Add/edit Category page Wireframes
+
+- [**All**](./docs/wireframes/wf-add-update-category-all.png)
+
+### Add/edit Recipe page Wireframes
+
+- [**All**](./docs/wireframes/wf-add-update-recipe-all.png)
 
 ---
 
 ## Testing
+### Accessibility Testing
+- **Accessibility Testing**: Ensures the site is accessible to all users, including those with disabilities.
+
+| Test Case ID | Test Description                                                                                             | Expected Result                                                                                       
+|--------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| AT-01        | Verify the website meets accessibility standards (e.g., chrome DevTools, lighthouse)                                            | Website meets accessibility standards, ensuring it is usable by people with disabilities<br>Accessibility score in the green (90-100)              |
+
+### Desktop Lighthouse Test Results
+
+| Page | Home | Categories | Add Recipe | Edit Recipe | Add Category | Edit Category | View Search Results | View Recipe |
+|----------|----------|----------|----------|----------|----------|----------|----------|----------|
+| Scores    | Acessibility- 100 <br> Best Practices- 96   | Acessibility- 100 <br> Best Practices- 96   | Acessibility- 93 <br> Best Practices- 100   | Acessibility- 93 <br> Best Practices- 96   | Acessibility- 93 <br> Best Practices- 96   | Acessibility- 100 <br> Best Practices- 96   | Acessibility- 100 <br> Best Practices- 96   | Acessibility- 100 <br> Best Practices- 96   |
+| Pass/fail   | Pass   | Pass  | Pass  | Pass  | Pass  | Pass  | Pass  | Pass |
+| Evidence    | [Image Results](./docs/testing/lighthouse-testing/lighthouse-desktop-homepage.png) | [Image Results](./docs/testing/lighthouse-testing/lighthouse-desktop-categories.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-desktop-add-recipe.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-desktop-edit-recipe.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-desktop-add-category.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-desktop-edit-category.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-desktop-search-results.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-desktop-view-recipe.png) |
+
+
+### Mobile Lighthouse Test Results
+
+| Page | Home| Categorieies | Add Recipe | Edit Recipe | Add Category | Edit Category | View Search Results | View Recipe |
+|----------|----------|----------|----------|----------|----------|----------|----------|----------|
+| Scores    | Accessibility- 100 <br> Best Pracices- 96   | Data Accessibility- 100 <br> Best Pracices- 96   | Accessibility- 93 <br> Best Pracices- 100  | Acessibility- 93 <br> Best Practices- 96   | Acessibility- 93 <br> Best Practices- 96   | Acessibility- 100 <br> Best Practices- 96   | Acessibility- 100 <br> Best Practices- 96   | Acessibility- 100 <br> Best Practices- 96   | Acessibility- 100 <br> Best Practices- 96
+| Pass/fail    | Pass   | Pass  | Pass  | Pass  | Pass  | Pass  | Pass  | Pass  |
+| Evidence    | [Image Results](./docs/testing/lighthouse-testing/lighthouse-mobile-homepage.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-mobile-categories.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-mobile-add-recipe.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-mobile-edit-recipe.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-mobile-add-category.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-mobile-edit-category.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-mobile-search-results.png)  | [Image Results](./docs/testing/lighthouse-testing/lighthouse-mobile-view-recipe.png)  |
+
+
 
 ### Validators
 
 - **HTML**: Validated using [W3C HTML Validator](https://validator.w3.org/).
 - **CSS**: Validated using [W3C CSS Validator](https://jigsaw.w3.org/css-validator/).
-- **JavaScript**: Checked for errors and compatibility.
+- **JavaScript**: Validated using [ES Hint Validator](https://jigsaw.w3.org/css-validator/).
+- **Python**: Validated using [Pep8](https://jigsaw.w3.org/css-validator/).
+
+### Validator Testing
+- **Validator Testing**: Ensures that the website's code adheres to established standards and best practices, which helps improve functionality, accessibility, and cross-browser compatibility.
+
+| Test Case ID | Test Description                                                                                             | Expected Result                                                                                       | Pass/Fail | Comments                       |
+|--------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-----------|-------------------------------|
+| VT-01        | HTML: code adheres to standards and best practices when run through the validator               |   Code passes through the validator with no errors        |           Pass                    |[W3C Markup Validator index.html](https://validator.w3.org/nu/#textarea) - ![Results](/docs/testing/w3c-index.html-validator.png)<br>-validator passed index.html with only one warning, however, this particular h2 is populated by javaScript to ensure the correct date is displayed.<br>[W3C Markup Validator index.html](https://validator.w3.org/nu/#textarea) - ![Results](/docs/testing/w3c-index.html-validator-2.png)<br>-validator passed index.html with no errors- added placeholder text to elements populated by javaScript<br>[W3C Markup Validator error.html](https://validator.w3.org/nu/#textarea) - ![Results](/docs/testing/w3c-error.html-validator.png)<br>-validator passed error.html no errors or warnings.
+| VT-02        | CSS: code adheres to standards and best practices when run through the validator               | Code passes through the validator with no errors           |  Pass                             |[W3C Markup Validator index.html](https://jigsaw.w3.org/css-validator/#validate_by_input) - ![Results](/docs/testing/w3c-styles.css-validator.png)<br>-validator passed styles.css with no errors or warnings.
+| VT-03        | JavaScript: code adheres to standards and best practices when run through the jshint validator<br>              |   Code passes through the validator with no errors        |          Pass                     |[jshint Markup Validator script.js](https://jshint.com/) - ![Results](/docs/testing/jshint-script.js-validation.png)<br>-validator passed script.js with no errors or warnings.<br>[jshint Markup Validator error.js](https://jshint.com/) - ![Results](/docs/testing/jshint-error.js-validation.png)<br>-validator passed error.js with no errors or warnings.
+
+### Testing User Stories from User Experience (UX) Section
 
 ### Compatibility
 

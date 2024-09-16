@@ -326,11 +326,11 @@ input, textarea, select {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px 20px; /* Added padding for both top/bottom and left/right */
 }
 
 .search-bar input {
-  width: calc(100% - 60px);
+  width: calc(100% - 80px); /* Adjust width to account for the padding */
   padding: 10px;
 }
 
@@ -338,6 +338,22 @@ input, textarea, select {
   color: #333;
   opacity: 1;
 }
+
+.search-bar button {
+  margin-left: 10px; /* Adds space between input and button */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .search-bar {
+    padding: 20px 10px; /* Add extra padding for smaller screens */
+  }
+
+  .search-bar input {
+    width: calc(100% - 60px); /* Adjust width for smaller screens */
+  }
+}
+
 
 /* Footer */
 .page-footer {

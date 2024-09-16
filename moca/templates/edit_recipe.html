@@ -43,12 +43,18 @@
                 <label for="instructions" class="active">Instructions</label>
             </div>
         </div>
+       
+        <!-- Upload Image -->
         <div class="row">
             <div class="input-field col s12">
-                <input type="file" id="image_file" name="image_file" />
-                <label for="image_file">Upload Image (optional)</label>
+                <div class="file-upload-container">
+                    <i class="fas fa-upload prefix"></i>
+                    <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
+                    <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
+                </div>
             </div>
         </div>
+
         <div class="row">
             <div class="input-field col s12">
                 <select name="category_id" required>

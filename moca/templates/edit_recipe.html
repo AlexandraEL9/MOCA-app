@@ -4,16 +4,16 @@
 <!-- header section -->
 <div class="container-fluid container-header">
     <div class="row">
-      <!-- title and description section -->
-      <div class="col-lg-6 col-md-6">
-        <section class="content-section content-section-title-description">
-          <h2>Edit Recipe</h2> 
-        </section>
-      </div>
+        <!-- title and description section -->
+        <div class="col-lg-6 col-md-6">
+            <section class="content-section content-section-title-description">
+                <h2>Edit Recipe</h2> 
+            </section>
+        </div>
     </div>
 </div>
 
-<div class="row card-panel">
+<div class="row card-panel container-fluid">
     <form class="col s12" action="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" method="POST" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s12">

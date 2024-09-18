@@ -1,3 +1,4 @@
+/* Root Variables */
 :root {
   --main-color: #0A605F;
   --secondary-color: #411B4E;
@@ -8,6 +9,7 @@
   --black-color: #000;
 }
 
+/* Global Styles */
 body {
   font-family: var(--default-font-family);
   background-size: cover;
@@ -26,6 +28,7 @@ main {
   flex: 1 0 auto;
 }
 
+/* Container Styles */
 .container-main, .main-container {
   width: 100%;
   margin: 0 auto;
@@ -36,7 +39,7 @@ main {
   margin-top: 20px;
 }
 
-/* Header styles */
+/* Header Styles */
 .container-header {
   background-color: var(--main-color);
   border-bottom: 1px solid var(--highlights-color);
@@ -55,7 +58,7 @@ main {
   font-size: 20px;
 }
 
-/* Section page heading */
+/* Section Page Heading */
 .section-page-heading {
   background-color: var(--secondary-color);
   border-bottom: 1px solid var(--highlights-color);
@@ -64,7 +67,7 @@ main {
   margin-top: 0;
 }
 
-/* Navigation bar */
+/* Navigation Bar */
 nav {
   position: fixed;
   top: 0;
@@ -73,7 +76,6 @@ nav {
   z-index: 1000;
 }
 
-/* Ensure the navbar uses flexbox to handle alignment */
 .nav-wrapper {
   font-family: var(--heading-font-family);
   display: flex;
@@ -85,23 +87,20 @@ nav {
   border-bottom: 1px solid var(--highlights-color);
 }
 
-/* Ensure the logo is properly aligned */
 .brand-logo {
   font-size: 1.75rem;
   color: var(--white-color);
   padding: 12px 0;
 }
 
-/* Move the navigation links to the right */
 .nav-wrapper ul {
-  margin-left: auto; /* Ensures the links move to the far right */
+  margin-left: auto;
   display: flex;
   list-style: none;
 }
 
-/* Styling for the navigation links */
 .nav-wrapper ul li {
-  margin-left: 20px; /* Space between links */
+  margin-left: 20px;
 }
 
 .nav-wrapper ul li a {
@@ -115,12 +114,11 @@ nav {
   padding: 5px;
 }
 
-/* Handle mobile menu */
+/* Mobile Menu */
 .sidenav-trigger {
   display: none;
 }
 
-/* Ensure that on small screens the sidenav-trigger is visible */
 @media (max-width: 992px) {
   .nav-wrapper ul {
     display: none;
@@ -131,8 +129,7 @@ nav {
   }
 }
 
-
-/* Sidenav styles */
+/* Sidenav Styles */
 .sidenav {
   background-color: var(--black-color);
 }
@@ -155,7 +152,7 @@ nav {
   background-color: #333;
 }
 
-/* Button styles */
+/* Button Styles */
 .btn {
   background-color: var(--main-color);
   color: var(--white-color);
@@ -186,7 +183,7 @@ nav {
   background-color: var(--secondary-color);
 }
 
-/* Floating action button */
+/* Floating Action Button */
 .btn-floating {
   background-color: var(--highlights-color);
   width: 56px;
@@ -207,7 +204,7 @@ nav {
   font-size: 24px;
 }
 
-/* Card styles */
+/* Card Styles */
 .card {
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -257,13 +254,13 @@ nav {
   z-index: 10;
 }
 
-/* Card panel */
+/* Card Panel */
 .card-panel {
   background-color: var(--white-color);
   color: #000;
 }
 
-/* Input and file upload styles */
+/* Input and File Upload Styles */
 .input-field label {
   color: #333333 !important;
 }
@@ -286,7 +283,7 @@ input, textarea, select {
   margin-left: auto;
 }
 
-/* Flash messages */
+/* Flash Messages */
 .flash-messages {
   position: relative;
   z-index: 1000;
@@ -321,16 +318,16 @@ input, textarea, select {
   background-color: var(--secondary-color);
 }
 
-/* Search bar */
+/* Search Bar */
 .search-bar {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px 20px; /* Added padding for both top/bottom and left/right */
+  padding: 20px;
 }
 
 .search-bar input {
-  width: calc(100% - 80px); /* Adjust width to account for the padding */
+  width: calc(100% - 80px);
   padding: 10px;
 }
 
@@ -340,20 +337,19 @@ input, textarea, select {
 }
 
 .search-bar button {
-  margin-left: 10px; /* Adds space between input and button */
+  margin-left: 10px;
 }
 
-/* Media query for smaller screens */
+/* Media Queries */
 @media (max-width: 768px) {
   .search-bar {
-    padding: 20px 10px; /* Add extra padding for smaller screens */
+    padding: 20px 10px;
   }
 
   .search-bar input {
-    width: calc(100% - 60px); /* Adjust width for smaller screens */
+    width: calc(100% - 60px);
   }
 }
-
 
 /* Footer */
 .page-footer {
@@ -364,9 +360,7 @@ input, textarea, select {
   text-align: center;
 }
 
-
-
-/* Recipe card styles */
+/* View Recipe Card Styles */
 .view-recipe-card, .recipe-card {
   border-radius: 12px;
   overflow: hidden;
@@ -377,7 +371,7 @@ input, textarea, select {
   padding: 20px;
   position: relative;
   max-width: 800px;
-  margin: 50px auto 50px;
+  margin: 50px auto;
 }
 
 .recipe-card-band {
@@ -412,20 +406,8 @@ input, textarea, select {
 .recipe-text {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: #4a4a4a;
+  color: #333333;
 }
 
-.recipe-text {
-  color: #333333; /* Darker text */
-  font-size: 1.2rem;
-  line-height: 1.6;
-}
-
-.view-recipe-card, .card.z-depth-2 {
-  color: #333333; /* Darker text */
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
-}
 
 

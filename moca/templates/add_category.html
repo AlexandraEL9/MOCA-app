@@ -1,46 +1,42 @@
-{% extends "base.html" %}
-{% block content %}
-
+{% extends "base.html" %} {% block content %}
 <!-- header section -->
 <div class="container-fluid container-header">
-    <div class="row">
-      <!-- title and description section -->
-      <div class="col-lg-6 col-md-6">
-        <section class="content-section content-section-title-description">
-          <h2>Add Category</h2> 
-        </section>
-      </div>
+  <div class="row">
+    <!-- title and description section -->
+    <div class="col-lg-6 col-md-6">
+      <section class="content-section content-section-title-description">
+        <h2>Add Category</h2>
+      </section>
     </div>
   </div>
-
-<div class="row card-panel">
-    <form class="col s12" action="{{ url_for('add_category') }}" method="POST" enctype="multipart/form-data">
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-folder-open prefix"></i>
-                <label for="category_name">Category Name</label>
-                <input id="category_name" name="category_name" minlength="3" maxlength="25" type="text" class="validate" required>
-            </div>
-        </div>
-        <!-- Upload Image -->
-        <div class="row">
-            <div class="input-field col s12">
-                <div class="file-upload-container">
-                    <i class="fas fa-upload prefix"></i>
-                    <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
-                    <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s12 center-align">
-                <button class="btn-large" type="submit" name="action">Add Category
-                    <i class="fas fa-plus-square right"></i>
-                </button>
-            </div>
-        </div>
-    </form>
 </div>
-
-{% endblock %}
+<!--add category card-->
+<div class="row card-panel">
+  <form class="col s12" action="{{ url_for('add_category') }}" method="POST" enctype="multipart/form-data">
+    <!--category name-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-folder-open prefix"></i>
+        <label for="category_name">Category Name</label>
+        <input id="category_name" name="category_name" minlength="3" maxlength="25" type="text" class="validate" required>
+      </div>
+    </div>
+    <!-- Upload Image -->
+    <div class="row">
+      <div class="input-field col s12">
+        <div class="file-upload-container">
+          <i class="fas fa-upload prefix"></i>
+          <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
+          <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
+        </div>
+      </div>
+    </div>
+    <!--add category button-->
+    <div class="row">
+      <div class="input-field col s12 center-align">
+        <button class="btn-large" type="submit" name="action">Add Category <i class="fas fa-plus-square right"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</div> {% endblock %}

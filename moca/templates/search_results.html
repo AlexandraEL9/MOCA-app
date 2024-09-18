@@ -1,66 +1,47 @@
-{% extends "base.html" %}
-{% block content %}
-
+{% extends "base.html" %} {% block content %}
 <!-- header section -->
 <div class="container-fluid container-header">
-    <div class="row">
-      <!-- title and description section -->
-      <div class="col-lg-6 col-md-6">
-        <section class="content-section content-section-title-description">
-          <h2>Search Results</h2>
-        </section>
-      </div>
+  <div class="row">
+    <!-- title and description section -->
+    <div class="col-lg-6 col-md-6">
+      <section class="content-section content-section-title-description">
+        <h2>Search Results</h2>
+      </section>
     </div>
   </div>
-
-  <section class="section-page-heading">
-      <h3 class="center-align">
-        {% if query %}
-        Search Results for "{{ query }}"
-    {% elif category %}
-        Recipes in "{{ category.category_name }}" Category
-    {% else %}
-        Search Results
-    {% endif %}
-      </h3>
-    </section>
-
-<div class="row cards-container">
-    {% if recipes %}
-        {% for recipe in recipes %}
-        <div class="col s12 m6 l3">
-            <div class="card card-recipe sticky-action">
-              <div class="card-image">
-                <img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_name }}">
-                <a class="btn-floating"><i class="material-icons">loop</i></a>
-              </div>
-              <div class="card-content">
-                  <div class="title-container">
-                      <span class="card-title">
-                          {{ recipe.recipe_name }}
-                      </span>
-                  </div>
-              </div>
-              <div class="card-action center-align">
-                  <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn">Edit</a>
-                  <a href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" class="btn delete">Delete</a>
-              </div>
-              <div class="card-action center-align">
-                  <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}" class="btn btn-large">View Recipe</a>
-              </div>
-              <div class="card-reveal center-align">
-                  <span class="card-title grey-text text-darken-4">
-                      ingredients
-                  </span>
-                  <p>{{ recipe.ingredients | replace('\n', '<br>') }}</p>
-              </div>
-            </div>
-          </div>
-            {% endfor %}
-        {% else %}
-            <p>No recipes found matching your query</p>
-        {% endif %}
 </div>
-
-{% endblock %}
-
+<!--heading for search results-->
+<section class="section-page-heading">
+  <h3 class="center-align"> {% if query %} Search Results for "{{ query }}" {% elif category %} Recipes in "{{ category.category_name }}" Category {% else %} Search Results {% endif %} </h3>
+</section>
+<!--cards of results-->
+<div class="row cards-container"> {% if recipes %} {% for recipe in recipes %} <div class="col s12 m6 l3">
+    <div class="card card-recipe sticky-action">
+      <div class="card-image">
+        <img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_name }}">
+        <a class="btn-floating">
+          <i class="material-icons">loop</i>
+        </a>
+      </div>
+      <div class="card-content">
+        <div class="title-container">
+          <span class="card-title">
+            {{ recipe.recipe_name }}
+          </span>
+        </div>
+      </div>
+      <div class="card-action center-align">
+        <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn">Edit</a>
+        <a href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" class="btn delete">Delete</a>
+      </div>
+      <div class="card-action center-align">
+        <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}" class="btn btn-large">View Recipe</a>
+      </div>
+      <div class="card-reveal center-align">
+        <span class="card-title grey-text text-darken-4"> ingredients </span>
+        <p>{{ recipe.ingredients | replace('\n', '
+						<br>') }}
+        </p>
+      </div>
+    </div>
+  </div> {% endfor %} {% else %} <p>No recipes found matching your query</p> {% endif %} </div> {% endblock %}

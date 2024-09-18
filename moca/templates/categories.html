@@ -1,50 +1,43 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 {% block content %}
-
 <!-- header section -->
 <div class="container-fluid container-header">
   <div class="row">
     <!-- title and description section -->
     <div class="col-lg-6 col-md-6">
       <section class="content-section content-section-title-description">
-        <h2>Categories</h2> 
+        <h2>Categories</h2>
       </section>
     </div>
   </div>
 </div>
-
-<section class="section-page-heading">
+<div class="section-page-heading">
   <div class="row">
     <div class="col s12 center-align">
-        <a href="{{ url_for('add_category') }}" class="btn-large">
-        Add Category <i class="fas fa-plus-square right"></i>
-        </a>
+      <a href="{{ url_for('add_category') }}" class="btn-large"> Add Category <i class="fas fa-plus-square right"></i>
+      </a>
     </div>
   </div>
-</section>
-
+</div>
 <!--categories cards-->
-<div class="row cards-container">
-    {% for category in categories %}
-    <div class="col s12 m6 l3">
-      <div class="card card-category center-align">
-        <div class="card-image">
-          <img src="{{ category.image_url }}" alt="{{ category.category_name }}">
-        </div>
-        <span class="card-title">{{ category.category_name }}</span>
-        <div class="card-action center-align">
-          <a href="{{ url_for('edit_category', category_id=category.id) }}" class="btn">Edit</a>
-          <form action="{{ url_for('delete_category', category_id=category.id) }}" method="POST" style="display:inline;">
-            <button type="submit" class="btn  delete">Delete</button>
+<div class="row cards-container"> {% for category in categories %} <div class="col s12 m6 l3">
+    <div class="card card-category center-align">
+      <div class="card-image">
+        <img src="{{ category.image_url }}" alt="{{ category.category_name }}">
+      </div>
+      <span class="card-title">{{ category.category_name }}</span>
+      <div class="card-action center-align">
+        <a href="{{ url_for('edit_category', category_id=category.id) }}" class="btn">Edit</a>
+        <form action="{{ url_for('delete_category', category_id=category.id) }}" method="POST" style="display:inline;">
+          <button type="submit" class="btn  delete">Delete</button>
         </form>
-        </div> 
-        <div class="card-action center-align">
-          <!--view all button to view all recipes belonging to this category-->
-          <a href="{{ url_for('search_recipes') }}?category={{ category.id }}" class="btn btn-large">View All</a>
-        </div>  
+      </div>
+      <div class="card-action center-align">
+        <!--view all button to view all recipes belonging to this category-->
+        <a href="{{ url_for('search_recipes') }}?category={{ category.id }}" class="btn btn-large">View All</a>
       </div>
     </div>
-    {% endfor %}
-</div>
-
+  </div> 
+  {% endfor %} 
+</div> 
 {% endblock %}

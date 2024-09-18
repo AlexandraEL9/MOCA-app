@@ -198,10 +198,15 @@ When I was creating my website, the design plan was changed but only small place
 *-Comments:* When first undertaking the validation of the HTML using the W3C validator, I kept getting errors to do with the jinja templating ([Image](./docs/testing/validator-testing/w3c-jinja-errors.png)). Research on chatGPT gave this option, *'Since Jinja syntax is meant to be rendered server-side before the final HTML is served to the user, it’s important to validate the final HTML output that the user sees in their browser, not the raw template code that contains Jinja.'* This meant that instead of copying and pasting my code from codepen, I cose to "View Page Source" for each page, giving me the full page markup. I then copied and pasted this into the validator in order to validate my html pages.
 
 
-
-
 - **CSS**: Validated using [W3C CSS Validator](https://jigsaw.w3.org/css-validator/).
-- **JavaScript**: Validated using [ES Hint Validator](https://jigsaw.w3.org/css-validator/).
+
+| Test Case ID | Test Description                                                                                             | Expected Result                                                                                       | Pass/Fail | Comments                                                                                         |
+|--------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-----------|--------------------------------------------------------------------------------------------------|
+| VT-02        | CSS: Code adheres to standards and best practices when run through the validator                         | Code passes through the validator with no errors                                                      | ✅        | [W3C CSS Validator results](https://jigsaw.w3.org/css-validator/#validate_by_input) - ![Results](/docs/testing/validator-testing/jigsaw-css.png) |
+
+
+
+- **JavaScript**: Validated using [JS Hint Validator](https://jshint.com/).
 - **Python**: Validated using [Pep8](https://jigsaw.w3.org/css-validator/).
 
 

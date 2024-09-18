@@ -1,72 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css">
+    <!--materialize-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+    <!--google fonts-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@500;700&amp;display=swap" rel="stylesheet">
+    <!--bespoke css-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <title>MOCA</title>
-</head>
-<body>
+  </head>
+  <body>
+    <!--navbar-->
     <nav class="black">
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">MOCA</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-            <i class="fas fa-bars"></i>
-            <span class="sr-only">Open mobile navigation</span>
-          </a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
-            <li><a href="{{ url_for('categories') }}">Categories</a></li>
-          </ul>
-        </div>
-      </nav>
-      
-    
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">MOCA</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+          <i class="fas fa-bars"></i>
+          <span class="sr-only">Open mobile navigation</span>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a href="{{ url_for('home') }}">Home</a>
+          </li>
+          <li>
+            <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
+          </li>
+          <li>
+            <a href="{{ url_for('categories') }}">Categories</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--sidenav-->
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
-        <li><a href="{{ url_for('categories') }}">Categories</a></li>
+      <li>
+        <a href="{{ url_for('home') }}">Home</a>
+      </li>
+      <li>
+        <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
+      </li>
+      <li>
+        <a href="{{ url_for('categories') }}">Categories</a>
+      </li>
     </ul>
-
+    <!--main container-->
     <main class="container-main">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            <div class="flash-messages">
-              {% for category, message in messages %}
-                <div class="flash-message {{ category }}">
-                  <button class="close-btn">&times;</button>
-                  {{ message }}
-                </div>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endwith %}
-
-        {% block content %}
-        {% endblock %}
+      <!--flash mesages--> 
+      {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %} 
+          <div class="flash-messages"> 
+            {% for category, message in messages %} 
+              <div class="flash-message {{ category }}">
+                <button class="close-btn">&times;</button>
+                {{ message }}
+              </div> 
+          {% endfor %} 
+          </div> 
+        {% endif %} 
+      {% endwith %} 
+      
+      {% block content %} 
+      <!--page content from templates-->
+      {% endblock %} 
     </main>
-
+    <!--footer-->
     <footer class="page-footer black">
       <div class="container">
-          <div class="footer-copyright">
-              <div class="container">
-                  © 2024 M.O.C.A, All rights reserved.
-              </div>
-          </div>
+        <div class="footer-copyright">
+          <div class="container"> © 2024 M.O.C.A, All rights reserved. </div>
+        </div>
       </div>
-  </footer>
-
+    </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--bespoke javaScript-->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+  </body>
 </html>
 

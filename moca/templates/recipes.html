@@ -1,65 +1,68 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <!-- header section -->
-    <div class="container-fluid container-header">
-      <div class="row">
-        <!-- title and description section -->
-        <div class="col-lg-6 col-md-6">
-          <section class="content-section content-section-title-description">
-            <h1>My Own Cooking App!</h1>
-            <p>All of YOUR favourite recipes, all in ONE place!</p>
-          </section>
-        </div>
-      </div>
-    </div>
-
-    <section class="section-page-heading">
-        <h2 class="center-align">Recipes</h2>
+<div class="container-fluid container-header">
+  <div class="row">
+    <!-- title and description section -->
+    <div class="col-lg-6 col-md-6">
+      <section class="content-section content-section-title-description">
+        <h1>My Own Cooking App!</h1>
+        <p>All of YOUR favourite recipes, all in ONE place!</p>
       </section>
-
+    </div>
+  </div>
+</div>
+<section class="section-page-heading">
+  <h2 class="center-align">Recipes</h2>
+</section>
 <!--search bar-->
 <div class="row search-bar">
-    <form method="GET" action="{{ url_for('search_recipes') }}">
-        <div class="input-field">
-            <input type="text" id="search" name="query" placeholder="Search for recipes...">
-            <button type="submit" class="btn">Search</button>
-        </div>
-    </form>
+  <form method="GET" action="{{ url_for('search_recipes') }}">
+    <div class="input-field">
+      <input type="text" id="search" name="query" placeholder="Search for recipes...">
+      <button type="submit" class="btn">Search</button>
+    </div>
+  </form>
 </div>
-
-<div class="row cards-container">
-    {% for recipe in recipes %}
-    <div class="col s12 m6 l3">
-      <div class="card card-recipe sticky-action">
-        <div class="card-image">
-          <img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_name }}">
-          <a class="btn-floating halfway-fab"><i class="material-icons">loop</i></a>
-        </div>
-        <div class="card-content">
-            <div class="title-container">
-                <span class="card-title">
-                    {{ recipe.recipe_name }}
-                </span>
-            </div>
-        </div>
-        <div class="card-action center-align">
-            <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn">Edit</a>
-            <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="POST" style="display:inline;">
-                <button type="submit" class="btn delete">Delete</button>
-            </form>
-            
-        </div>
-        <div class="card-action center-align">
-            <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}" class="btn btn-large">View Recipe</a>
-        </div>
-        <div class="card-reveal center-align">
-            <span class="card-title grey-text text-darken-4">
-                Ingredients
-            </span>
-            <p>{{ recipe.ingredients | replace('\n', '<br>') }}</p>
+<!--recipe cards-->
+<div class="row cards-container"> 
+  {% for recipe in recipes %} 
+  <div class="col s12 m6 l3">
+    <div class="card card-recipe sticky-action">
+      <!--card image and floating button-->
+      <div class="card-image">
+        <img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_name }}">
+        <a class="btn-floating halfway-fab">
+          <i class="material-icons">loop</i>
+        </a>
+      </div>
+      <!--card content-->
+      <div class="card-content">
+        <!--title-->
+        <div class="title-container">
+          <span class="card-title">
+            {{ recipe.recipe_name }}
+          </span>
         </div>
       </div>
+      <!--card buttons-->
+      <div class="card-action center-align">
+        <!--edit button-->
+        <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn">Edit</a>
+        <!--delete button-->
+        <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="POST" style="display:inline;">
+          <button type="submit" class="btn delete">Delete</button>
+        </form>
+      </div>
+      <!--view recipe button-->
+      <div class="card-action center-align">
+        <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}" class="btn btn-large">View Recipe</a>
+      </div>
+      <!--flip side of card displaying ingredients (accessed by floating button)-->
+      <div class="card-reveal center-align">
+        <span class="card-title grey-text text-darken-4"> Ingredients </span>
+        <p>{{ recipe.ingredients | replace('\n', '
+							<br>') }}
+        </p>
+      </div>
     </div>
-    {% endfor %}
-</div>
-{% endblock %}
+  </div> {% endfor %} </div> {% endblock %}

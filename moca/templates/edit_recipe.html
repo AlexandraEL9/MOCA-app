@@ -1,79 +1,76 @@
-{% extends "base.html" %}
-{% block content %}
-
+{% extends "base.html" %} {% block content %}
 <!-- header section -->
 <div class="container-fluid container-header">
-    <div class="row">
-        <!-- title and description section -->
-        <div class="col-lg-6 col-md-6">
-            <section class="content-section content-section-title-description">
-                <h2>Edit Recipe</h2> 
-            </section>
-        </div>
+  <div class="row">
+    <!-- title and description section -->
+    <div class="col-lg-6 col-md-6">
+      <section class="content-section content-section-title-description">
+        <h2>Edit Recipe</h2>
+      </section>
     </div>
+  </div>
 </div>
-
+<!--edit recipe card-->
 <div class="row card-panel container-fluid">
-    <form class="col s12" action="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" method="POST" enctype="multipart/form-data">
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-utensils prefix"></i>
-                <input id="recipe_name" name="recipe_name" value="{{ recipe.recipe_name }}" minlength="3" maxlength="50" type="text" class="validate" required>
-                <label for="recipe_name" class="active">Recipe Name</label>
-            </div>
+  <form class="col s12" action="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" method="POST" enctype="multipart/form-data">
+    <!--edit recipe name-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-utensils prefix"></i>
+        <input id="recipe_name" name="recipe_name" value="{{ recipe.recipe_name }}" minlength="3" maxlength="50" type="text" class="validate" required>
+        <label for="recipe_name" class="active">Recipe Name</label>
+      </div>
+    </div>
+    <!--edit recipe description-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-align-left prefix"></i>
+        <textarea id="description" name="description" class="materialize-textarea">{{ recipe.description }}</textarea>
+        <label for="description" class="active">Description</label>
+      </div>
+    </div>
+    <!--edit recipe ingredients-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-list-ul prefix"></i>
+        <textarea id="ingredients" name="ingredients" class="materialize-textarea" required>{{ recipe.ingredients }}</textarea>
+        <label for="ingredients" class="active">Ingredients</label>
+      </div>
+    </div>
+    <!--edit recipe instructions-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-clipboard-list prefix"></i>
+        <textarea id="instructions" name="instructions" class="materialize-textarea" required>{{ recipe.instructions }}</textarea>
+        <label for="instructions" class="active">Instructions</label>
+      </div>
+    </div>
+    <!-- edit image -->
+    <div class="row">
+      <div class="input-field col s12">
+        <div class="file-upload-container">
+          <i class="fas fa-upload prefix"></i>
+          <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
+          <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-align-left prefix"></i>
-                <textarea id="description" name="description" class="materialize-textarea">{{ recipe.description }}</textarea>
-                <label for="description" class="active">Description</label>
-            </div>
+      </div>
+    </div>
+    <!--edit category-->
+    <div class="row">
+      <div class="input-field col s12">
+        <select name="category_id" required>
+            <option value="" disabled selected>Select a category</option>
+            <option value="21">test</option>
+          </select>
+        <label>Category</label>
+      </div>
+    </div>
+      <!--update button-->
+      <div class="row">
+        <div class="input-field col s12 center-align">
+          <button class="btn-large" type="submit">Update Recipe <i class="fas fa-plus-square right"></i>
+          </button>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-list-ul prefix"></i>
-                <textarea id="ingredients" name="ingredients" class="materialize-textarea" required>{{ recipe.ingredients }}</textarea>
-                <label for="ingredients" class="active">Ingredients</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-clipboard-list prefix"></i>
-                <textarea id="instructions" name="instructions" class="materialize-textarea" required>{{ recipe.instructions }}</textarea>
-                <label for="instructions" class="active">Instructions</label>
-            </div>
-        </div>
-       
-        <!-- Upload Image -->
-        <div class="row">
-            <div class="input-field col s12">
-                <div class="file-upload-container">
-                    <i class="fas fa-upload prefix"></i>
-                    <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
-                    <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s12">
-                <select name="category_id" required>
-                    {% for category in categories %}
-                        <option value="{{ category.id }}" {% if category.id == recipe.category_id %}selected{% endif %}>
-                            {{ category.category_name }}
-                        </option>
-                    {% endfor %}
-                </select>
-                <label>Category</label>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 center-align">
-                    <button class="btn-large" type="submit">Update Recipe
-                        <i class="fas fa-plus-square right"></i>
-                    </button>
-                </div>
-            </div>
-    </form>
-</div>
-
-{% endblock %}
+      </div>
+  </form>
+</div> {% endblock %}

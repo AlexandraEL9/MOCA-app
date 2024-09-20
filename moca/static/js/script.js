@@ -51,23 +51,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// Add recipe steps functionality
 	function setupAddStepFunctionality() {
-		let stepCount = 1;
+		let stepCount = document.querySelectorAll('input[name="instructions[]"]').length; // Initialize step count
 		const instructionsContainer = document.getElementById("instructions-container");
-		const addStepButton = document.getElementById("add-step");
+		const addStepButton = document.getElementById("add-step-btn");
 
 		addStepButton.addEventListener("click", function() {
 			stepCount++;
-			const newStep = document.createElement("div");
-			newStep.className = "row";
-			newStep.innerHTML = `
-                <div class="input-field col s12">
-                    <input type="text" name="instructions[]" id="instruction_step_${stepCount}" class="validate">
-                    <label for="instruction_step_${stepCount}">Step ${stepCount}</label>
-                </div>
-            `;
-			instructionsContainer.appendChild(newStep);
+			const newStep = `
+				<div class="row">
+					<div class="input-field col s12">
+						<input type="text" name="instructions[]" id="instruction_step_${stepCount}" class="validate" required>
+						<label for="instruction_step_${stepCount}">Step ${stepCount}</label>
+					</div>
+				</div>
+			`;
+			instructionsContainer.insertAdjacentHTML('beforeend', newStep);
 
-			// Reinitialize the text fields for the new inputs
+			// Reinitialize Materialize text fields for the new input fields
 			M.updateTextFields();
 		});
 	}
@@ -77,16 +77,21 @@ document.addEventListener("DOMContentLoaded", function() {
 		const form = document.querySelector("form");
 		form.addEventListener("submit", function(event) {
 			const allSteps = document.querySelectorAll('input[name="instructions[]"]');
-
-			// Check if at least one step has content
+	
+			// Check if at least one step has content only on form submission
 			let hasContent = Array.from(allSteps).some(input => input.value.trim() !== '');
-
+	
 			if (!hasContent) {
 				event.preventDefault(); // Prevent form submission
 				alert("Please fill out at least one instruction step.");
+			} else {
+				// Concatenate the steps and store in hidden textarea
+				let instructionsText = Array.from(allSteps).map(field => field.value).join('\n');
+				document.getElementById('instructions-hidden').value = instructionsText;
 			}
 		});
 	}
+	
 
 	// Initialize all functionalities
 	function init() {

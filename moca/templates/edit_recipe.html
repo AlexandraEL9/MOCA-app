@@ -37,14 +37,37 @@
         <label for="ingredients" class="active">Ingredients</label>
       </div>
     </div>
-    <!--edit recipe instructions-->
+    <!-- Instructions Heading -->
     <div class="row">
-      <div class="input-field col s12">
-        <i class="fas fa-clipboard-list prefix"></i>
-        <textarea id="instructions" name="instructions" class="materialize-textarea" required>{{ recipe.instructions }}</textarea>
-        <label for="instructions" class="active">Instructions</label>
+      <div class="col s12">
+        <h5><i class="fas fa-clipboard-list"></i> Instructions</h5>
       </div>
     </div>
+
+    <!-- Instruction Steps Container -->
+    <div id="instructions-container">
+      {% for step in recipe.instructions %}
+      <div class="row">
+          <div class="input-field col s12">
+              <input type="text" name="instructions[]" value="{{ step }}" id="instruction_step_{{ loop.index }}" class="validate">
+              <label for="instruction_step_{{ loop.index }}" class="active">Step {{ loop.index }}</label>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Add New Step Button -->
+    <div class="row">
+      <div class="col s12">
+        <button type="button" id="add-step-btn" class="btn">Add Step</button>
+      </div>
+    </div>
+
+    <!--save recipe button-->
+    <button type="submit" class="btn">Save Recipe</button>
+
+    <!-- Include a hidden textarea to store all instructions as a single string -->
+    <textarea id="instructions-hidden" name="instructions_text" style="display: none;"></textarea>
     <!-- edit image -->
     <div class="row">
       <div class="input-field col s12">
@@ -55,14 +78,13 @@
         </div>
       </div>
     </div>
-    <!--edit category-->
+    <!-- edit category -->
     <div class="row">
       <div class="input-field col s12">
-        <select name="category_id" required>
-            <option value="" disabled selected>Select a category</option>
-            <option value="21">test</option>
-          </select>
-        <label>Category</label>
+        <select id="category_id" name="category_id" required>
+          <option value="" disabled selected>Choose a Category</option> {% for category in categories %} <option value="{{ category.id }}">{{ category.category_name }}</option> {% endfor %}
+        </select>
+        <label for="category_id">Category</label>
       </div>
     </div>
       <!--update button-->

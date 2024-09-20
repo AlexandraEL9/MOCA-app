@@ -32,11 +32,11 @@ class Recipe(db.Model):
         primary_key=True
     )
     recipe_name = db.Column(
-        db.String(100),
+        db.String(500),
         nullable=False
     )
     image_url = db.Column(
-        db.String(200),
+        db.String(500),
         nullable=False
     )  # Only store file paths
     description = db.Column(db.Text)

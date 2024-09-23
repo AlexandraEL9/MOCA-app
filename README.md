@@ -176,11 +176,6 @@ When I was creating my website, the design plan was changed but only small place
 
 
 
-
-
-
-
-
 ### Validators
 - **Validator Testing**: Ensures that the website's code adheres to established standards and best practices, which helps improve functionality, accessibility, and cross-browser compatibility.
 
@@ -226,9 +221,173 @@ When I was creating my website, the design plan was changed but only small place
 | Evidence            | [Image Results](./docs/testing/validator-testing/pep8-run-py.png)                                       | [Image Results](./docs/testing/validator-testing/pep8-env-py.png)                                        | [Image Results](./docs/testing/validator-testing/pep8-routes-py.png)                              | [Image Results](./docs/testing/validator-testing/pep8-models-py.png)                                     | [Image Results](./docs/testing/validator-testing/pep8-init-py.png)                                       |
 
 
+### Usability Testing
+- **Usability Testing**: Focuses on the user experience, ensuring the site is easy to understand and navigate, and that guides are effective.
+
+| Test Case ID | Test Description                                                                                             | Expected Result                                                                                       | Pass/Fail | Comments                       |
+|--------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-----------|-------------------------------|
+| UT-01        | Verify the homepage clearly communicates the purpose of the site to first-time visitors                      | First-time visitors can easily understand the site's purpose.                                          | ✅         | Purpose and intent evident. It has a title and description section which explains the site in the first instance. |
+
+**Evidence:**
+
+![evidence_image](./docs/testing/usability-testing/ut1-site-purpose.png)
+              
+
+| Test Case ID | Test Description                                                                                             | Expected Result                                                                                       | Pass/Fail | Comments                       |
+|--------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-----------|-------------------------------|
+| UT-02        | Verify the user interface is intuitive and easy to navigate                      | Users can easily navigate the site without confusion                                          | ✅         | Site uses commonly recognised tools and layout features which will be known and familiar to users, for example, search bars, forms and buttons. Site is well spaced, with only key content used in order to remain uncluttered. Buttons linking to other pages and information allow for more info to be given without cluttering up the interface and can be accessed only as and when the user feels they may need it. Similar pages use the same elements and styling in order to reduce cognitive load on users and achieve cohesion across the site |
+
+**Evidence:**
+
+*Site uses commonly recognised tools and features familiar to users*
+
+| ![image1](./docs/testing/usability-testing/ut2-searchbar.png) | ![image2](./docs/testing/usability-testing/ut2-form.png) | ![image3](./docs/testing/usability-testing/ut2-buttons.png) | ![image4](./docs/testing/usability-testing/ut2-dropdown.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Search bar                                            | Forms                                                 | Buttons                                               | Dropdown menu                                         |
+<br>
+
+*Site is well spaced, with only key content used in order to remain uncluttered. Buttons linking to other pages and information allow for more info to be given without cluttering up the interface and can be accessed only as and when the user feels they may need it.*
+
+| ![image](./docs/testing/usability-testing/ut2-navbar.png) | **Comment:** The navbar has only 3 options despite the fact that the site has 8 pages. This is because this is the minimum number of direct links needed for the site to function. The flow of information is cleaner and uncluttered through access via specific buttons on these 3 pages, creating a more logical workflow. (See below)  |
+|:----------------------------------------------------:|:------------------------------------------------------------------:|
+
+| **Comment:** The only way to access a recipe's full information is through the 'View Recipe' button which directs users to a page which displays the whole recipe in an attractive card format.   | ![image](./docs/testing/usability-testing/ut2-recipe-card.png) |
+|:----------------------------------------------------:|:------------------------------------------------------------------:|
+
+| ![image](./docs/testing/usability-testing/ut2-ingredients.png) | **Comment:** Users have the option to 'Quick View' the ingredients of a recipe through the circular loop button. This replaces the image with a list of ingredients for the recipe. This allowsusers to quickly access more information without cluttering up the interface.  |
+|:----------------------------------------------------:|:------------------------------------------------------------------:|
+<br>
+- **Comment:** The only way to access and view search results is either through the search bar or through the 'View All' buttons on the category cards
 
 
-### Testing User Stories from User Experience (UX) Section
+| ![image1](./docs/testing/usability-testing/ut2-searchbar.png) | ![image2](./docs/testing/usability-testing/ut2-view-all.png) | ![image3](./docs/testing/usability-testing/ut2-search-results.png) | 
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Search bar                                            | 'View All' of a category                                                 | Search Results                                               |
+<br>
+
+*Similar pages use the same elements and styling in order to reduce cognitive load on users and achieve cohesion across the site*
+
+- **Comment:** All pages follow the same format with regards to navbars, title and heading elements and the colour and sizing of these elements. In adition to this, all multi-card pages (home/recipes.html, categories.html and search_results.html), all follow the same template. They are responsive in the same way and their card elements folow the same format.
+
+| ![image1](./docs/testing/usability-testing/ut2-home-layout.png) | ![image2](./docs/testing/usability-testing/ut2-categories-layout.png) | ![image3](./docs/testing/usability-testing/ut2-search-layout.png) | 
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| home/recipes page                                           | Categories page                                                 | Search Results page                                              |
+
+- **Comment:** All pages follow the same format with regards to navbars, title and heading elements and the colour and sizing of these elements. In adition to this, all form based pages (add/edit recipe, add/edit category), all follow the same template. Their card elements folow the same format.
+
+| ![image1](./docs/testing/usability-testing/ut2-add-recipe-layout.png) | ![image2](./docs/testing/usability-testing/ut2-edit-recipe-layout.png) | ![image3](./docs/testing/usability-testing/ut2-add-category-layout.png) | ![image4](./docs/testing/usability-testing/ut2-edit-category-layout.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Add Recipe                                            | Edit Recipe                                                 | Add Category                                               | Edit Category                                         |
+<br>
+
+| Test Case ID | Test Description                                                                                             | Expected Result                                                                                       | Pass/Fail | Comments                       |
+|--------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-----------|-------------------------------|
+| UT-03        | Ensure C.R.U.D functionality across the site                      | Users are able to Create, Read Update and Delete records within the database                                          | ✅         | Users can create new Categories and Recipe elements. Users are able to view saved Categories and Recipes through the sites pages. Users can Update/ edit entries in the database and site. Users can Delete Categories and Recipes from the site and database |
+
+**Evidence:**
+
+*Users are able to Create Categories and Recipe elements and save their data to the database*
+
+- **Comment:** Users can create Categories for their differing recipes and store them with a category id.
+
+| ![image1](./docs/testing/usability-testing/ut3-add-category.png) | ![image2](./docs/testing/usability-testing/ut3-add-category-form.png) | ![image3](./docs/testing/usability-testing/ut3-add-category-success.png) | 
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Categories- add Category                                            | Fill form with details (Name and image)                                                 | Data stored in backend and shown on frontend with a flash message to confirm                                               |
+<br>
+
+- **Comment:** Users can create Recipe and store their details (name, description, image, ingredients, instructions and category) to the database.
+
+| ![image1](./docs/testing/usability-testing/ut3-add-recipe.png) | ![image2](./docs/testing/usability-testing/ut3-add-recipe-form.png) | ![image3](./docs/testing/usability-testing/ut3-add-recipe-success.png) | 
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Navbar/ side nav- Add Recipe                                            | Fill form with details (name, description, image, ingredients, instructions and category)                                                 | Data stored in backend and shown on front end with a flash message to confirm                                               |
+<br>
+
+*Users are able to Read/ view Categories and Recipe data which is saved to the database (backend) on the interface(frontend)*
+
+- **Comment:** Users can Read/ view the Categories which have currently been stored in the Categories table of the database.
+| ![image1](./docs/testing/usability-testing/ut3-read-categories.png) |
+<br>
+
+- **Comment:** Users can Read/ view the Recipes stored in the database. Users have a choice of differentways to view recipe data:
+
+| ![image](./docs/testing/usability-testing/ut3-view-all-recipes.png) | **Comment:** on the homepage, users can view all the recipes saved to the database  |
+|:----------------------------------------------------:|:------------------------------------------------------------------:|
+
+| **Comment:** Users are able to retrieve the ingredients of a particular recipe by using the round quick look bbutton to the top right of the recipe card to replaece the image with a simple list of ingredients  | ![image](./docs/testing/usability-testing/ut3-view-ingredients.png) |
+|:----------------------------------------------------:|:------------------------------------------------------------------:|
+
+ ![image](./docs/testing/usability-testing/ut3-view-whole-recipe.png) | **Comment:** Users can Read/ view the whole recipe (all fields) with the 'View Recipe' button at the bottom of the card. This directs the user to a page which shows the recipe in its entirety  |
+|:----------------------------------------------------:|:------------------------------------------------------------------:|
+
+ **Comment:** Users can Read/ view all of the recipes belonging to a certain category by choosing the catagory, pressing the view all button which directs them to a search results page.
+
+| ![image1](./docs/testing/usability-testing/ut3-view-categories.png) | ![image2](./docs/testing/usability-testing/ut3-view-categories-results.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Categories- View all                                            | Search results                                                 | 
+<br>
+
+**Comment:** Users can Read/ view all of the recipes which have a certain ingredient of word in their title by using the searchbar which will direct to a searchresults page after querying the database. 
+
+| ![image1](./docs/testing/usability-testing/ut3-view-searchbar.png) | ![image2](./docs/testing/usability-testing/ut3-view-searchbar-results.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Searchbar                                           | Search results                                                 | 
+<br>
+
+*Users are able to Update/edit Categories and Recipe data which is saved to the database (backend) and viewed on the interface(frontend)*
+
+- **Comment:** Users can update/edit Category data and store their details (name, image, ) to the database.
+
+| ![image1](./docs/testing/usability-testing/ut3-update-category.png) | ![image2](./docs/testing/usability-testing/ut3-update-category-form.png) | ![image3](./docs/testing/usability-testing/ut3-update-category-success.png) | 
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Use Edit button to access form to update details                                           | Fill form with new details                                                  | Data stored in backend and shown on front end with a flash message to confirm                                               |
+<br>
+
+- **Comment:** Users can update/edit Recipe data and store their details (name, image, description, ingredients, instructions, category) to the database.
+
+| ![image1](./docs/testing/usability-testing/ut3-update-recipe.png) | ![image2](./docs/testing/usability-testing/ut3-update-recipe-form.png) | ![image3](./docs/testing/usability-testing/ut3-update-recipe-success.png) | 
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Use Edit button to access form to update details                                           | Fill form with new details                                                  | Data stored in backend and shown on front end with a flash message to confirm                                               |
+<br>
+
+| ![image1](./docs/testing/usability-testing/ut3-update-recipe-ingredients.png) | ![image2](./docs/testing/usability-testing/ut3-update-whole-recipe.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Updated 'Quick view' ingredients                                           | Updated whole recipe card                                                 | 
+<br>
+
+
+*Users are able to Delete Categories and Recipe data which is saved to the database (backend) and viewed on the interface(frontend)*
+
+- **Comment:** Users can Delete Recipe data which will be deleted from the database.
+
+| ![image1](./docs/testing/usability-testing/ut3-delete-recipe.png) | ![image2](./docs/testing/usability-testing/ut3-delete-recipe-success.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Delete recipe                                           | Confirmation of recipe deletion through flash message                                                 | 
+<br>
+
+- **Comment:** Users can Delete Category data which will be deleted from the database along with any recipes associated within that category the database. For example:
+
+| **Comment:** Within the 'Test Category' category, there are currently two recipes (Test Editing 1, A test Recipe)  | ![image](./docs/testing/usability-testing/ut3-delete-category-recipes.png) |
+|:----------------------------------------------------:|:------------------------------------------------------------------:|
+
+- **Comment:** On deletion of a category, both the category and recipes within that category will be deleted from the database and on the front end..
+
+| ![image1](./docs/testing/usability-testing/ut3-delete-category.png) | ![image2](./docs/testing/usability-testing/ut3-delete-categories-recipe-success.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Delete Category confirmation through flash message                                           | Visual confirmation of all recipes associated with the test category                                                 | 
+<br>
+
+| Test Case ID | Test Description                                                                                             | Expected Result                                                                                       | Pass/Fail | Comments                       |
+|--------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-----------|-------------------------------|
+| UT-04        | Give feedback to user with regards to data processes                      | Whilst Creating, Updating and Deleting data from the database, the user is given messages as to the completion of that task                                          | ✅         | Users are shown appropriate flash messages when they Create, Update or Delete in/from the database |
+
+**Evidence:**
+
+- **Comment:** Users see a flash message when successfully adding, updating or deleting category data from the database
+
+| ![image1](./docs/testing/usability-testing/ut3-add-category-success.png) | ![image2](./docs/testing/usability-testing/ut3-update-category-success.png) | ![image3](./docs/testing/usability-testing/ut4-delete-category-success.png) | 
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| add category confirmation                                           | Update Category confirmation                                                  | Daeleted Category confirmation                                               |
+<br>
 
 ### Compatibility
 

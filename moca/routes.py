@@ -219,7 +219,9 @@ def edit_recipe(recipe_id):
         category_id = request.form.get("category_id")
 
         # Ensure at least one instruction step is provided
-        instructions = [step.strip() for step in instructions if step.strip()]  # Filter out empty steps
+        instructions = [
+            step.strip() for step in instructions if step.strip()
+            ]  # Filter out empty steps
         if not instructions:
             flash("Please provide at least one instruction step.", "error")
             return redirect(url_for("edit_recipe", recipe_id=recipe_id))
@@ -228,7 +230,9 @@ def edit_recipe(recipe_id):
         recipe.recipe_name = recipe_name
         recipe.description = description
         recipe.ingredients = ingredients
-        recipe.instructions = "\n".join(instructions)  # Join steps into one string
+        recipe.instructions = "\n".join(
+            instructions
+        )  # Join steps into one string
         recipe.category_id = category_id
 
         # Handle image upload (optional)

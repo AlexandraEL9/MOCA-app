@@ -384,10 +384,18 @@ When I was creating my website, the design plan was changed but only small place
 
 - **Comment:** Users see a flash message when successfully adding, updating or deleting category data from the database
 
-| ![image1](./docs/testing/usability-testing/ut3-add-category-success.png) | ![image2](./docs/testing/usability-testing/ut3-update-category-success.png) | ![image3](./docs/testing/usability-testing/ut4-delete-category-success.png) | 
+| ![image1](./docs/testing/usability-testing/ut3-add-recipe-success.png) | ![image2](./docs/testing/usability-testing/ut3-update-recipe-success.png) | ![image3](./docs/testing/usability-testing/ut3-delete-recipe-success.png) | 
 |:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
-| add category confirmation                                           | Update Category confirmation                                                  | Daeleted Category confirmation                                               |
+| add recipe confirmation                                           | Update recipe confirmation                                                  | Deleted recipe confirmation                                               |
 <br>
+
+| ![image1](./docs/testing/usability-testing/ut3-add-category-success.png) | ![image2](./docs/testing/usability-testing/ut3-update-category-success.png) | ![image3](./docs/testing/usability-testing/ut3-delete-category-success.png) | 
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| add category confirmation                                           | Update category confirmation                                                  | Deleted category confirmation                                               |
+<br>
+
+| **Comment:** Other message example- Error if a category already exists  | ![image](./docs/testing/usability-testing/ut4-feedback-error.png) |
+|:----------------------------------------------------:|:------------------------------------------------------------------:|
 
 ### Compatibility
 

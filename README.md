@@ -134,6 +134,116 @@ When I was creating my website, the design plan was changed but only small place
 
 ---
 
+## Database Schema
+In this database, there are two main entities: Category and Recipe. These entities are related through a one-to-many relationship, where one category can have many recipes, but each recipe belongs to only one category.
+
+### Entities
+
+| **Category**                                                                 | **Recipe**                                                                 |
+| ---------------------------------------------------------------------------  | -------------------------------------------------------------------------  |
+| Represents a classification or group for recipes.                            | Represents a cooking recipe.                                                |
+| Has attributes like `id`, `category_name`, and `image_url`.                   | Has attributes like `id`, `recipe_name`, `image_url`, `description`, `ingredients`, `instructions`, and `category_id`. |
+| Can be associated with multiple recipes.                                     | Each recipe belongs to one category, which is enforced by the foreign key `category_id`. |
+
+
+![erd](./docs/database-relationship-diagram.png)
+
+| ![image1](./docs/categories-database-table.png) | ![image2](./docs/recipes-database-table.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Categories Table                                           | Recipe table                                                 | 
+<br>
+
+### Example and explanation of structure
+
+<div style="display: flex; justify-content: space-between;">
+
+<div style="margin-right: 20px;">
+  <h3>Category Table</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>category_name</th>
+        <th>image_url</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Desserts</td>
+        <td>/images/desserts.jpg</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Main Course</td>
+        <td>/images/maincourse.jpg</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h3>Recipe Table</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>recipe_name</th>
+        <th>image_url</th>
+        <th>description</th>
+        <th>ingredients</th>
+        <th>instructions</th>
+        <th>category_id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Chocolate Cake</td>
+        <td>/images/cake.jpg</td>
+        <td>Rich cake...</td>
+        <td>Flour, eggs...</td>
+        <td>Mix and bake</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Pasta Carbonara</td>
+        <td>/images/pasta.jpg</td>
+        <td>Italian dish...</td>
+        <td>Pasta, eggs...</td>
+        <td>Cook pasta...</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Apple Pie</td>
+        <td>/images/pie.jpg</td>
+        <td>Classic pie...</td>
+        <td>Apples, flour...</td>
+        <td>Bake at 350</td>
+        <td>1</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+### Relationship:
+
+#### One-to-Many Relationship (Category to Recipe):
+
+- **One Category can have many Recipes**: This is implemented by the `recipes` relationship in the `Category` model. It uses the `db.relationship()` method to define the relationship with the `Recipe` model.
+
+- **One Recipe belongs to one Category**: This is enforced in the `Recipe` model with the `category_id` field, which is a foreign key that references the `id` field of the `Category` table using `db.ForeignKey('category.id')`.
+
+#### Example:
+For example, both "Chocolate Cake" and "Apple Pie" belong to the "Desserts" category (`category_id = 1`), while "Pasta Carbonara" belongs to the "Main Course" category (`category_id = 2`).
+
+
+---
+
 ## Testing
 ### Accessibility Testing
 - **Accessibility Testing**: Ensures the site is accessible to all users, including those with disabilities.

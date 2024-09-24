@@ -25,6 +25,8 @@ class Category(db.Model):
     def __repr__(self):
         return f'<Category {self.category_name}>'
 
+# table for recipes
+
 
 class Recipe(db.Model):
     id = db.Column(

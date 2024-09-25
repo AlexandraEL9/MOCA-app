@@ -21,7 +21,7 @@ Welcome to **MOCA**! All the recipes you and your family love, all in one place!
 2. [**Testing**](#testing)
     - [**Validators**](#validators)
     - [**Compatibility**](#compatibility)
-    - [**Known Issues**](#known-issues)
+    - [**Bugs and fixes**](#bugs-fixes)
 
 3. [**Features**](#features)
     - [**Existing Features**](#existing-features)
@@ -45,7 +45,11 @@ Welcome to **MOCA**! All the recipes you and your family love, all in one place!
 
 ## UX
 
-This project is a personal endeavor to create a platform for managing recipes. The goal is to provide a user-friendly interface where the user can easily add, view, and manage recipes while enjoying a clean, tidy and intuitive design.
+### Rationale
+
+This project is a personal endeavor to create a platform for managing recipes. I own lots of cookbooks but the rigmarole of checking through them every week is irritating. I am also on a personal quest to have a varied diet and cut down on my meat consumption. 
+
+The goal is to provide a user-friendly interface where the user can easily add, view, and manage recipes while enjoying a clean, tidy and intuitive design.
 
 ### User Stories
 
@@ -71,7 +75,7 @@ This project is a personal endeavor to create a platform for managing recipes. T
 
 **Color Scheme**: Employs a warm and inviting color palette suitable for food-related content. 
 
-![Color Scheme](/docs/color-pallet.png)
+![Color Scheme](/docs/colour-pallet.png)
 
 ### Color Usage
 
@@ -512,9 +516,160 @@ For example, both "Chocolate Cake" and "Apple Pie" belong to the "Desserts" cate
 - **Browsers**: Tested across major browsers including Chrome, Firefox, Safari, and Edge.
 - **Devices**: Ensured responsiveness on mobile devices, tablets, and desktops.
 
-### Known Issues
+---
 
-- **Image Upload**: Occasionally, large images may cause delays in upload.
+### Bugs/fixes
+
+#### Issue 1: 
+ When I try to connect the database with python : db.create_all(), or psql command not found or running the run.py am met with errors.
+
+- **Explanation**: Was unable to create the database and access it due to versioning issues, dependency issues and outdated commands.
+
+#### Fix:
+Create and run a requirements.txt file:
+
+| ![image](./docs/bugs-and-fixes/requirement-file.png) | **Comment:** Open a text editor and add each package needed for the correct running of the site. <br> Then install with the command `pip install -r requirements.txt`. This command installs the exact versions listed in the `requirements.txt`, making the setup reproducible and minimizing potential conflicts. |
+|:----------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+
+
+- **Explanation**: Creating a requirements.txt file is an essential part of managing Python projects, especially when using packages and dependencies. A requirements.txt file helps manage and keep track of the packages required for the correct running of projects, ensuring that all packages and dependencies can run together with no error or conflicts.
+<br>
+
+
+#### Issue 2: 
+On attempting to run the app using `python3 run.py`, gettintg the following warning:
+
+`/workspace/.pip-modules/lib/python3.12/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(`
+
+- **Explanation**: warning is related to the SQLALCHEMY_TRACK_MODIFICATIONS configuration option in Flask-SQLAlchemy. This option tracks modifications of objects and emits signal. In future versions of Flask-SQLAlchemy, this option will be disabled by default, which is why the warning is popping up.
+
+#### Fix:
+within the `__init__.py` file ammend the `app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]` to false.
+
+`app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False  # Add this line`
+
+- **Explanation**: disables the event system that tracks modifications of objects and signals. The warning should disappear when the app. This change doesn't affect the functionality of the application but will remove the unnecessary warning message.
+<br>
+
+#### Issue 3: 
+When building the recipe cards, I wanted to use the materialize card functionality to 'turn the card over'so to speak. In this case, on pressing a button, the card turns and shows a list of ingredients for the recipe. On checking this, the action would show the ingredients but then get stuck on the list and not reverting back to the front of the card image.
+
+| ![image](./docs/bugs-and-fixes/card-actions-1.png) | **Explanation:** In the first iteration, the card adds and removes the `active` class, however, this only worked for 1 iteration and then the page needed to be reloaded to get the card back to it's original state. |
+|:----------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+
+#### Fix:
+use a javaScript `toggle method`:
+
+![image](./docs/bugs-and-fixes/card-actions-2.png)
+
+- **Explanation:** Instead of using classList.add('active') to show the card reveal and classList.remove('active') to hide it, we use classList.toggle('active'). This method checks if the class is present: If the active class is present, toggle will remove it, hiding the card reveal. If the active class is not present, toggle will add it, showing the card reveal. Result: Each time you click the reveal button (floating icon), the card will alternate between showing the back (ingredients) and the front (image). The button inside the card reveal will also toggle the view back to the front side when clicked. |
+<br>
+
+#### Issue 4: 
+On attempting to add a recipe to the database:
+`sqlalchemy.exc.DataError: (psycopg2.errors.StringDataRightTruncation) value too long for type character varying(200)`
+
+- **Explanation:** On attempting to add more detailed recipe data beyond simple test recipe and place holders resulting in the above error. This error indicates that the string inputted in the form is longer than the maximum allowed length for one of the columns in your recipe table.
+
+#### Fix:
+increase the length or 'type' of affected columns.:
+
+![image](./docs/recipes-database-table.png)
+
+- **Explanation:** I increased the allowed length of the title and description fields to 500 characters, and ensured other text fields requiring lengthier data set to 'text' as that has no restrictions on length.
+<br>
+
+#### Issue 5: 
+On attempting to add a recipe to the database:
+`sqlalchemy.exc.DataError: (psycopg2.errors.StringDataRightTruncation) value too long for type character varying(200)`
+
+- **Explanation:** On attempting to add more detailed recipe data beyond simple test recipe and place holders resulting in the above error. This error indicates that the string inputted in the form is longer than the maximum allowed length for one of the columns in your recipe table.
+
+#### Fix:
+increase the length or 'type' of affected columns.:
+
+![image](./docs/recipes-database-table.png)
+
+- **Explanation:** I increased the allowed length of the title and description fields to 500 characters, and ensured other text fields requiring lengthier data set to 'text' as that has no restrictions on length.
+<br>
+
+#### Issue 6: 
+Form field text input just cutting out and not allowing any more typing.
+
+**Explanation:** On attempting to add a new recipe using the add recipe form, the input for 'recipe name' would just cut out and not allow anymore characters. I checked the database/ models.py file and checked the recipe_name field but I was well within the character length.
+
+#### Fix:
+Increase the lenght allowed in the form itself in `add_category.html'
+
+![image](./docs/bugs-and-fixes/form-input-length.png)
+
+**Explanation:** Although the models.py file had plenty of characters, the html of the form input was limited to 25. Increasing this:
+`<input id="recipe_name" name="recipe_name" minlength="3" maxlength="100" type="text" class="validate" required>` fixed the issue.
+<br>
+
+#### Issue 7: 
+On attempting to amend database in models.py and migrate the changes:
+`flask db migrate -m "Added image_file column to Recipe model"
+flask db upgrade
+Error: Could not locate a Flask application. Use the 'flask --app' option, 'FLASK_APP' environment variable, or a 'wsgi.py' or 'app.py' file in the current directory.`
+
+**Explanation:** Flask couldn't find the application because the environment isn't correctly set up. Also 'Flask-migrate was not installed so commands like 
+`flask db migrate -m "Added image_file column to Recipe model"
+flask db upgrade` 
+would not work.
+
+#### Fix:
+Install Flask-Migrate and then migrate changes.
+
+- 1. Install Flask-Migrate. `<pip install flask-migrate`.
+- 2. Ensure flask-migrate is et up in run.py. `from flask_migrate import Migrate` and `migrate = Migrate(app, db)`.
+- 3. Make sure flask_migrate is imported into your app- in 'moca/__init__.py add:
+- - from flask_migrate import Migrate
+- - migrate = Migrate(app, db)
+- - (Import your routes and models)
+- - import moca.routes
+- - import moca.models
+- 4. Initialize migrations: `flask db init`.
+- 5. Create Migration Script: `flask db migrate -m "Increase line length"`.
+- 6. Apply the migration: `flask db migrate -m "flask db upgrade`.
+
+**Explanation:** The above steps install flask-migrate and allow changes to be made to the database.
+<br>
+
+#### Issue 8: 
+Lower than expected lighthouse accessibility scores.
+
+**Explanation:** Poor accessibility scores due to a lack of 'alt text' for images. The problem being that as images are uploaded by the user, it is not as straight forward as simply hard coding it straight into the html. An automatic solution was required to improve accessibility without adding extra work to the user.
+
+#### Fix:
+Use 'fallback text' or use information from the name field to populate the alt text using jinja.
+
+`<img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_name }}">`
+
+![image](./docs/bugs-and-fixes/alt-text.png)
+
+**Explanation:** Using the jinja syntax in the alt text allows us to retrieve the recipe name from the database and inject it into the alt text ensuring that there is appropriate alt text for accessibility. This can be checked and seen when inspecting in the browser (see above). This fix allowed me to make user-generated content accessible. This approach ensures that even though images are uploaded by users, they still meet accessibility standards.
+<br>
+
+#### Issue 9: 
+Accessibility- side nav trigger *'Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users.'*
+
+**Explanation:** a.sidenav-trigger link needs better, more descriptive text for screen readers to understand its purpose. The current icon <i class="fas fa-bars"></i> is not accessible because screen readers cannot interpret icons without associated text.
+
+#### Fix:
+provide a visually hidden text inside the anchor tag that describes the link's purpose. 
+
+<span class="sr-only">Open mobile navigation</span>
+
+| ![image1](./docs/bugs-and-fixes/screen-reader-span.png) | 
+|:-----------------------------------------------------:|
+| base.html- add the span with the required text and give the span the class of sr-only                                         
+
+**Explanation:** Screen readers will pick up this hidden text, while it remains invisible to sighted users.
+<br>
+
+
 
 ---
 

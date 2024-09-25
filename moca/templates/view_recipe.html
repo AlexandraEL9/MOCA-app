@@ -43,6 +43,10 @@
         <div class="col s12 m6 l8">
           <div class="section">
             <h4 class="recipe-section-title">Instructions</h4>
+            <!--inspired by: 
+            Tim Nelson's desert project (https://chatgpt.com/c/48e50280-939d-4932-838d-a758904730a8) 
+            stack abuse article (https://stackabuse.com/three-ways-to-create-multiline-strings-in-python/)
+            and work through utilizing chat gpt-->
             <ol> {% for step in recipe.instructions.strip().split('\n') if step %} <li>{{ step }}</li> {% endfor %} </ol>
           </div>
         </div>

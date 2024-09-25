@@ -187,6 +187,9 @@ def add_recipe():
             return redirect(url_for("add_recipe"))
 
         # Create new recipe
+        # Inspired by Tim Nelson(
+        # https://github.com/TravelTimN/ci-milestone04-dcd/blob/main/app/templates/desserts_recipe.html)
+        # and work through utilizing chat gpt
         recipe = Recipe(
             recipe_name=recipe_name,
             image_url=final_image_url,
@@ -252,6 +255,12 @@ def edit_recipe(recipe_id):
         return redirect(url_for("home"))
 
     # Split existing instructions into steps for editing
+    # inspired by:
+    # Tim Nelson's desert project (
+    # https://chatgpt.com/c/48e50280-939d-4932-838d-a758904730a8)
+    # stack abuse article (
+    # https://stackabuse.com/three-ways-to-create-multiline-strings-in-python/)
+    # and work through utilizing chat gpt
     recipe.instructions = recipe.instructions.split("\n")
 
     return render_template(

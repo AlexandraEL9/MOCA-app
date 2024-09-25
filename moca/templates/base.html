@@ -23,6 +23,7 @@
         <a href="#!" class="brand-logo">MOCA</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
           <i class="fas fa-bars"></i>
+          <!-- sr only learning from https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_ref_hlp_sr-only&stacked=h-->
           <span class="sr-only">Open mobile navigation</span>
         </a>
         <ul class="right hide-on-med-and-down">
@@ -53,6 +54,7 @@
     <!--main container-->
     <main class="container-main">
       <!--flash mesages--> 
+      <!--adapted from article by pallet projects- https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/-->
       {% with messages = get_flashed_messages(with_categories=true) %} 
         {% if messages %} 
           <div class="flash-messages"> 
@@ -74,7 +76,7 @@
     <footer class="page-footer black">
       <div class="container">
         <div class="footer-copyright">
-          <div class="container"> © 2024 M.O.C.A, All rights reserved. </div>
+          <div class="container"> © 2024 M.O.C.A, All rights reserved. For educational purposes only. </div>
         </div>
       </div>
     </footer>

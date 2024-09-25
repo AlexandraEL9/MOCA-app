@@ -751,6 +751,17 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 
 ### Code
 
+- The project is based on the learning from- [Task Manager Tutorial](https://github.com/Code-Institute-Solutions/TaskManagerAuth) by Tim Nelson
+- Toggle method used for image/ingredients card reveal adapted from [devCamp](https://rails.devcamp.com/trails/javascript-in-the-browser/campsites/javascript-dom/guides/how-to-use-javascript-s-toggle-function) devCamp
+- Crud app tutorial by Carla Notarobot [youtube](https://www.youtube.com/watch?v=Mykv_Ee1IeU)- especially helpful with dynamic list creation
+- Recipe app builder tutorial [youtube](://www.youtube.com/watch?v=rU15IZpLNkg)
+- Tutorial for a recipe app [youtube](://www.youtube.com/watch?v=rU15IZpLNkg) 
+- Flash messeges [palletsprojects.com](https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/) Article about user feedback through flash messaging.
+- The instructions section with the multiple steps added one at a time: was inspired by an example by Tim Nelson [Tim Nelson deserts project](https://github.com/TravelTimN/ci-milestone04-dcd/blob/main/app/templates/desserts_new.html) and I used chat GPT [Chat GPT](https://chatgpt.com) to explain the concepts and work through my own build/ version of the code section.
+- Also within the tricky instructions section, the ability to join() and split the string data for storage in the database and present on the recipe card was found on [Stack Abuse](https://stackabuse.com/three-ways-to-create-multiline-strings-in-python/) and then explained and developed with chat gpt [Chat GPT](https://chatgpt.com).
+- screen reader accessibility (sr-only) [W3 schools](https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_ref_hlp_sr-only&stacked=h)
+
+
 - **Contributions**: Special thanks to contributors for code improvements and bug fixes.
 
 ### Acknowledgements

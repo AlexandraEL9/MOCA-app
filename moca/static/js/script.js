@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	// Toggle card visibility
+	//toggle method adapted from learning on https://rails.devcamp.com/trails/javascript-in-the-browser/campsites/javascript-dom/guides/how-to-use-javascript-s-toggle-function
 	function setupCardActions() {
 		const revealIcons = document.querySelectorAll('.card-image .btn-floating');
 		const closeIcons = document.querySelectorAll('.card-reveal .fa-times-circle');
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	// Add recipe steps functionality
+	// inspired by Tim Nelson's desert project (https://chatgpt.com/c/48e50280-939d-4932-838d-a758904730a8)) and work through utilizing chat gpt
 	function setupAddStepFunctionality() {
 		let stepCount = document.querySelectorAll('input[name="instructions[]"]').length; // Initialize step count
 		const instructionsContainer = document.getElementById("instructions-container");

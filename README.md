@@ -688,7 +688,6 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 - **Recipe Details**: Displays ingredients and instructions in a well-organized format.
 - **Image Upload**: Users can upload images for recipes.
 - **Responsive Design**: Accessible from all devices.
-- **User Authentication**: Basic functionality for managing recipes.
 
 ### Features for scaling up of app
 
@@ -704,6 +703,14 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 
 ## Technologies Used
 
+* [Am I Responsive?](http://ami.responsivedesign.is/) - To show the website image on a range of devices.
+* [Balsamiq](https://balsamiq.com/) - Used to create wireframes.
+* [Git](https://git-scm.com/) - For version control to track changes in the source code during development.
+
+* [GitHub](https://github.com/) - Hosts the repository that can be deployed to GitHub Pages, providing backup and version control.
+* **Lucid Chart** [Lucid chart](https://www.lucidchart.com/) - Employed for creating clear and ERDs (Entity-Relationship Diagrams) to visualize data relationships in the application.
+* **Gitpod** The IDE used to develop the project.
+
 ### Front-End Technologies
 
 - **HTML5**: Markup language for structuring the web content.
@@ -717,8 +724,12 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 
 - **Python**: Programming language used for server-side logic.
 - **Flask**: Web framework for building the application.
+- **Flask-Migrate**:[Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/) - An extension that handles SQLAlchemy database migrations for Flask applications using Alembic.
 - **SQLAlchemy**: ORM for database management.
 - **SQLite**: Database system used for data storage.
+- [PostgreSQL](https://www.postgresql.org/) - An open-source relational database system used to manage the application’s data effectively.
+- **Heroku**:[Heroku](https://www.heroku.com/) - A cloud platform as a service supporting several programming languages, used to deploy the web application.
+- **Jinja** [Jinja](https://jinja.palletsprojects.com/) - A modern and designer-friendly templating language for Python, modeled after Django’s templates. Used to dynamically render HTML templates.
 
 ---
 
@@ -743,7 +754,7 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 
 ### Content
 
-- **Recipe Data**: All recipe content is created by the project team.
+- **Recipe Data**: All recipe content is adapted from my own versions of recipes I make in my home.
 
 ### Media
 

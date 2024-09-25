@@ -747,7 +747,27 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 
 ### Media
 
-- **Images**: Images used in wireframes and mockups are sourced from [Placeholder Image Service](https://placeholder.com).
+- **Images**: 
+- I utilised [Coolors](https://coolors.co/) Palette Generator to create the color palette image in my README.md
+- Images for categories cards were sourced from [Unsplash](https://unsplash.com/)
+- Images for recipe cards were sourced from the Miguel Barclay website [miguelbarclay.com](https://www.miguelbarclay.com/)
+
+| Image File Name      | Image Source|
+| ---------------------| ------------|
+|vegetarian.jpg          | https://unsplash.com/photos/sliced-vegetables-in-blue-ceramic-bowl-eKsi3xW7fCA |
+|vegan.jpg          | https://unsplash.com/photos/yellow-and-red-bell-peppers-BapCHLuLe9Q |
+|red-meat.jpg          | https://unsplash.com/photos/raw-meat-on-white-plate-iehau6a1l8Q |
+|poultry.jpg          | https://unsplash.com/photos/chicken-roast-on-roasting-pan-GyV6SL_fKsI |
+|fish-and-seafood.jpg          | https://unsplash.com/photos/a-group-of-fish-sitting-on-top-of-a-pile-of-ice-d2Bvs4E-Va8 |
+|stuffed-peppers.png          | https://www.miguelbarclay.com/ |
+|sticky-peanut-butter-tofu.png          | https://www.miguelbarclay.com/ |
+|oven-fried-chicken-and-slaw.png          | https://www.miguelbarclay.com/ |
+|griddled-veg-ragu.png          | https://www.miguelbarclay.com/ |
+|curried-haloumi-and-spinach.png          | https://www.miguelbarclay.com/ |
+|crab-macaroni-cheese.png          | https://www.miguelbarclay.com/ |
+|couscous-paella.png          | https://www.miguelbarclay.com/ |
+|chorizo-beans-on-toast.png          | https://www.miguelbarclay.com/ |
+|bacon-and-asparagus-tagliatelle.png          | https://www.miguelbarclay.com/ |
 
 ### Code
 
@@ -762,9 +782,11 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 - screen reader accessibility (sr-only) [W3 schools](https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_ref_hlp_sr-only&stacked=h)
 
 
-- **Contributions**: Special thanks to contributors for code improvements and bug fixes.
+- **Contributions**: Special thanks to contributors on slack, and especially Thomas, Alan and Roo atTutor Support for helping me with the early versioning issues at the start of the project..
 
 ### Acknowledgements
 
 - **Resources**: Thanks to [Materialize](https://materializecss.com) and [Bootstrap](https://getbootstrap.com) for their design frameworks.
 - **Learning**: Acknowledgment to [Code Institute](https://codeinstitute.net/) for providing the foundational knowledge.
+-   My Mentor Excellence Ilesanmi for continuous helpful feedback.
+-   My tutor from EKC Group Rachel Furlong for support in Tutor meetings.

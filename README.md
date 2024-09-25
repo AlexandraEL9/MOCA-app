@@ -77,14 +77,20 @@ The goal is to provide a user-friendly interface where the user can easily add, 
 
 ![Color Scheme](/docs/colour-pallet.png)
 
-### Color Usage
+## Color Usage
 
-- **Main Color (`#0A605F`)**: This rich teal color is used for the background of the header and footer, as well as key elements like the navigation bar. It helps to establish a cohesive and visually appealing theme across the application.
-- **Secondary Color (`#F44336`)**: This vibrant red is used for borders, highlights, and buttons. It adds a striking contrast to the main color and draws user attention to interactive elements.
-- **White (`#fff`)**: White is used for text on dark backgrounds and as the background color for certain sections. It ensures that text is easily readable against darker colors and provides a clean look.
-- **Black (`#000`)**: Black is used for text and navigation backgrounds to enhance readability and provide a strong contrast with lighter elements.
+- **Main Color (`#0A605F`)**: This deep teal color is used for key interface elements like the header, footer, and navigation bar. It establishes a cohesive and balanced theme across the application, providing a rich yet neutral background.
 
-This color scheme is designed to be both visually appealing and functional, ensuring that the application's interface is user-friendly and aesthetically consistent.
+- **Secondary Color (`#411B4E`)**: A dark plum-purple hue, this color is used for accents and backgrounds of certain components, adding a sophisticated contrast to the main color without overwhelming the interface.
+
+- **Highlights Color (`#BE2A77`)**: This bold magenta-pink shade is used for interactive elements such as buttons, links, and alerts. It provides vibrant contrast and grabs user attention, making it clear which elements are clickable or important.
+
+- **White (`#fff`)**: White is used extensively for text on dark backgrounds, as well as for sections where a clean, minimal look is desired. It ensures high readability and a crisp, modern design.
+
+- **Black (`#000`)**: Black is primarily used for text on light backgrounds, creating sharp, easy-to-read contrast, as well as for the background of navigation elements.
+
+This color palette is crafted to ensure a visually appealing and functional user interface, leveraging contrast and complementary shades for easy navigation and a pleasant user experience.
+
 
 **Icons**: Uses icons from **FontAwesome** for visual enhancements.
 

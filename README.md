@@ -22,7 +22,7 @@ Welcome to **MOCA**! All the recipes you and your family love, all in one place!
 
 2. [**Features**](#features)
     - [**Existing Features**](#existing-features)
-    - [**Future Features for scaling up of app **](#future-features-for-scaling-up-of-app)
+    - [**Future Features for scaling up of app**](#future-features-for-scaling-up-of-app)
 
 3. [**Testing**](#testing)
     - [**Validators**](#validators)

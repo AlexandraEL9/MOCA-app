@@ -324,7 +324,7 @@ For example, both "Chocolate Cake" and "Apple Pie" belong to the "Desserts" cate
 
 | Test Case ID | Test Description                                                                               | Expected Result                                                                                          | Status | Comments          |
 |--------------|------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|--------|-------------------|
-| CT-01        | Verify the website is responsive and works on various devices (desktop, tablet, mobile)         | Website is responsive and works on various devices                                                        | Pass   | ![Responsive layout](docs/testing/responsive-layout.png) |
+| CT-01        | Verify the website is responsive and works on various devices (desktop, tablet, mobile)         | Website is responsive and works on various devices                                                        | Pass   | ![image](docs/testing/responsive-mixed.png) |
 
 **In Detail:**
 
@@ -416,6 +416,7 @@ For example, both "Chocolate Cake" and "Apple Pie" belong to the "Desserts" cate
 | ![image](./docs/testing/usability-testing/ut2-ingredients.png) | **Comment:** Users have the option to 'Quick View' the ingredients of a recipe through the circular loop button. This replaces the image with a list of ingredients for the recipe. This allowsusers to quickly access more information without cluttering up the interface.  |
 |:----------------------------------------------------:|:------------------------------------------------------------------:|
 <br>
+
 - **Comment:** The only way to access and view search results is either through the search bar or through the 'View All' buttons on the category cards
 
 

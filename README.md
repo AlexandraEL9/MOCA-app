@@ -775,8 +775,9 @@ Please note - in order to run this project locally on your own system, you will 
 ![image](./docs/deployment/deployment-env-py.png)
 
 - - -  A note on `DEBUG`. This was initially set to True but was set to 'False' just prior to submission of the project.
+![image](./docs/deployment/debug-false.png)
 
-![image](./.png)
+![image](./docs/deployment/debug-false-heroku.png)
 
 5. Create the project's Python Package by creating a new folder, `moca`.
 6. Within the `moca` folder, create an `__init__.py` file which will initialize the application as a package allowing us to use imports.
@@ -939,7 +940,7 @@ Many of the files will be in place but you will need to add some to run the proj
 
 ![Image](/docs/deployment/app-deployed.png)
 
-**Access the app here! [MOCA-app](https://moca-cook-app-970a7ec0db09.herokuapp.com/)
+**Access the app here!** [MOCA-app](https://moca-cook-app-970a7ec0db09.herokuapp.com/)
 
 
 ---

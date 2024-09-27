@@ -1,6 +1,8 @@
-# [M.O.C.A- My Own Cooking App](https://your-project-link-here)
+# M.O.C.A- My Own Cooking App
 
-![mockup](app/wireframes/mockups.png)
+[M.O.C.A live site]((https://moca-cook-app-970a7ec0db09.herokuapp.com/))
+
+![mockup](docs/testing/responsive-mixed.png)
 
 Welcome to **MOCA**! All the recipes you and your family love, all in one place! M.O.C.A (My Own Cooking App) is a simple ad easy to use app I made formyself to quicky access my favourite recipes without having to search through the myriad of books, online and pinterest pages to find their details. Recipes can be added simply and searched by category or by ingredient and viewed at the click of a button!
 
@@ -12,20 +14,21 @@ Welcome to **MOCA**! All the recipes you and your family love, all in one place!
 1. [**UX**](#ux)
     - [**User Stories**](#user-stories)
     - [**Design**](#design)
-        - [**Framework**](#framework)
         - [**Color Scheme**](#color-scheme)
         - [**Icons**](#icons)
         - [**Typography**](#typography)
     - [**Wireframes**](#wireframes)
+    - [**Database Schema**](#database-schema)
 
-2. [**Testing**](#testing)
-    - [**Validators**](#validators)
-    - [**Compatibility**](#compatibility)
-    - [**Bugs and fixes**](#bugs-fixes)
-
-3. [**Features**](#features)
+2. [**Features**](#features)
     - [**Existing Features**](#existing-features)
-    - [**Features Left to Implement**](#features-left-to-implement)
+    - [**Future Features for scaling up of app **](#future-features-for-scaling-up-of-app)
+
+3. [**Testing**](#testing)
+    - [**Validators**](#validators)
+    - [**Usability Testing**](#usability-testing)
+    - [**Compatibility**](#compatibility)
+    - [**Bugs and fixes**](#bugs-and-fixes)
 
 4. [**Technologies Used**](#technologies-used)
     - [**Front-End Technologies**](#front-end-technologies)
@@ -73,7 +76,8 @@ The goal is to provide a user-friendly interface where the user can easily add, 
 
 **Framework**: Utilizes **Bootstrap** and **Materialize** for responsive design and UI components.
 
-**Color Scheme**: Employs a warm and inviting color palette suitable for food-related content. 
+#### Color Scheme**
+Employs a warm and inviting color palette suitable for food-related content. 
 
 ![Color Scheme](/docs/colour-pallet.png)
 
@@ -92,9 +96,10 @@ The goal is to provide a user-friendly interface where the user can easily add, 
 This color palette is crafted to ensure a visually appealing and functional user interface, leveraging contrast and complementary shades for easy navigation and a pleasant user experience.
 
 
-**Icons**: Uses icons from **FontAwesome** for visual enhancements.
+#### Icons: 
+Uses icons from **FontAwesome** for visual enhancements.
 
-**Typography**: 
+#### Typography: 
 
 - The typography for the Recipe App is designed to prioritize readability, clarity, and a modern aesthetic, enhancing the overall user experience.
 
@@ -142,7 +147,9 @@ When I was creating my website, the design plan was changed but only small place
 
 - [**All**](./docs/wireframes/wf-add-update-recipe-all.png)
 
+
 ---
+
 
 ## Database Schema
 In this database, there are two main entities: Category and Recipe. These entities are related through a one-to-many relationship, where one category can have many recipes, but each recipe belongs to only one category.
@@ -253,6 +260,38 @@ For example, both "Chocolate Cake" and "Apple Pie" belong to the "Desserts" cate
 
 
 ---
+
+## Features
+
+### Existing Features
+
+- **Recipe Management**: Users can add, edit, and delete recipes with detailed ingredients, steps, and images.
+- **Recipe Management- Searching**: for recipes by name, ingredients, or category, making it easier to find suitable options based on available ingredients or dietary preferences.
+- **Recipe Details**: Displays ingredients and instructions in a well-organized format.
+- **Image Upload**: Users can upload images for recipes.
+- **Responsive Design**: The app is optimized for viewing on multiple devices, ensuring accessibility on desktop, tablet, and mobile platforms.
+- **Categorization**: Recipes are organized into categories, making it easier for users to filter recipes by type (e.g., breakfast, lunch, dinner, vegetarian, etc.).
+
+### Value Provided to Users
+
+- **Time Saving**: No more flipping through cookbooks or hunting for recipe cards. The app organizes all recipes in one place with an intuitive search function.
+- **Dietary Flexibility**: Users can track and manage different types of recipes, helping them meet dietary goals, such as reducing meat consumption or maintaining variety in their meals.
+- **Convenience**: The app can be accessed on any device, making it easy to follow a recipe in the kitchen from a phone or tablet.
+- **Customisation**: Users have the ability to upload personal recipes, edit them, and categorize them, giving them full control over their digital cookbook.
+
+### Future Features for scaling up of app
+
+- **Advanced Filtering**: Implement more detailed filters for dietary needs and preparation time.
+- **Advanced recipe input**: eg, allowing more indepth and precise ingredients adding, standardizing quantity and weight amounts and conversion.
+- **Recipe Recommendations**: Suggest recipes based on user activity and preferences.
+- **Meal Planning**: Add functionality for meal planning and grocery list generation.
+- **User Profiles**: Enhance profiles with user-specific recipes and saved favorites.
+- **Printing and Sharing**: Options to print recipes and share them via social media.
+- **User Authentication**: Basic functionality for managing recipes.
+- **Defensive Programming**: Extra stepps added prior to deletion for recipe security.
+
+
+--- 
 
 ## Testing
 ### Accessibility Testing
@@ -524,7 +563,7 @@ For example, both "Chocolate Cake" and "Apple Pie" belong to the "Desserts" cate
 
 ---
 
-### Bugs/fixes
+#### Bugs and fixes
 
 #### Issue 1: 
  When I try to connect the database with python : db.create_all(), or psql command not found or running the run.py am met with errors.
@@ -676,29 +715,6 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 <br>
 
 
-
----
-
-## Features
-
-### Existing Features
-
-- **Recipe Management**: Users can add, edit, and delete recipes.
-- **Recipe Management- Searching**: Users search for recipes through a searchbar or through a category search..
-- **Recipe Details**: Displays ingredients and instructions in a well-organized format.
-- **Image Upload**: Users can upload images for recipes.
-- **Responsive Design**: Accessible from all devices.
-
-### Features for scaling up of app
-
-- **User Ratings and Reviews**: Allow users to rate and review recipes.
-- **Advanced Filtering**: Implement more detailed filters for dietary needs and preparation time.
-- **Recipe Recommendations**: Suggest recipes based on user activity and preferences.
-- **Meal Planning**: Add functionality for meal planning and grocery list generation.
-- **User Profiles**: Enhance profiles with user-specific recipes and saved favorites.
-- **Printing and Sharing**: Options to print recipes and share them via social media.
-- **User Authentication**: Basic functionality for managing recipes.
-
 ---
 
 ## Technologies Used
@@ -710,6 +726,7 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 * [GitHub](https://github.com/) - Hosts the repository that can be deployed to GitHub Pages, providing backup and version control.
 * **Lucid Chart** [Lucid chart](https://www.lucidchart.com/) - Employed for creating clear and ERDs (Entity-Relationship Diagrams) to visualize data relationships in the application.
 * **Gitpod** The IDE used to develop the project.
+* **Google Fonts** For typography accross the site..
 
 ### Front-End Technologies
 
@@ -736,17 +753,194 @@ provide a visually hidden text inside the anchor tag that describes the link's p
 ## Deployment
 
 ### Local Deployment
+Please note - in order to run this project locally on your own system, you will need the following installed:
+- [Python3](https://www.python.org/downloads) to run the application.
+- [PIP](https://pip.pypa.io/en/stable/installing) to install all app requirements.
+- Any IDE such as [Microsoft Visual Studio Code](https://code.visualstudio.com). For this project I used the [Gitpod IDE](https://www.gitpod.io/) IDE associated with the Code Institute and the [Code Institute Template](https://github.com/Code-Institute-Org/ci-full-template).
 
-1. Clone the repository: `git clone https://your-repository-link.git`
-2. Navigate to the project directory: `cd your-project-directory`
-3. Install dependencies: `pip install -r requirements.txt`
-4. Run the application: `python app.py`
-5. Open your browser and visit `http://127.0.0.1:5000`
+#### Initial Project Set-Up
+
+1. To start with I opened the [Code Institute Template](https://github.com/Code-Institute-Org/ci-full-template).
+2. I then clicked the green `Use thiss template` button and pressed `Create a new repository`.
+3. I then gave my repository a name, in this case `MOCA-app` and pressed the green `Create reopsitory` button.
+4. Your project now has is own github repository.
+5. I then pressed the `Open` button in the top right of the repository. This linked the repository to my gitpod account allowing me to work in my chosen IDE.
+
+#### Create the Flask Application
+
+1. Installed the two required Python Packages using the command `pip3 install 'Flask-SQLAlchemy<3' psycopg2 sqlalchemy==1.4.46`
+2. Created an `env.py` file to store sensitive information.
+3. Opened the `gitignore` file for folders and files which should be ignored by Github- in this case, the `env.py` file.
+4. within the `env.py` file I imported operating system to set up environment variables for `IP`, `PORT`, `SECRET_KEY`, `DEBUG`, `DEVELOPMENT` and `DB_URL`.
+![image](./docs/deployment/deployment-env-py.png)
+
+- - -  A note on `DEBUG`. This was initially set to True but was set to 'False' just prior to submission of the project.
+
+![image](./.png)
+
+5. Create the project's Python Package by creating a new folder, `moca`.
+6. Within the `moca` folder, create an `__init__.py` file which will initialize the application as a package allowing us to use imports.
+
+![image](./docs/deployment/deployment-initpy.png)
+
+7. Created a `routes.py` file to define and handle URL routes (endpoints) and functions to handle the routes.
+
+![image](./docs/deployment/deployment-routespy.png)
+
+8. Created a `run.py` file at the root level of the application to run the application.
+
+![image](./docs/deployment/deployment-runpy.png)
+
+9. Created a `requirements.txt` file, at the root level, ensuring that all packages and dependencies are set up to the correct versions without creating errors and conflicts. It also ensures that the application can be set up in any environment with the same dependencies, making it easier to share and deploy the project. 
+
+- - - This can either be done manually with the below working dependencies
+
+![image](./docs/deployment/deployment-requirements.png)
+
+and then installed with the command `pip install -r requirements.txt`
+
+#### Create the Database
+The database will store all of the data we need for the 'MOCA' application. For this application I have used Postgres.
+
+1. Created a `models.py` file to define the database. Import db from the moca package `from moca import db` at the top of the file.
+
+2. Created the tables for the database. This project has 2 tables, 'Categories' and 'Recipes'.
+
+| ![image1](./docs/categories-database-table.png) | ![image2](./docs/recipes-database-table.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| Categories Table                                           | Recipe table                                                 | 
+
+3. Ensured classes are imported   in order to generate database: `from moca, models import Category, Recipe'` at top on `routes.py` file.
+
+4. login to the postgres CLI
+- - in terminal type `set_pg` and then `psql` and `enter`. 
+5. To create the database type `CREATE DATABASE moca;` That should create the database.
+6. To migrate the models into the database:
+- - access python interpreter `python3`.
+- - import the 'db' variable- `from moca import db`
+- - `db.create_all()`
+- - The postgres database should be populated with the two tables 'Categories' and 'Recipes'.
+
+### Forking the Repository
+
+By forking the GitHub Repository we are able to make a copy of the original repository on our GitHub account to view and/or make changes which do not affect the original repository by using the following steps...
+
+1. Log in to GitHub and locate the GitHub Repository [MOCA-app](https://github.com/AlexandraEL9/MOCA-app).
+2. At the top of the Repository (not top of page) just below the "Settings" Button on the menu, locate the "Fork" Button.
+3. Rename if needed and press `Create Fork`.
+3. You should now have a copy of the original repository in your GitHub account.
+
+### Cloning the Repository
+To make a Local Clone:
+
+1. Login to Github and locate the GitHub Repository [MOCA-app](https://github.com/AlexandraEL9/MOCA-app).
+2. Click the green `Code` button.
+3. Copy the HTTPS link.
+4. Open your IDE workspace.
+Many of the files will be in place but you will need to add some to run the project locally:
+5. Create a `gitignore` file with the command `touch .gitignore`.
+6. Create `env.py` file.
+7. `pip install -r requirements.txt` to set up the correct dependencies.
+8. Re-create the database in the `models.py` file with the commands:
+- - in terminal type `set_pg` and then `psql` and `enter`. 
+- - To create the database type `CREATE DATABASE moca;` That should create the database.
+- - To migrate the models into the database:
+- - access python interpreter `python3`.
+- - import the 'db' variable- `from moca import db`
+- - `db.create_all()`
+- - The postgres database should be populated with the two tables 'Categories' and 'Recipes'.
+
+**Success** You now have your own local clone of the MOCA app!
 
 ### Remote Deployment
 
-- **Hosting**: The project is hosted on [Heroku](https://heroku.com) or [Another Hosting Service].
-- **Deployment Steps**: Follow the platform-specific guide for deployment.
+- **Hosting**: The project is hosted on [Heroku](https://heroku.com).
+- **Deployment Steps**: Follow the steps for deployment: MOCA is deployed using Heroku, a cloud platform that enables developers to build, run, and operate applications entirely in the cloud.
+
+To deploy the site using Heroku:
+
+**Create the postgreSQL fron Code Institute database instance:**
+- Navigate to- [PostgreSQL from Code Institute](https://dbs.ci-dbs.net/)
+- Enter your student email into the field provided and press submit.
+- Check the student email associated with account for a link to the newly created Postgres database.
+
+**Prepare code for Deploymnet:**
+- Create a requirements.txt file by running `pip freeze --local > requirements.txt` in your terminal. This should generate a requirements.txt file in the root directory.
+- Create a Procfile inside the root directory of the project. Heroku needs this file and the command within it to run the program.
+- Within the Procfile add the command `web: python run.py`.
+- Open the __init__.py file to reconfigure for deployment:
+- - * Add if else statement to 'SQLALCHEMY_DATABASE_URI.
+- - * Ensure external database URL starts with `postgresql://` by adding an addition to the `else` statement to change the database to start with `postgresql` as opposed to `postgres`.
+
+![Image](/docs/deployment/configure-deployment.png)
+
+- Save, add, commit and push.
+
+**Connect the database to the hosting paltform- HEROKU:**
+
+1. Login (or signup) to [Heroku](https://www.heroku.com/).
+2. From the dashboard, create a new app by selecting "New" -> "Create new app."
+
+![Image](/docs/deployment/new-app.png)
+
+3. Give your app a name (must be unique) and select the region closest to your location. Then click `Create App`
+
+![Image](/docs/deployment/create-app-name.png)
+
+4. Click `Settings` tab of the new app
+
+5. Click `Reveal Config Vars`
+
+![Image](/docs/deployment/config-vars.png)
+
+6. Copy the database url you recieved in your email.
+
+7. Within the config vars, add a config var called `DATABASE_URL` and paset the database url from the email and press `Add`.
+
+![Image](/docs/deployment/add-database-url.png)
+
+8. Add the other lines of the environment variables from the env.py file (ommitting DEVELOPMENT and DB_URL)
+
+![Image](/docs/deployment/complete-config-vars.png)
+
+**Deploy the app:**
+1. Navigate to Deploy tab
+
+2. Select `Connect to GitHub`
+
+![Image](/docs/deployment/deploy-github.png)
+
+3. Search for your REPO and click `Connect`
+
+![Image](/docs/deployment/connect-repo.png)
+
+4. In the `Manual Deploy` section click `Deploy Branch` to begin the build process.
+
+![Image](/docs/deployment/deploy-branch.png)
+
+5. Once build is complete, it should look like this:
+
+![Image](/docs/deployment/build-complete.png)
+
+6. Add tables to the database. At the top of the vage press `More` and `Run Console`.
+
+![Image](/docs/deployment/add-tables.png)
+
+7. Type `python3` into the console and click `Run`
+- - * This opens a terminal. create the tables with the commands
+- - - `from (app-name) import db`
+- - - `db.create_all()`
+- - - Then `exit()`
+- - The app should now be running.
+
+8. Press Open app
+
+9. App deployed!
+
+![Image](/docs/deployment/app-deployed.png)
+
+**Access the app here! [MOCA-app](https://moca-cook-app-970a7ec0db09.herokuapp.com/)
+
 
 ---
 

@@ -1,6 +1,6 @@
 # M.O.C.A- My Own Cooking App
 
-[M.O.C.A live site]((https://moca-cook-app-970a7ec0db09.herokuapp.com/))
+[M.O.C.A live site](https://moca-cook-app-970a7ec0db09.herokuapp.com/)
 
 ![mockup](docs/testing/responsive-mixed.png)
 

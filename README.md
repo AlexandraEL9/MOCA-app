@@ -857,7 +857,7 @@ Many of the files will be in place but you will need to add some to run the proj
 - **Hosting**: The project is hosted on [Heroku](https://heroku.com).
 - **Deployment Steps**: Follow the steps for deployment: MOCA is deployed using Heroku, a cloud platform that enables developers to build, run, and operate applications entirely in the cloud.
 
-To deploy the site using Heroku:
+#### To deploy the site using Heroku:
 
 **Create the postgreSQL fron Code Institute database instance:**
 - Navigate to- [PostgreSQL from Code Institute](https://dbs.ci-dbs.net/)

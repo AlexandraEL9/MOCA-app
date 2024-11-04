@@ -171,21 +171,22 @@ def add_recipe():
             return redirect(url_for("add_recipe"))
 
         # Ensure image file is uploaded and valid
-        if image_file and allowed_file(image_file.filename):
-            filename = secure_filename(image_file.filename)
-            image_file_path = os.path.join(
-                app.config['UPLOAD_FOLDER'],
-                filename
-            )
-            image_file.save(image_file_path)
-            final_image_url = url_for('uploaded_file', filename=filename)
+        if image_file:
+            if allowed_file(image_file.filename):
+                filename = secure_filename(image_file.filename)
+                image_file_path = os.path.join(
+                    app.config['UPLOAD_FOLDER'],
+                    filename
+                )
+                image_file.save(image_file_path)
+                final_image_url = url_for('uploaded_file', filename=filename)
+            else:
+                flash("Invalid image format. Please upload a PNG, JPG, or GIF image.", "error")
+                return redirect(url_for("add_recipe"))
         else:
-            flash(
-                "Please provide a valid image upload.",
-                "error"
-            )
+            flash("Please provide a valid image upload.", "error")
             return redirect(url_for("add_recipe"))
-
+            
         # Create new recipe
         # Inspired by Tim Nelson(
         # https://github.com/TravelTimN/ci-milestone04-dcd/blob/main/app/templates/desserts_recipe.html)

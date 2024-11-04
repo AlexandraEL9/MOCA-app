@@ -74,13 +74,17 @@ def add_category():
             return redirect(url_for("add_category"))
 
         # Handle image file upload if provided
-        if image_file and allowed_file(image_file.filename):
-            filename = secure_filename(image_file.filename)
-            image_file_path = os.path.join(
-                app.config['UPLOAD_FOLDER'], filename
-            )
-            image_file.save(image_file_path)
-            image_url = url_for('uploaded_file', filename=filename)
+        if image_file:
+            if allowed_file(image_file.filename):
+                filename = secure_filename(image_file.filename)
+                image_file_path = os.path.join(
+                    app.config['UPLOAD_FOLDER'], filename
+                )
+                image_file.save(image_file_path)
+                image_url = url_for('uploaded_file', filename=filename)
+            else:
+                flash("Invalid image format. Please upload a PNG, JPG, or GIF image.", "error")
+                return redirect(url_for("add_category"))
 
         # Ensure valid external URL for image if no file is uploaded
         if (not image_file and image_url and
@@ -89,7 +93,6 @@ def add_category():
                 "Invalid image URL. Ensure it's a valid external URL.",
                 "error"
             )
-
             return redirect(url_for("add_category"))
 
         category = Category(category_name=category_name, image_url=image_url)
@@ -115,13 +118,18 @@ def edit_category(category_id):
             category.category_name = category_name
 
         # Handle image file upload
-        if image_file and allowed_file(image_file.filename):
-            filename = secure_filename(image_file.filename)
-            image_file_path = os.path.join(
-                app.config['UPLOAD_FOLDER'], filename
-            )
-            image_file.save(image_file_path)
-            category.image_url = url_for('uploaded_file', filename=filename)
+        if image_file:
+            if allowed_file(image_file.filename):
+                filename = secure_filename(image_file.filename)
+                image_file_path = os.path.join(
+                    app.config['UPLOAD_FOLDER'], filename
+                )
+                image_file.save(image_file_path)
+                category.image_url = url_for('uploaded_file', filename=filename)
+            else:
+                flash("Invalid image format. Please upload a PNG, JPG, or GIF image.", "error")
+                return redirect(url_for("edit_category", category_id=category.id))
+
         elif image_url and image_url.startswith(('http://', 'https://')):
             category.image_url = image_url
         else:
@@ -136,6 +144,7 @@ def edit_category(category_id):
         return redirect(url_for("categories"))
 
     return render_template("edit_category.html", category=category)
+
 
 
 @app.route("/delete_category/<int:category_id>", methods=["POST"])

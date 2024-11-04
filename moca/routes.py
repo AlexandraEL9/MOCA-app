@@ -62,8 +62,8 @@ def categories():
 def add_category():
     if request.method == "POST":
         category_name = request.form.get("category_name")
-        image_url = request.form.get("image_url")
         image_file = request.files.get("image_file")
+        default_image = request.form.get("default_image")  # Get selected default image
 
         if not category_name:
             flash("Category name is required.", "error")
@@ -74,27 +74,19 @@ def add_category():
             return redirect(url_for("add_category"))
 
         # Handle image file upload if provided
-        if image_file:
-            if allowed_file(image_file.filename):
-                filename = secure_filename(image_file.filename)
-                image_file_path = os.path.join(
-                    app.config['UPLOAD_FOLDER'], filename
-                )
-                image_file.save(image_file_path)
-                image_url = url_for('uploaded_file', filename=filename)
-            else:
-                flash("Invalid image format. Please upload a PNG, JPG, or GIF image.", "error")
-                return redirect(url_for("add_category"))
-
-        # Ensure valid external URL for image if no file is uploaded
-        if (not image_file and image_url and
-                not image_url.startswith(('http://', 'https://'))):
-            flash(
-                "Invalid image URL. Ensure it's a valid external URL.",
-                "error"
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            image_file_path = os.path.join(
+                app.config['UPLOAD_FOLDER'], filename
             )
-            return redirect(url_for("add_category"))
+            image_file.save(image_file_path)
+            image_url = url_for('uploaded_file', filename=filename)
+        elif default_image:  # If a default image is selected
+            image_url = default_image  # Use the static path directly
+        else:  # If neither is provided
+            image_url = url_for('static', filename='uploads/update-image.png')
 
+        # Create a new category instance
         category = Category(category_name=category_name, image_url=image_url)
         db.session.add(category)
         db.session.commit()
@@ -111,8 +103,8 @@ def edit_category(category_id):
 
     if request.method == "POST":
         category_name = request.form.get("category_name")
-        image_url = request.form.get("image_url")
         image_file = request.files.get("image_file")
+        default_image = request.form.get("default_image")  # Get selected default image
 
         if category_name:
             category.category_name = category_name
@@ -130,21 +122,16 @@ def edit_category(category_id):
                 flash("Invalid image format. Please upload a PNG, JPG, or GIF image.", "error")
                 return redirect(url_for("edit_category", category_id=category.id))
 
-        elif image_url and image_url.startswith(('http://', 'https://')):
-            category.image_url = image_url
-        else:
-            flash(
-                "Invalid URL. Provide a valid upload.",
-                "error"
-            )
-            return redirect(url_for("edit_category", category_id=category.id))
+        if default_image:  # If a default image is selected
+            category.image_url = default_image
+        elif not image_file:  # If no image uploaded and no default selected
+            category.image_url = url_for('static', filename='uploads/update-image.png')
 
         db.session.commit()
         flash("Category updated successfully!", "success")
         return redirect(url_for("categories"))
 
     return render_template("edit_category.html", category=category)
-
 
 
 @app.route("/delete_category/<int:category_id>", methods=["POST"])

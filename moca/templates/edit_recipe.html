@@ -1,8 +1,8 @@
-{% extends "base.html" %} {% block content %}
-<!-- header section -->
+{% extends "base.html" %} 
+{% block content %}
+<!-- Header Section -->
 <div class="container-fluid container-header">
   <div class="row">
-    <!-- title and description section -->
     <div class="col-lg-6 col-md-6">
       <section class="content-section content-section-title-description">
         <h2>Edit Recipe</h2>
@@ -10,101 +10,103 @@
     </div>
   </div>
 </div>
-<!--edit recipe card-->
 <div class="row card-panel container-fluid">
   <form class="col s12" action="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" method="POST" enctype="multipart/form-data">
-    <!--edit recipe name-->
+    <!-- Recipe Name -->
     <div class="row">
       <div class="input-field col s12">
         <i class="fas fa-utensils prefix"></i>
-        <input id="recipe_name" name="recipe_name" value="{{ recipe.recipe_name }}" minlength="3" maxlength="50" type="text" class="validate" required>
-        <label for="recipe_name" class="active">Recipe Name</label>
+        <label for="recipe_name">Recipe Name</label>
+        <input id="recipe_name" name="recipe_name" minlength="3" maxlength="100" type="text" class="validate" value="{{ recipe.recipe_name }}" required>
       </div>
     </div>
-    <!--edit recipe description-->
+    <!-- Description -->
     <div class="row">
       <div class="input-field col s12">
         <i class="fas fa-align-left prefix"></i>
+        <label for="description">Description</label>
         <textarea id="description" name="description" class="materialize-textarea">{{ recipe.description }}</textarea>
-        <label for="description" class="active">Description</label>
       </div>
     </div>
-    <!--edit recipe ingredients-->
+
+    <!-- Ingredients Section -->
     <div class="row">
-      <div class="input-field col s12">
-        <i class="fas fa-list-ul prefix"></i>
-        <textarea id="ingredients" name="ingredients" class="materialize-textarea" required>{{ recipe.ingredients }}</textarea>
-        <label for="ingredients" class="active">Ingredients</label>
+      <div class="col s12">
+        <h5><i class="fas fa-clipboard-list"></i> Ingredients</h5>
       </div>
     </div>
-    <!-- Instructions Heading -->
+    <div id="ingredients-container">
+      {% for ingredient in recipe.ingredients.split(', ') %}
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" name="ingredients[]" class="validate" value="{{ ingredient }}" required>
+          <label></label>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- Add New Ingredient Button -->
+    <div class="row">
+      <div class="col s12">
+        <button type="button" id="add-ingredient-btn" class="btn">Add Ingredient</button>
+      </div>
+    </div>
+    <!-- Hidden Textarea for Ingredients -->
+    <textarea id="ingredients-hidden" name="ingredients_text" style="display: none;"></textarea>
+
+    <!-- Instructions Section -->
     <div class="row">
       <div class="col s12">
         <h5><i class="fas fa-clipboard-list"></i> Instructions</h5>
       </div>
     </div>
-
-    <!-- Instruction Steps Container -->
     <div id="instructions-container">
       {% for step in recipe.instructions %}
       <div class="row">
-          <div class="input-field col s12">
-              <input type="text" name="instructions[]" value="{{ step }}" id="instruction_step_{{ loop.index }}" class="validate">
-              <label for="instruction_step_{{ loop.index }}" class="active">Step {{ loop.index }}</label>
-          </div>
+        <div class="input-field col s12">
+          <input type="text" name="instructions[]" value="{{ step }}" class="validate" required>
+          <label>Step {{ loop.index }}</label>
+        </div>
       </div>
       {% endfor %}
     </div>
-
     <!-- Add New Step Button -->
     <div class="row">
       <div class="col s12">
         <button type="button" id="add-step-btn" class="btn">Add Step</button>
       </div>
     </div>
-
-    
-
-    <!-- Include a hidden textarea to store all instructions as a single string -->
+    <!-- Hidden Textarea for Instructions -->
     <textarea id="instructions-hidden" name="instructions_text" style="display: none;"></textarea>
-    <!-- edit upload Image -->
-    <!-- Image Upload Section -->
+
+    <!-- Upload Image -->
     <div class="row">
       <div class="input-field col s12">
         <div class="file-upload-container">
+          <i class="fas fa-upload prefix"></i>
           <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
-          <input type="file" id="image_file" name="image_file" class="file-upload-input" aria-label="Upload an image">
+          <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
         </div>
       </div>
     </div>
-    <p>No image right now? No problem! Just use out default image and edit later.</p>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <label for="default_image" class="active">Choose a Default Image:</label>
-        <select id="default_image" name="default_image" class="browser-default">
-          <option value="" disabled selected>Select an image</option>
-          <option value="/static/uploads/default1.jpg">Default Image 1</option>
-          <option value="/static/uploads/default2.jpg">Default Image 2</option>
-          <!-- Add more options as needed -->
-        </select>
-      </div>
-    </div>    
-    <!-- edit category -->
+    <!-- Category -->
     <div class="row">
       <div class="input-field col s12">
         <select id="category_id" name="category_id" required>
-          <option value="" disabled selected>Choose a Category</option> {% for category in categories %} <option value="{{ category.id }}">{{ category.category_name }}</option> {% endfor %}
+          <option value="" disabled>Choose a Category</option>
+          {% for category in categories %}
+          <option value="{{ category.id }}" {% if category.id == recipe.category_id %}selected{% endif %}>{{ category.category_name }}</option>
+          {% endfor %}
         </select>
         <label for="category_id">Category</label>
       </div>
     </div>
-      <!--update button-->
-      <div class="row">
-        <div class="input-field col s12 center-align">
-          <button class="btn-large" type="submit">Update Recipe <i class="fas fa-plus-square right"></i>
-          </button>
-        </div>
+    <!-- Submit Button -->
+    <div class="row">
+      <div class="input-field col s12 center-align">
+        <button class="btn-large" type="submit">Update Recipe <i class="fas fa-plus-square right"></i></button>
       </div>
+    </div>
   </form>
-</div> {% endblock %}
+</div>
+{% endblock %}

@@ -206,7 +206,6 @@ def add_recipe():
 
     return render_template("add_recipe.html", categories=categories)
 
-
 @app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
@@ -216,14 +215,12 @@ def edit_recipe(recipe_id):
         # Retrieve form fields
         recipe_name = request.form.get("recipe_name")
         description = request.form.get("description")
-        ingredients = request.form.get("ingredients")
-        instructions = request.form.getlist("instructions[]")
+        ingredients = request.form.getlist("ingredients[]")  # Get a list of ingredients
+        instructions = request.form.getlist("instructions[]")  # Get a list of instructions
         category_id = request.form.get("category_id")
 
         # Ensure at least one instruction step is provided
-        instructions = [
-            step.strip() for step in instructions if step.strip()
-            ]  # Filter out empty steps
+        instructions = [step.strip() for step in instructions if step.strip()]  # Filter out empty steps
         if not instructions:
             flash("Please provide at least one instruction step.", "error")
             return redirect(url_for("edit_recipe", recipe_id=recipe_id))
@@ -231,20 +228,15 @@ def edit_recipe(recipe_id):
         # Update recipe details
         recipe.recipe_name = recipe_name
         recipe.description = description
-        recipe.ingredients = ingredients
-        recipe.instructions = "\n".join(
-            instructions
-        )  # Join steps into one string
+        recipe.ingredients = ', '.join(ingredients)  # Join ingredients into a single string
+        recipe.instructions = "\n".join(instructions)  # Join steps into one string
         recipe.category_id = category_id
 
         # Handle image upload (optional)
         image_file = request.files.get("image_file")
         if image_file and allowed_file(image_file.filename):
             filename = secure_filename(image_file.filename)
-            image_file_path = os.path.join(
-                app.config['UPLOAD_FOLDER'],
-                filename
-            )
+            image_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image_file.save(image_file_path)
             recipe.image_url = url_for('uploaded_file', filename=filename)
 
@@ -254,17 +246,9 @@ def edit_recipe(recipe_id):
         return redirect(url_for("home"))
 
     # Split existing instructions into steps for editing
-    # inspired by:
-    # Tim Nelson's desert project (
-    # https://chatgpt.com/c/48e50280-939d-4932-838d-a758904730a8)
-    # stack abuse article (
-    # https://stackabuse.com/three-ways-to-create-multiline-strings-in-python/)
-    # and work through utilizing chat gpt
-    recipe.instructions = recipe.instructions.split("\n")
+    recipe.instructions = recipe.instructions.split("\n")  # Prepare for displaying in the form
 
-    return render_template(
-        "edit_recipe.html", recipe=recipe, categories=categories
-    )
+    return render_template("edit_recipe.html", recipe=recipe, categories=categories)
 
 
 @app.route("/delete_recipe/<int:recipe_id>", methods=["POST"])

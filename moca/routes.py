@@ -62,8 +62,8 @@ def categories():
 def add_category():
     if request.method == "POST":
         category_name = request.form.get("category_name")
-        image_url = request.form.get("image_url")
         image_file = request.files.get("image_file")
+        default_image = request.form.get("default_image")
 
         if not category_name:
             flash("Category name is required.", "error")
@@ -73,25 +73,17 @@ def add_category():
             flash("Category already exists!", "error")
             return redirect(url_for("add_category"))
 
-        # Handle image file upload if provided
+        # Determine the image URL
+        image_url = None
         if image_file and allowed_file(image_file.filename):
             filename = secure_filename(image_file.filename)
-            image_file_path = os.path.join(
-                app.config['UPLOAD_FOLDER'], filename
-            )
+            image_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image_file.save(image_file_path)
             image_url = url_for('uploaded_file', filename=filename)
+        elif default_image == "default":
+            image_url = url_for('static', filename='images/default1.jpg')
 
-        # Ensure valid external URL for image if no file is uploaded
-        if (not image_file and image_url and
-                not image_url.startswith(('http://', 'https://'))):
-            flash(
-                "Invalid image URL. Ensure it's a valid external URL.",
-                "error"
-            )
-
-            return redirect(url_for("add_category"))
-
+        # Create and save the new category
         category = Category(category_name=category_name, image_url=image_url)
         db.session.add(category)
         db.session.commit()
@@ -100,6 +92,7 @@ def add_category():
         return redirect(url_for("categories"))
 
     return render_template("add_category.html")
+
 
 
 @app.route("/edit_category/<int:category_id>", methods=["GET", "POST"])

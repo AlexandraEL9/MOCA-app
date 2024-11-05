@@ -155,18 +155,17 @@ def add_recipe():
         recipe_name = request.form.get("recipe_name")
         image_file = request.files.get("image_file")
         description = request.form.get("description")
-        ingredients = request.form.get("ingredients")
-        instructions = request.form.getlist("instructions[]")
+        ingredients = request.form.getlist("ingredients[]")  # Updated to get a list
+        instructions = request.form.getlist("instructions[]")  # Updated to get a list
         category_id = request.form.get("category_id")
 
         # Check for required fields
         if (
             not recipe_name or
             not category_id or
-            not ingredients or
-            not instructions
+            not ingredients or  # Checking for empty list
+            not instructions  # Checking for empty list
         ):
-
             flash("Please fill in all required fields.", "error")
             return redirect(url_for("add_recipe"))
 
@@ -186,16 +185,16 @@ def add_recipe():
             )
             return redirect(url_for("add_recipe"))
 
+        # Create a formatted string for ingredients
+        formatted_ingredients = ', '.join(ingredients)  # Join the ingredients into a single string
+
         # Create new recipe
-        # Inspired by Tim Nelson(
-        # https://github.com/TravelTimN/ci-milestone04-dcd/blob/main/app/templates/desserts_recipe.html)
-        # and work through utilizing chat gpt
         recipe = Recipe(
             recipe_name=recipe_name,
             image_url=final_image_url,
             description=description,
-            ingredients=ingredients,
-            instructions="\n".join(instructions),
+            ingredients=formatted_ingredients,  # Use the formatted string
+            instructions="\n".join(instructions),  # Join instructions into a single string
             category_id=category_id
         )
 

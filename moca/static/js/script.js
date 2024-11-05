@@ -1,4 +1,3 @@
-/* global M */
 document.addEventListener("DOMContentLoaded", function() {
 	// Initialize Materialize components
 	function initializeMaterializeComponents() {
@@ -20,22 +19,19 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	// Toggle card visibility
-	//toggle method adapted from learning on https://rails.devcamp.com/trails/javascript-in-the-browser/campsites/javascript-dom/guides/how-to-use-javascript-s-toggle-function
 	function setupCardActions() {
 		const revealIcons = document.querySelectorAll('.card-image .btn-floating');
 		const closeIcons = document.querySelectorAll('.card-reveal .fa-times-circle');
 
 		revealIcons.forEach((icon) => {
 			icon.addEventListener('click', function() {
-				const card = icon.closest('.card');
-				card.classList.toggle('active');
+				icon.closest('.card').classList.toggle('active');
 			});
 		});
 
 		closeIcons.forEach((icon) => {
 			icon.addEventListener('click', function() {
-				const card = icon.closest('.card');
-				card.classList.toggle('active');
+				icon.closest('.card').classList.toggle('active');
 			});
 		});
 	}
@@ -50,50 +46,48 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	}
 
-	// Add recipe steps functionality
-	// inspired by Tim Nelson's desert project (https://chatgpt.com/c/48e50280-939d-4932-838d-a758904730a8)) and work through utilizing chat gpt
-	function setupAddStepFunctionality() {
-		let stepCount = document.querySelectorAll('input[name="instructions[]"]').length; // Initialize step count
-		const instructionsContainer = document.getElementById("instructions-container");
-		const addStepButton = document.getElementById("add-step-btn");
+	// Updated dynamic step addition to also update hidden textareas
+		function setupDynamicStepAddition(containerId, inputName, buttonId, stepLabel) {
+			let stepCount = document.querySelectorAll(`input[name="${inputName}"]`).length;
 
-		addStepButton.addEventListener("click", function() {
-			stepCount++;
-			const newStep = `
-				<div class="row">
-					<div class="input-field col s12">
-						<input type="text" name="instructions[]" id="instruction_step_${stepCount}" class="validate" required>
-						<label for="instruction_step_${stepCount}">Step ${stepCount}</label>
+			document.getElementById(buttonId).addEventListener('click', function() {
+				stepCount++;
+				const newStep = `
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="${inputName}" id="${inputName}_step_${stepCount}" class="validate" required>
+							<label for="${inputName}_step_${stepCount}">${stepLabel} ${stepCount}</label>
+						</div>
 					</div>
-				</div>
-			`;
-			instructionsContainer.insertAdjacentHTML('beforeend', newStep);
+				`;
+				document.getElementById(containerId).insertAdjacentHTML('beforeend', newStep);
+				M.updateTextFields(); // Reinitialize Materialize text fields for new inputs
+			});
+		}
 
-			// Reinitialize Materialize text fields for the new input fields
-			M.updateTextFields();
-		});
-	}
 
 	// Custom form validation
 	function setupFormValidation() {
 		const form = document.querySelector("form");
 		form.addEventListener("submit", function(event) {
-			const allSteps = document.querySelectorAll('input[name="instructions[]"]');
+			const allInstructions = document.querySelectorAll('input[name="instructions[]"]');
+			const allIngredients = document.querySelectorAll('input[name="ingredients[]"]');
 	
-			// Check if at least one step has content only on form submission
-			let hasContent = Array.from(allSteps).some(input => input.value.trim() !== '');
-	
+			// Check if at least one step has content
+			let hasContent = Array.from(allInstructions).some(input => input.value.trim() !== '') ||
+                             Array.from(allIngredients).some(input => input.value.trim() !== '');
+
 			if (!hasContent) {
-				event.preventDefault(); // Prevent form submission
-				alert("Please fill out at least one instruction step.");
+				event.preventDefault();
+				alert("Please fill out at least one instruction or ingredient step.");
 			} else {
 				// Concatenate the steps and store in hidden textarea
-				let instructionsText = Array.from(allSteps).map(field => field.value).join('\n');
-				document.getElementById('instructions-hidden').value = instructionsText;
+				let instructionsText = Array.from(allInstructions).map(field => field.value).join('\n');
+				let ingredientsText = Array.from(allIngredients).map(field => field.value).join(', ');
+				document.getElementById('instructions-hidden').value = `Ingredients: ${ingredientsText}\nInstructions: ${instructionsText}`;
 			}
 		});
 	}
-	
 
 	// Initialize all functionalities
 	function init() {
@@ -101,7 +95,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		adjustSidenavMargin();
 		setupCardActions();
 		setupFlashMessageCloseButtons();
-		setupAddStepFunctionality();
+		setupDynamicStepAddition("ingredients-container", "ingredients[]", "add-ingredient-btn", "Ingredient");
+    	setupDynamicStepAddition("instructions-container", "instructions[]", "add-step-btn", "Step");
 		setupFormValidation();
 	}
 

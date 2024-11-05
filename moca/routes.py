@@ -65,6 +65,9 @@ def add_category():
         image_file = request.files.get("image_file")
         default_image = request.form.get("default_image")
 
+        # Debugging print to check the value
+        print("Default image selected:", default_image)
+
         if not category_name:
             flash("Category name is required.", "error")
             return redirect(url_for("add_category"))
@@ -81,7 +84,7 @@ def add_category():
             image_file.save(image_file_path)
             image_url = url_for('uploaded_file', filename=filename)
         elif default_image == "default":
-            image_url = url_for('static', filename='images/default1.jpg')
+            image_url = url_for('static', filename='images/default-category.jpg')
 
         # Create and save the new category
         category = Category(category_name=category_name, image_url=image_url)
@@ -117,16 +120,11 @@ def edit_category(category_id):
             image_file.save(image_file_path)
             category.image_url = url_for('uploaded_file', filename=filename)
         elif default_image:
-            category.image_url = url_for('static', filename='images/default2.jpg')
-        elif image_url:
-            if image_url.startswith(('http://', 'https://')):
-                category.image_url = image_url
-            else:
-                flash("Invalid image URL. Ensure it starts with http:// or https://.", "error")
-                return redirect(url_for("edit_category", category_id=category.id))
+            category.image_url = url_for('static', filename='images/default-category.jpg')
         else:
-            flash("No image changes were made.", "info")
-
+            flash("Invalid image URL. Ensure it starts with http:// or https://.", "error")
+            return redirect(url_for("edit_category", category_id=category.id))
+            
         # Commit changes to the database with error handling
         try:
             db.session.commit()
@@ -177,7 +175,7 @@ def add_recipe():
             final_image_url = url_for('uploaded_file', filename=filename)
         elif request.form.get("default_image") == "default":
             # Use the default image if specified
-            final_image_url = url_for('static', filename='images/default1.jpg')  # Ensure this matches your default image path
+            final_image_url = url_for('static', filename='images/default-recipe.jpg')
         else:
             flash("Please provide a valid image upload or select a default image.", "error")
             return redirect(url_for("add_recipe"))

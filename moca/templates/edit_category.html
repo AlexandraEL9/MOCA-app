@@ -38,9 +38,9 @@
         <div class="default-image-container d-flex align-items-center">
           <p class="mr-2">Or choose a default image:</p>
           <label>
-            <input name="default_image" type="radio" value="default2" {% if category.image_url == url_for('static', filename='images/default2.jpg') %} checked {% endif %}>
+            <input name="default_image" type="radio" value="default_category" {% if category.image_url == url_for('static', filename='images/default-category.jpg') %} checked {% endif %}>
             <span>Default Image 2</span>
-            <img src="{{ url_for('static', filename='images/default2.jpg') }}" alt="Default Image 2" style="width: 50px; height: auto; margin-left: 10px;">
+            <img src="{{ url_for('static', filename='images/default-category.jpg') }}" alt="Default Image 2" style="width: 50px; height: auto; margin-left: 10px;">
           </label>
         </div>
         {% if category.image_url %}

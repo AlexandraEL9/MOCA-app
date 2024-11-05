@@ -956,7 +956,7 @@ Many of the files will be in place but you will need to add some to run the proj
 
 - **Images**: 
 - I utilised [Coolors](https://coolors.co/) Palette Generator to create the color palette image in my README.md
-- Images for categories cards were sourced from [Unsplash](https://unsplash.com/)
+- Images for categories cards and the default images were sourced from [Unsplash](https://unsplash.com/)
 - Images for recipe cards were sourced from the Miguel Barclay website [miguelbarclay.com](https://www.miguelbarclay.com/)
 
 | Image File Name      | Image Source|
@@ -975,6 +975,8 @@ Many of the files will be in place but you will need to add some to run the proj
 |couscous-paella.png          | https://www.miguelbarclay.com/ |
 |chorizo-beans-on-toast.png          | https://www.miguelbarclay.com/ |
 |bacon-and-asparagus-tagliatelle.png          | https://www.miguelbarclay.com/ |
+|default-category.jpg          | https://unsplash.com/photos/white-and-red-greeting-card-UlDElKKpBgU|
+|default-recipe.jpg          | https://unsplash.com/photos/white-and-gold-ceramic-round-plate-Ccp9IurxLjI|
 
 ### Code
 

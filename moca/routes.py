@@ -144,122 +144,85 @@ def delete_category(category_id):
     flash("Category deleted successfully!", "success")
     return redirect(url_for("categories"))
 
-
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
-    categories = Category.query.order_by(Category.category_name).all()
-
     if request.method == "POST":
         recipe_name = request.form.get("recipe_name")
         image_file = request.files.get("image_file")
-        description = request.form.get("description")
-        ingredients = request.form.get("ingredients")
-        instructions = request.form.getlist("instructions[]")
-        category_id = request.form.get("category_id")
+        default_image = request.form.get("default_image")
 
-        # Check for required fields
-        if (
-            not recipe_name or
-            not category_id or
-            not ingredients or
-            not instructions
-        ):
-
-            flash("Please fill in all required fields.", "error")
+        if not recipe_name:
+            flash("Recipe name is required.", "error")
             return redirect(url_for("add_recipe"))
 
-        # Ensure image file is uploaded and valid
+        # Handle image file upload if provided
         if image_file:
             if allowed_file(image_file.filename):
                 filename = secure_filename(image_file.filename)
-                image_file_path = os.path.join(
-                    app.config['UPLOAD_FOLDER'],
-                    filename
-                )
+                image_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 image_file.save(image_file_path)
-                final_image_url = url_for('uploaded_file', filename=filename)
+                image_url = url_for('uploaded_file', filename=filename)
             else:
                 flash("Invalid image format. Please upload a PNG, JPG, or GIF image.", "error")
                 return redirect(url_for("add_recipe"))
-        else:
-            flash("Please provide a valid image upload.", "error")
+        elif default_image:  # If a default image is selected
+            image_url = default_image
+        else:  # Handle the error if no image is provided
+            flash("Please upload an image or select a default image.", "error")
             return redirect(url_for("add_recipe"))
-            
-        # Create new recipe
-        # Inspired by Tim Nelson(
-        # https://github.com/TravelTimN/ci-milestone04-dcd/blob/main/app/templates/desserts_recipe.html)
-        # and work through utilizing chat gpt
-        recipe = Recipe(
-            recipe_name=recipe_name,
-            image_url=final_image_url,
-            description=description,
-            ingredients=ingredients,
-            instructions="\n".join(instructions),
-            category_id=category_id
-        )
 
+        # Add the recipe to the database
+        recipe = Recipe(recipe_name=recipe_name, image_url=image_url, category_id=request.form.get("category_id"))
         db.session.add(recipe)
         db.session.commit()
 
         flash("Recipe added successfully!", "success")
-        return redirect(url_for("home"))
+        return redirect(url_for("recipes"))
 
+    # Fetch categories to pass to the template
+    categories = Category.query.all()
     return render_template("add_recipe.html", categories=categories)
+
+
 
 @app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
-    recipe = Recipe.query.get_or_404(recipe_id)
-    categories = Category.query.order_by(Category.category_name).all()
+    recipe = Recipe.query.get(recipe_id)
 
     if request.method == "POST":
-        # Retrieve form fields
         recipe_name = request.form.get("recipe_name")
-        description = request.form.get("description")
-        ingredients = request.form.get("ingredients")
-        instructions = request.form.getlist("instructions[]")
-        category_id = request.form.get("category_id")
+        image_file = request.files.get("image_file")
+        default_image = request.form.get("default_image")
 
-        # Ensure at least one instruction step is provided
-        instructions = [
-            step.strip() for step in instructions if step.strip()
-        ]  # Filter out empty steps
-        if not instructions:
-            flash("Please provide at least one instruction step.", "error")
+        if not recipe_name:
+            flash("Recipe name is required.", "error")
             return redirect(url_for("edit_recipe", recipe_id=recipe_id))
 
-        # Update recipe details
-        recipe.recipe_name = recipe_name
-        recipe.description = description
-        recipe.ingredients = ingredients
-        recipe.instructions = "\n".join(instructions)  # Join steps into one string
-        recipe.category_id = category_id
-
-        # Handle image upload (optional)
-        image_file = request.files.get("image_file")
+        # Handle image file upload if provided
         if image_file:
             if allowed_file(image_file.filename):
                 filename = secure_filename(image_file.filename)
-                image_file_path = os.path.join(
-                    app.config['UPLOAD_FOLDER'],
-                    filename
-                )
+                image_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 image_file.save(image_file_path)
-                recipe.image_url = url_for('uploaded_file', filename=filename)
+                image_url = url_for('uploaded_file', filename=filename)
             else:
                 flash("Invalid image format. Please upload a PNG, JPG, or GIF image.", "error")
-                return redirect(url_for("edit_recipe", recipe_id=recipe.id))
+                return redirect(url_for("edit_recipe", recipe_id=recipe_id))
+        elif default_image:  # If a default image is selected
+            image_url = default_image
+        else:  # If neither is provided, you can handle it as needed
+            flash("Please upload an image or select a default image.", "error")
+            return redirect(url_for("edit_recipe", recipe_id=recipe_id))
 
-        # Save changes to the database
+        # Update the recipe
+        recipe.recipe_name = recipe_name
+        recipe.image_url = image_url
         db.session.commit()
+
         flash("Recipe updated successfully!", "success")
-        return redirect(url_for("home"))
+        return redirect(url_for("recipes"))
 
-    # Split existing instructions into steps for editing
-    recipe.instructions = recipe.instructions.split("\n")
-
-    return render_template(
-        "edit_recipe.html", recipe=recipe, categories=categories
-    )
+    return render_template("edit_recipe.html", recipe=recipe)
 
 
 @app.route("/delete_recipe/<int:recipe_id>", methods=["POST"])

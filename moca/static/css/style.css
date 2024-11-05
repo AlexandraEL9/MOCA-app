@@ -270,7 +270,7 @@ nav {
 .input-field label {
   color: #333333 !important;
   display: block; /* Make the label display above the input */
-  margin-bottom: 8px; /* Space between label and input */
+  margin-bottom: 10px; /* Space between label and input */
   font-weight: bold; /* Optional: makes the label more readable */
 }
 
@@ -296,6 +296,8 @@ input, textarea, select {
   display: block;
   margin-top: 5px; /* Adds space above the select input */
   padding: 8px; /* Adds padding for a better user experience */
+  border-radius: 4px; /* Slightly round the corners */
+  border: 1px solid #ccc; /* Border for distinction */
 }
 
 .file-upload-input {

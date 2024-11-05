@@ -64,26 +64,55 @@
     <!-- Include a hidden textarea to store all instructions as a single string -->
     <textarea id="instructions-hidden" name="instructions_text" style="display: none;"></textarea>
 
-    <!-- Upload Image -->
+    <!-- Image upload Heading -->
+    <div class="row">
+      <div class="col s12">
+        <h5><i class="fas fa-image"></i> Image Upload </h5>
+      </div>
+    </div>
+    <!-- Image Upload Section -->
     <div class="row">
       <div class="input-field col s12">
         <div class="file-upload-container">
-          <i class="fas fa-upload prefix"></i>
-          <label for="image_file" class="file-upload-label">Upload Image (required)</label>
-          <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image" required>
+          <label for="image_file" class="file-upload-label">Upload Image</label>
+          <input type="file" id="image_file" name="image_file" class="file-upload-input" aria-label="Upload an image">
         </div>
       </div>
     </div>
-
-    <!-- Category -->
+    <!-- Default Image Upload Section -->
+    <p>No image right now? No problem! Just use out default image and edit later.</p>
     <div class="row">
       <div class="input-field col s12">
-        <select id="category_id" name="category_id" required>
-          <option value="" disabled selected>Choose a Category</option> {% for category in categories %} <option value="{{ category.id }}">{{ category.category_name }}</option> {% endfor %}
+        <label for="default_image" class="active">Choose a Default Image:</label>
+        <select id="default_image" name="default_image" class="browser-default">
+          <option value="" disabled selected>Select an image</option>
+          <option value="/static/uploads/default1.jpg">Default Image 1</option>
+          <option value="/static/uploads/default2.jpg">Default Image 2</option>
         </select>
-        <label for="category_id">Category</label>
+      </div>
+    </div> 
+    
+    <!-- Image upload Heading -->
+    <div class="row">
+      <div class="col s12">
+        <h5><i class="fas fa-folder-open prefix"></i> Category </h5>
       </div>
     </div>
+
+    <!--choose category-->
+    <div class="row">
+      <div class="input-field col s12">
+
+          <label class="active" for="category_id">Choose a Category <span><small>(required)</small></span></label>
+          <select id="category_id" name="category_id" class="validate" required>
+              <option value="" disabled selected>Choose Category</option>
+              {% for category in categories %}
+                  <option value="{{ category.id }}">{{ category.category_name }}</option>
+              {% endfor %}
+          </select>
+      </div>
+    </div>
+
     <!-- Submit Button -->
     <div class="row">
       <div class="input-field col s12 center-align">
@@ -92,6 +121,5 @@
       </div>
     </div>
   </form>
-</div> {% endblock %}
-
-
+</div> 
+{% endblock %}

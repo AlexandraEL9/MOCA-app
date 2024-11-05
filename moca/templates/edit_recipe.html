@@ -10,6 +10,18 @@
     </div>
   </div>
 </div>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-info">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
 <div class="row card-panel container-fluid">
   <form class="col s12" action="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" method="POST" enctype="multipart/form-data">
     <!-- Recipe Name -->
@@ -51,8 +63,6 @@
         <button type="button" id="add-ingredient-btn" class="btn">Add Ingredient</button>
       </div>
     </div>
-    <!-- Hidden Textarea for Ingredients -->
-    <textarea id="ingredients-hidden" name="ingredients_text" style="display: none;"></textarea>
 
     <!-- Instructions Section -->
     <div class="row">
@@ -76,19 +86,36 @@
         <button type="button" id="add-step-btn" class="btn">Add Step</button>
       </div>
     </div>
-    <!-- Hidden Textarea for Instructions -->
-    <textarea id="instructions-hidden" name="instructions_text" style="display: none;"></textarea>
 
-    <!-- Upload Image -->
+    <!-- Upload Image Section -->
     <div class="row">
       <div class="input-field col s12">
-        <div class="file-upload-container">
-          <i class="fas fa-upload prefix"></i>
-          <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
-          <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
-        </div>
+        <h5><i class="fas fa-upload"></i> Upload Image <small>(optional)</small></h5>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <div class="file-upload-container d-flex align-items-center"> 
+          <label for="image_file" class="file-upload-label">Choose your own image</label>
+          <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
+        </div>
+        <div class="default-image-container d-flex align-items-center">
+          <p class="mr-2">Or choose a default image:</p>
+          <label>
+            <input name="default_image" type="radio" value="default" {% if recipe.image_url == url_for('uploaded_file', filename='default1.jpg') %} checked {% endif %}>
+            <span>Default Image</span>
+            <img src="{{ url_for('static', filename='images/default1.jpg') }}" alt="Default Image" style="width: 50px; height: auto; margin-left: 10px;">
+          </label>
+        </div>
+        {% if recipe.image_url %}
+          <div class="current-image-container">
+            <h6>Current Image:</h6>
+            <img src="{{ recipe.image_url }}" alt="Current Recipe Image" style="width: 50px; height: auto; margin-left: 10px;">
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
     <!-- Category -->
     <div class="row">
       <div class="col s12">
@@ -98,9 +125,9 @@
     <div class="row">
       <div class="input-field col s12">
         <select id="category_id" name="category_id" required>
-          <option value="" disabled selected>Choose a Category</option>
+          <option value="" disabled>Choose a Category</option>
           {% for category in categories %}
-          <option value="{{ category.id }}">{{ category.category_name }}</option>
+          <option value="{{ category.id }}" {% if category.id == recipe.category_id %} selected {% endif %}>{{ category.category_name }}</option>
           {% endfor %}
         </select>
         <label for="category_id">Category</label>
@@ -115,3 +142,4 @@
   </form>
 </div>
 {% endblock %}
+

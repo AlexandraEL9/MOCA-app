@@ -237,14 +237,21 @@ def edit_recipe(recipe_id):
             recipe.image_url = url_for('uploaded_file', filename=filename)
 
         # Save changes to the database
-        db.session.commit()
-        flash("Recipe updated successfully!", "success")
+        try:
+            db.session.commit()
+            flash("Recipe updated successfully!", "success")
+        except Exception as e:
+            db.session.rollback()  # Rollback in case of error
+            flash("An error occurred while updating the recipe. Please try again.", "error")
+            return redirect(url_for("edit_recipe", recipe_id=recipe_id))
+
         return redirect(url_for("home"))
 
     # Split existing instructions into steps for editing
     recipe.instructions = recipe.instructions.split("\n")  # Prepare for displaying in the form
 
     return render_template("edit_recipe.html", recipe=recipe, categories=categories)
+
 
 
 @app.route("/delete_recipe/<int:recipe_id>", methods=["POST"])

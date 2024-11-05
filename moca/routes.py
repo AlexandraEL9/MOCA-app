@@ -146,7 +146,6 @@ def delete_category(category_id):
     flash("Category deleted successfully!", "success")
     return redirect(url_for("categories"))
 
-
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     categories = Category.query.order_by(Category.category_name).all()
@@ -155,46 +154,41 @@ def add_recipe():
         recipe_name = request.form.get("recipe_name")
         image_file = request.files.get("image_file")
         description = request.form.get("description")
-        ingredients = request.form.getlist("ingredients[]")  # Updated to get a list
-        instructions = request.form.getlist("instructions[]")  # Updated to get a list
+        ingredients = request.form.getlist("ingredients[]")
+        instructions = request.form.getlist("instructions[]")
         category_id = request.form.get("category_id")
 
         # Check for required fields
-        if (
-            not recipe_name or
-            not category_id or
-            not ingredients or  # Checking for empty list
-            not instructions  # Checking for empty list
-        ):
+        if not recipe_name or not category_id or not ingredients or not instructions:
             flash("Please fill in all required fields.", "error")
             return redirect(url_for("add_recipe"))
 
-        # Ensure image file is uploaded and valid
+        # Determine the image to use
+        final_image_url = None
+
         if image_file and allowed_file(image_file.filename):
+            # Handle uploaded image
             filename = secure_filename(image_file.filename)
-            image_file_path = os.path.join(
-                app.config['UPLOAD_FOLDER'],
-                filename
-            )
+            image_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image_file.save(image_file_path)
             final_image_url = url_for('uploaded_file', filename=filename)
+        elif request.form.get("default_image") == "default":
+            # Use the default image if specified
+            final_image_url = url_for('static', filename='images/default1.jpg')  # Ensure this matches your default image path
         else:
-            flash(
-                "Please provide a valid image upload.",
-                "error"
-            )
+            flash("Please provide a valid image upload or select a default image.", "error")
             return redirect(url_for("add_recipe"))
 
         # Create a formatted string for ingredients
-        formatted_ingredients = ', '.join(ingredients)  # Join the ingredients into a single string
+        formatted_ingredients = ', '.join(ingredients)
 
         # Create new recipe
         recipe = Recipe(
             recipe_name=recipe_name,
             image_url=final_image_url,
             description=description,
-            ingredients=formatted_ingredients,  # Use the formatted string
-            instructions="\n".join(instructions),  # Join instructions into a single string
+            ingredients=formatted_ingredients,
+            instructions="\n".join(instructions),
             category_id=category_id
         )
 
@@ -205,6 +199,8 @@ def add_recipe():
         return redirect(url_for("home"))
 
     return render_template("add_recipe.html", categories=categories)
+
+
 
 @app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):

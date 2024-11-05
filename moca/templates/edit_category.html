@@ -1,97 +1,63 @@
-{% extends "base.html" %} {% block content %}
-<!-- header section -->
+{% extends "base.html" %} 
+{% block content %}
+<!-- Header Section -->
 <div class="container-fluid container-header">
   <div class="row">
-    <!-- title and description section -->
     <div class="col-lg-6 col-md-6">
       <section class="content-section content-section-title-description">
-        <h2>Edit Recipe</h2>
+        <h2>Edit Category: {{ category.category_name }}</h2>
       </section>
     </div>
   </div>
 </div>
-<!--edit recipe card-->
-<div class="row card-panel container-fluid">
-  <form class="col s12" action="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" method="POST" enctype="multipart/form-data">
-    <!--edit recipe name-->
+
+<!-- Edit Category Card -->
+<div class="row card-panel">
+  <form class="col s12" action="{{ url_for('edit_category', category_id=category.id) }}" method="POST" enctype="multipart/form-data">
+    <!-- Category Name -->
     <div class="row">
       <div class="input-field col s12">
-        <i class="fas fa-utensils prefix"></i>
-        <input id="recipe_name" name="recipe_name" value="{{ recipe.recipe_name }}" minlength="3" maxlength="50" type="text" class="validate" required>
-        <label for="recipe_name" class="active">Recipe Name</label>
+        <i class="fas fa-folder-open prefix"></i>
+        <label for="category_name">Category Name</label>
+        <input id="category_name" name="category_name" minlength="3" maxlength="25" type="text" class="validate" value="{{ category.category_name }}" required>
       </div>
     </div>
-    <!--edit recipe description-->
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="fas fa-align-left prefix"></i>
-        <textarea id="description" name="description" class="materialize-textarea">{{ recipe.description }}</textarea>
-        <label for="description" class="active">Description</label>
-      </div>
-    </div>
-    <!--edit recipe ingredients-->
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="fas fa-list-ul prefix"></i>
-        <textarea id="ingredients" name="ingredients" class="materialize-textarea" required>{{ recipe.ingredients }}</textarea>
-        <label for="ingredients" class="active">Ingredients</label>
-      </div>
-    </div>
-    <!-- Instructions Heading -->
-    <div class="row">
-      <div class="col s12">
-        <h5><i class="fas fa-clipboard-list"></i> Instructions</h5>
-      </div>
-    </div>
-
-    <!-- Instruction Steps Container -->
-    <div id="instructions-container">
-      {% for step in recipe.instructions %}
-      <div class="row">
-          <div class="input-field col s12">
-              <input type="text" name="instructions[]" value="{{ step }}" id="instruction_step_{{ loop.index }}" class="validate">
-              <label for="instruction_step_{{ loop.index }}" class="active">Step {{ loop.index }}</label>
-          </div>
-      </div>
-      {% endfor %}
-    </div>
-
-    <!-- Add New Step Button -->
-    <div class="row">
-      <div class="col s12">
-        <button type="button" id="add-step-btn" class="btn">Add Step</button>
-      </div>
-    </div>
-
     
-
-    <!-- Include a hidden textarea to store all instructions as a single string -->
-    <textarea id="instructions-hidden" name="instructions_text" style="display: none;"></textarea>
-    <!-- edit image -->
+    <!-- Upload Image Section -->
     <div class="row">
       <div class="input-field col s12">
-        <div class="file-upload-container">
-          <i class="fas fa-upload prefix"></i>
-          <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
+        <h5><i class="fas fa-upload"></i> Upload Image <small>(optional)</small></h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="file-upload-container d-flex align-items-center"> 
+          <label for="image_file" class="file-upload-label">Choose your own image</label>
           <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
         </div>
-      </div>
-    </div>
-    <!-- edit category -->
-    <div class="row">
-      <div class="input-field col s12">
-        <select id="category_id" name="category_id" required>
-          <option value="" disabled selected>Choose a Category</option> {% for category in categories %} <option value="{{ category.id }}">{{ category.category_name }}</option> {% endfor %}
-        </select>
-        <label for="category_id">Category</label>
-      </div>
-    </div>
-      <!--update button-->
-      <div class="row">
-        <div class="input-field col s12 center-align">
-          <button class="btn-large" type="submit">Update Recipe <i class="fas fa-plus-square right"></i>
-          </button>
+        <div class="default-image-container d-flex align-items-center">
+          <p class="mr-2">Or choose a default image:</p>
+          <label>
+            <input name="default_image" type="radio" value="default2" {% if category.image_url == url_for('static', filename='images/default2.jpg') %} checked {% endif %}>
+            <span>Default Image 2</span>
+            <img src="{{ url_for('static', filename='images/default2.jpg') }}" alt="Default Image 2" style="width: 50px; height: auto; margin-left: 10px;">
+          </label>
         </div>
+        {% if category.image_url %}
+          <div class="current-image-container">
+            <h6>Current Image:</h6>
+            <img src="{{ category.image_url }}" alt="Current Category Image" style="width: 50px; height: auto; margin-left: 10px;">
+          </div>
+        {% endif %}
       </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="row">
+      <div class="input-field col s12 center-align">
+        <button class="btn-large" type="submit">Update Category <i class="fas fa-pencil-alt right"></i></button>
+      </div>
+    </div>
   </form>
-</div> {% endblock %}
+</div> 
+{% endblock %}

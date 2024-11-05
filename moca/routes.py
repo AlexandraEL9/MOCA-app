@@ -94,7 +94,6 @@ def add_category():
     return render_template("add_category.html")
 
 
-
 @app.route("/edit_category/<int:category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
     category = Category.query.get_or_404(category_id)
@@ -103,32 +102,43 @@ def edit_category(category_id):
         category_name = request.form.get("category_name")
         image_url = request.form.get("image_url")
         image_file = request.files.get("image_file")
+        default_image = request.form.get("default_image")
 
         if category_name:
             category.category_name = category_name
-
-        # Handle image file upload
-        if image_file and allowed_file(image_file.filename):
-            filename = secure_filename(image_file.filename)
-            image_file_path = os.path.join(
-                app.config['UPLOAD_FOLDER'], filename
-            )
-            image_file.save(image_file_path)
-            category.image_url = url_for('uploaded_file', filename=filename)
-        elif image_url and image_url.startswith(('http://', 'https://')):
-            category.image_url = image_url
         else:
-            flash(
-                "Invalid URL. Provide a valid upload.",
-                "error"
-            )
+            flash("Category name cannot be empty.", "error")
             return redirect(url_for("edit_category", category_id=category.id))
 
-        db.session.commit()
-        flash("Category updated successfully!", "success")
+        # Handle image selection logic
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            image_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image_file.save(image_file_path)
+            category.image_url = url_for('uploaded_file', filename=filename)
+        elif default_image:
+            category.image_url = url_for('static', filename='images/default2.jpg')
+        elif image_url:
+            if image_url.startswith(('http://', 'https://')):
+                category.image_url = image_url
+            else:
+                flash("Invalid image URL. Ensure it starts with http:// or https://.", "error")
+                return redirect(url_for("edit_category", category_id=category.id))
+        else:
+            flash("No image changes were made.", "info")
+
+        # Commit changes to the database with error handling
+        try:
+            db.session.commit()
+            flash("Category updated successfully!", "success")
+        except Exception as e:
+            db.session.rollback()
+            flash(f"An error occurred while updating the category: {str(e)}", "error")
+
         return redirect(url_for("categories"))
 
     return render_template("edit_category.html", category=category)
+
 
 
 @app.route("/delete_category/<int:category_id>", methods=["POST"])

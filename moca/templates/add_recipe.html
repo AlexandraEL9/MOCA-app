@@ -82,14 +82,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col"> <!-- Adjusted column size for layout -->
-        <div class="file-upload-container d-flex align-items-center"> <!-- Added d-flex for flex alignment -->
+      <div class="col">
+        <!--own file upload-->
+        <div class="file-upload-container d-flex align-items-center"> 
           <label for="image_file" class="file-upload-label">Choose your own image</label>
           <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
         </div>
-
- 
-        <div class="default-image-container d-flex align-items-center"> <!-- Added d-flex for flex alignment -->
+        <!--use default file-->
+        <div class="default-image-container d-flex align-items-center">
           <p class="mr-2">Or choose a default image:</p>
           <label>
             <input name="default_image" type="radio" value="default">
@@ -97,10 +97,15 @@
             <img src="{{ url_for('static', filename='images/default1.jpg') }}" alt="Default Image" style="width: 50px; height: auto; margin-left: 10px;">
           </label>
         </div>
-
+      </div>
     </div>
 
     <!-- Category -->
+    <div class="row">
+      <div class="col s12">
+        <h5><i class="fas fa-folder"></i> Add to a Category </h5>
+      </div>
+    </div>
     <div class="row">
       <div class="input-field col s12">
         <select id="category_id" name="category_id" required>

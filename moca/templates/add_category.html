@@ -21,30 +21,16 @@
         <input id="category_name" name="category_name" minlength="3" maxlength="25" type="text" class="validate" required>
       </div>
     </div>
-    <!-- Image Upload Section -->
+    <!-- Upload Image -->
     <div class="row">
       <div class="input-field col s12">
         <div class="file-upload-container">
+          <i class="fas fa-upload prefix"></i>
           <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
-          <input type="file" id="image_file" name="image_file" class="file-upload-input" aria-label="Upload an image">
+          <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
         </div>
       </div>
     </div>
-    <p>No image right now? No problem! Just use out default image and edit later.</p>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <label for="default_image" class="active">Choose a Default Image:</label>
-        <select id="default_image" name="default_image" class="browser-default">
-          <option value="" disabled selected>Select an image</option>
-          <option value="/static/uploads/default1.jpg">Default Image 1</option>
-          <option value="/static/uploads/default2.jpg">Default Image 2</option>
-          <!-- Add more options as needed -->
-        </select>
-      </div>
-    </div>
-    
-    
     <!--add category button-->
     <div class="row">
       <div class="input-field col s12 center-align">

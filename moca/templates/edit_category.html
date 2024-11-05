@@ -5,47 +5,93 @@
     <!-- title and description section -->
     <div class="col-lg-6 col-md-6">
       <section class="content-section content-section-title-description">
-        <h2>Edit Category</h2>
+        <h2>Edit Recipe</h2>
       </section>
     </div>
   </div>
 </div>
-<div class="row card-panel">
-  <form class="col s12" action="{{ url_for('edit_category', category_id=category.id) }}" method="POST" enctype="multipart/form-data">
+<!--edit recipe card-->
+<div class="row card-panel container-fluid">
+  <form class="col s12" action="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" method="POST" enctype="multipart/form-data">
+    <!--edit recipe name-->
     <div class="row">
       <div class="input-field col s12">
-        <i class="fas fa-folder-open prefix"></i>
-        <input id="category_name" name="category_name" value="{{ category.category_name }}" minlength="3" maxlength="25" type="text" class="validate" required>
-        <label for="category_name">Category Name</label>
+        <i class="fas fa-utensils prefix"></i>
+        <input id="recipe_name" name="recipe_name" value="{{ recipe.recipe_name }}" minlength="3" maxlength="50" type="text" class="validate" required>
+        <label for="recipe_name" class="active">Recipe Name</label>
       </div>
     </div>
-    <!-- Image Upload Section -->
+    <!--edit recipe description-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-align-left prefix"></i>
+        <textarea id="description" name="description" class="materialize-textarea">{{ recipe.description }}</textarea>
+        <label for="description" class="active">Description</label>
+      </div>
+    </div>
+    <!--edit recipe ingredients-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-list-ul prefix"></i>
+        <textarea id="ingredients" name="ingredients" class="materialize-textarea" required>{{ recipe.ingredients }}</textarea>
+        <label for="ingredients" class="active">Ingredients</label>
+      </div>
+    </div>
+    <!-- Instructions Heading -->
+    <div class="row">
+      <div class="col s12">
+        <h5><i class="fas fa-clipboard-list"></i> Instructions</h5>
+      </div>
+    </div>
+
+    <!-- Instruction Steps Container -->
+    <div id="instructions-container">
+      {% for step in recipe.instructions %}
+      <div class="row">
+          <div class="input-field col s12">
+              <input type="text" name="instructions[]" value="{{ step }}" id="instruction_step_{{ loop.index }}" class="validate">
+              <label for="instruction_step_{{ loop.index }}" class="active">Step {{ loop.index }}</label>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Add New Step Button -->
+    <div class="row">
+      <div class="col s12">
+        <button type="button" id="add-step-btn" class="btn">Add Step</button>
+      </div>
+    </div>
+
+    
+
+    <!-- Include a hidden textarea to store all instructions as a single string -->
+    <textarea id="instructions-hidden" name="instructions_text" style="display: none;"></textarea>
+    <!-- edit image -->
     <div class="row">
       <div class="input-field col s12">
         <div class="file-upload-container">
+          <i class="fas fa-upload prefix"></i>
           <label for="image_file" class="file-upload-label">Upload Image (optional)</label>
-          <input type="file" id="image_file" name="image_file" class="file-upload-input" aria-label="Upload an image">
+          <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
         </div>
       </div>
     </div>
-    <p>No image right now? No problem! Just use out default image and edit later.</p>
-
+    <!-- edit category -->
     <div class="row">
       <div class="input-field col s12">
-        <label for="default_image" class="active">Choose a Default Image:</label>
-        <select id="default_image" name="default_image" class="browser-default">
-          <option value="" disabled selected>Select an image</option>
-          <option value="/static/uploads/default1.jpg">Default Image 1</option>
-          <option value="/static/uploads/default2.jpg">Default Image 2</option>
-          <!-- Add more options as needed -->
+        <select id="category_id" name="category_id" required>
+          <option value="" disabled selected>Choose a Category</option> {% for category in categories %} <option value="{{ category.id }}">{{ category.category_name }}</option> {% endfor %}
         </select>
-      </div>
-    </div>    
-    <div class="row">
-      <div class="input-field col s12 center-align">
-        <button class="btn-large" type="submit" name="action">Edit Category <i class="fas fa-edit right"></i>
-        </button>
+        <label for="category_id">Category</label>
       </div>
     </div>
+      <!--update button-->
+      <div class="row">
+        <div class="input-field col s12 center-align">
+          <button class="btn-large" type="submit">Update Recipe <i class="fas fa-plus-square right"></i>
+          </button>
+        </div>
+      </div>
   </form>
 </div> {% endblock %}

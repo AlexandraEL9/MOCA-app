@@ -71,28 +71,29 @@
       </div>
     </div>
     <!-- Image Upload Section -->
-    <div class="row">
-      <div class="input-field col s12">
-        <div class="file-upload-container">
+<div class="row">
+  <div class="input-field col s12">
+      <div class="file-upload-container">
           <label for="image_file" class="file-upload-label">Upload Image</label>
           <input type="file" id="image_file" name="image_file" class="file-upload-input" aria-label="Upload an image">
-        </div>
       </div>
-    </div>
-    <!-- Default Image Upload Section -->
-    <p>No image right now? No problem! Just use out default image and edit later.</p>
-    <div class="row">
-      <div class="input-field col s12">
-        <label for="default_image" class="active">Choose a Default Image:</label>
-        <select id="default_image" name="default_image" class="browser-default">
-          <option value="" disabled selected>Select an image</option>
-          <option value="/static/uploads/default1.jpg">Default Image 1</option>
-          <option value="/static/uploads/default2.jpg">Default Image 2</option>
-        </select>
+  </div>
+</div>
+<p>No image right now? No problem! Just use the provided default image.</p>
+
+<div class="row">
+  <div class="col s12">
+      <div class="default-image-container">
+          <div class="thumbnail">
+              <img src="/static/uploads/default1.jpg" alt="Default Image" class="responsive-img">
+              <button class="choose-image-btn" onclick="chooseDefaultImage('/static/uploads/default1.jpg')">Choose Default Image</button>
+          </div>
       </div>
-    </div> 
+  </div>
+</div>
+
     
-    <!-- Image upload Heading -->
+    <!-- Category section -->
     <div class="row">
       <div class="col s12">
         <h5><i class="fas fa-folder-open prefix"></i> Category </h5>

@@ -262,16 +262,8 @@ nav {
 }
 
 /* Input and File Upload Styles */
-
-.input-field {
-  margin-bottom: 20px; /* Add spacing between form fields */
-}
-
 .input-field label {
   color: #333333 !important;
-  display: block; /* Make the label display above the input */
-  margin-bottom: 10px; /* Space between label and input */
-  font-weight: bold; /* Optional: makes the label more readable */
 }
 
 input, textarea, select {
@@ -280,33 +272,17 @@ input, textarea, select {
 
 .file-upload-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 20px; /* Add space below the upload container */
+  align-items: center;
+  gap: 10px;
 }
 
 .file-upload-label {
-  display: block;
-  margin-bottom: 8px; /* Space between the label and the input */
-  font-weight: bold;
-  color: var(--secondary-color); /* Make it visually distinctive */
-}
-
-.input-field select {
-  display: block;
-  margin-top: 5px; /* Adds space above the select input */
-  padding: 8px; /* Adds padding for a better user experience */
-  border-radius: 4px; /* Slightly round the corners */
-  border: 1px solid #ccc; /* Border for distinction */
+  margin: 0;
 }
 
 .file-upload-input {
-  width: 100%; /* Ensure input takes full width */
-  padding: 8px; /* Add padding for better appearance */
-  border: 1px solid #ccc; /* Optional: Add a border for distinction */
-  border-radius: 5px; /* Add rounded corners */
+  margin-left: auto;
 }
-
 
 /* Flash Messages */
 .flash-messages {

@@ -1,3 +1,4 @@
+/* globsl M */
 document.addEventListener("DOMContentLoaded", function() {
 	// Initialize Materialize components
 	function initializeMaterializeComponents() {

@@ -1,5 +1,4 @@
-{% extends "base.html" %} 
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <!-- Header Section -->
 <div class="container-fluid container-header">
   <div class="row">
@@ -28,11 +27,12 @@
         <textarea id="description" name="description" class="materialize-textarea"></textarea>
       </div>
     </div>
-
     <!-- Ingredients Section -->
     <div class="row">
       <div class="col s12">
-        <h5><i class="fas fa-clipboard-list"></i> Ingredients</h5>
+        <h5>
+          <i class="fas fa-clipboard-list"></i> Ingredients
+        </h5>
       </div>
     </div>
     <div id="ingredients-container">
@@ -51,11 +51,12 @@
     </div>
     <!-- Hidden Textarea for Ingredients -->
     <textarea id="ingredients-hidden" name="ingredients_text" style="display: none;"></textarea>
-
     <!-- Instructions Section -->
     <div class="row">
       <div class="col s12">
-        <h5><i class="fas fa-clipboard-list"></i> Instructions</h5>
+        <h5>
+          <i class="fas fa-clipboard-list"></i> Instructions
+        </h5>
       </div>
     </div>
     <div id="instructions-container">
@@ -74,17 +75,18 @@
     </div>
     <!-- Hidden Textarea for Instructions -->
     <textarea id="instructions-hidden" name="instructions_text" style="display: none;"></textarea>
-
     <!-- Upload Image Section -->
     <div class="row">
       <div class="input-field col s12">
-        <h5><i class="fas fa-upload"></i> Upload Image <small>(required)</small></h5>
+        <h5>
+          <i class="fas fa-upload"></i> Upload Image <small>(required)</small>
+        </h5>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <!--own file upload-->
-        <div class="file-upload-container d-flex align-items-center"> 
+        <div class="file-upload-container d-flex align-items-center">
           <label for="image_file" class="file-upload-label">Choose your own image</label>
           <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
         </div>
@@ -99,20 +101,18 @@
         </div>
       </div>
     </div>
-
     <!-- Category -->
     <div class="row">
       <div class="col s12">
-        <h5><i class="fas fa-folder"></i> Add to a Category </h5>
+        <h5>
+          <i class="fas fa-folder"></i> Add to a Category
+        </h5>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
         <select id="category_id" name="category_id" required>
-          <option value="" disabled selected>Choose a Category</option>
-          {% for category in categories %}
-          <option value="{{ category.id }}">{{ category.category_name }}</option>
-          {% endfor %}
+          <option value="" disabled selected>Choose a Category</option> {% for category in categories %} <option value="{{ category.id }}">{{ category.category_name }}</option> {% endfor %}
         </select>
         <label for="category_id">Category</label>
       </div>
@@ -120,9 +120,9 @@
     <!-- Submit Button -->
     <div class="row">
       <div class="input-field col s12 center-align">
-        <button class="btn-large" type="submit">Add Recipe <i class="fas fa-plus-square right"></i></button>
+        <button class="btn-large" type="submit">Add Recipe <i class="fas fa-plus-square right"></i>
+        </button>
       </div>
     </div>
   </form>
-</div>
-{% endblock %}
+</div> {% endblock %}

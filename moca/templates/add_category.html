@@ -24,12 +24,14 @@
     <!-- Upload Image Section -->
     <div class="row">
       <div class="input-field col s12">
-        <h5><i class="fas fa-upload"></i> Upload Image <small>(optional)</small></h5>
+        <h5>
+          <i class="fas fa-upload"></i> Upload Image <small>(optional)</small>
+        </h5>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <div class="file-upload-container d-flex align-items-center"> 
+        <div class="file-upload-container d-flex align-items-center">
           <label for="image_file" class="file-upload-label">Choose your own image</label>
           <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
         </div>
@@ -40,10 +42,9 @@
             <span>Default Image</span>
             <img src="{{ url_for('static', filename='images/default-category.jpg') }}" alt="Default Image" style="width: 50px; height: auto; margin-left: 10px;">
           </label>
-        </div>        
+        </div>
       </div>
     </div>
-
     <!--add category button-->
     <div class="row">
       <div class="input-field col s12 center-align">

@@ -1,6 +1,4 @@
-{% extends "base.html" %} 
-{% block content %}
-<div class="container-fluid container-header">
+{% extends "base.html" %} {% block content %} <div class="container-fluid container-header">
   <div class="row">
     <div class="col-lg-6 col-md-6">
       <section class="content-section content-section-title-description">
@@ -21,41 +19,25 @@
           </div>
         </div>
         <div class="col s12 m6 l8" style="display: flex; justify-content: center; align-items: center;">
-          <div class="section" style="text-align: center;">
-            {% if recipe.image_url %}
-              <img src="{{ recipe.image_url }}" class="responsive-img" alt="{{ recipe.recipe_name }}">
-            {% else %}
-              <p>No image available</p>
-            {% endif %}
-          </div>
+          <div class="section" style="text-align: center;"> {% if recipe.image_url %} <img src="{{ recipe.image_url }}" class="responsive-img" alt="{{ recipe.recipe_name }}"> {% else %} <p>No image available</p> {% endif %} </div>
         </div>
       </div>
       <div class="row" style="margin-top: 20px;">
         <div class="col s12 m6 l4">
           <div class="section">
             <h4 class="recipe-section-title">Ingredients</h4>
-            <ul>
-              {% for ingredient in recipe.ingredients.split(', ') %}
-                <li>{{ ingredient.strip() }}</li>
-              {% endfor %}
-            </ul>
+            <ul> {% for ingredient in recipe.ingredients.split(', ') %} <li>{{ ingredient.strip() }}</li> {% endfor %} </ul>
           </div>
         </div>
         <div class="col s12 m6 l8">
           <div class="section">
             <h4 class="recipe-section-title">Instructions</h4>
-            <ol>
-              {% for instruction in recipe.instructions.split('\n') %}
-              <li>
+            <ol> {% for instruction in recipe.instructions.split('\n') %} <li>
                 {{ instruction.strip() }}
-              </li>
-              {% endfor %}
-            </ol>
+              </li> {% endfor %} </ol>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-{% endblock %}
-
+</div> {% endblock %}

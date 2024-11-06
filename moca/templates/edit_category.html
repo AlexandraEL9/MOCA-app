@@ -1,5 +1,4 @@
-{% extends "base.html" %} 
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <!-- Header Section -->
 <div class="container-fluid container-header">
   <div class="row">
@@ -10,7 +9,6 @@
     </div>
   </div>
 </div>
-
 <!-- Edit Category Card -->
 <div class="row card-panel">
   <form class="col s12" action="{{ url_for('edit_category', category_id=category.id) }}" method="POST" enctype="multipart/form-data">
@@ -22,16 +20,17 @@
         <input id="category_name" name="category_name" minlength="3" maxlength="25" type="text" class="validate" value="{{ category.category_name }}" required>
       </div>
     </div>
-    
     <!-- Upload Image Section -->
     <div class="row">
       <div class="input-field col s12">
-        <h5><i class="fas fa-upload"></i> Upload Image <small>(optional)</small></h5>
+        <h5>
+          <i class="fas fa-upload"></i> Upload Image <small>(optional)</small>
+        </h5>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <div class="file-upload-container d-flex align-items-center"> 
+        <div class="file-upload-container d-flex align-items-center">
           <label for="image_file" class="file-upload-label">Choose your own image</label>
           <input type="file" id="image_file" name="image_file" class="validate file-upload-input" aria-label="Upload an image">
         </div>
@@ -42,22 +41,18 @@
             <span>Default Image 2</span>
             <img src="{{ url_for('static', filename='images/default-category.jpg') }}" alt="Default Image 2" style="width: 50px; height: auto; margin-left: 10px;">
           </label>
-        </div>
-        {% if category.image_url %}
-          <div class="current-image-container">
-            <h6>Current Image:</h6>
-            <img src="{{ category.image_url }}" alt="Current Category Image" style="width: 50px; height: auto; margin-left: 10px;">
-          </div>
-        {% endif %}
+        </div> {% if category.image_url %} <div class="current-image-container">
+          <h6>Current Image:</h6>
+          <img src="{{ category.image_url }}" alt="Current Category Image" style="width: 50px; height: auto; margin-left: 10px;">
+        </div> {% endif %}
       </div>
     </div>
-
     <!-- Submit Button -->
     <div class="row">
       <div class="input-field col s12 center-align">
-        <button class="btn-large" type="submit">Update Category <i class="fas fa-pencil-alt right"></i></button>
+        <button class="btn-large" type="submit">Update Category <i class="fas fa-pencil-alt right"></i>
+        </button>
       </div>
     </div>
   </form>
-</div> 
-{% endblock %}
+</div> {% endblock %}
